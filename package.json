@@ -1,0 +1,27 @@
+{
+  "name": "writingacademy",
+  "version": "1.0.0",
+  "description": "DU Class - Project 2 - CheekyMonkeyGroup",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KyleKowalski/WritingAcademy.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KyleKowalski/WritingAcademy/issues"
+  },
+  "homepage": "https://github.com/KyleKowalski/WritingAcademy#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "express-handlebars": "^3.0.0",
+    "mysql2": "^1.4.2",
+    "sequelize": "^4.20.1"
+  }
+}
