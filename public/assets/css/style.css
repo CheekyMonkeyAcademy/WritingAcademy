@@ -1,0 +1,39 @@
+html, body {
+    height:100%;
+    margin:0px;
+	padding:0px;
+	min-width: 340px;
+}
+
+.navbar, footer {
+	background-color:rgb(165, 171, 195);
+	height:70px; 
+	min-width: 340px;
+} 
+
+.main-wrapper {
+	box-sizing: border-box;
+	min-height: 100%;
+	position: relative;
+	margin:0px;
+	padding:0px;
+	padding-top:70px;
+	padding-bottom:70px;
+}
+
+footer {
+    clear: both;
+	position: absolute;
+	vertical-align: middle;
+	margin-bottom: 0;
+	bottom:0;
+	width: 100%;
+}
+/* h2, h3, h4, input, select, button{
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.form-control, .btn {
+    width: 90%
+} */
