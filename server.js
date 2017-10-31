@@ -1,41 +1,40 @@
 // Dependencies
 var express = require("express");
 var exphbs = require("express-handlebars");
+var bodyParser = require("body-parser");
 
 // Create an instance of the express app.
 var app = express();
+var PORT = process.env.PORT || 8080;
 
-// Specify the port.
-var port = 3000;
 
 // Set Handlebars as the default templating engine.
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-// Data
-var lunches = [
-  {
-    lunch: "Beet & Goat Cheese Salad with minestrone soup."
-  }, {
-    lunch: "Pizza, two double veggie burgers, fries with a big glup"
-  }
-];
+// Requiring our models for syncing
+var db = require("./models");
+
+// Sets up the Express app to handle data parsing
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.text());
+app.use(bodyParser.json({ type: "application/vnd.api+json" }));
+
+// Static directory
+app.use(express.static("public"));
 
 // Routes
-app.get("/weekday", function(req, res) {
-  res.render("index", lunches[0]);
-});
+// =============================================================
+require("./routes/html-routes.js")(app);
+// require("./routes/post-api-routes.js")(app); // TODO make real routes
+// require("./routes/author-api-routes.js")(app); // TODO make real routes
 
-app.get("/weekend", function(req, res) {
-  res.render("index", lunches[1]);
-});
 
-app.get("/lunches", function(req, res) {
-  res.render("all-lunches", {
-    foods: lunches,
-    eater: "david"
+// Syncing our sequelize models and then starting our Express app
+// =============================================================
+db.sequelize.sync({ force: true }).then(function() {
+  app.listen(PORT, function() {
+    console.log("App listening on PORT " + PORT);
   });
 });
-
-// Initiate the listener.
-app.listen(port);
