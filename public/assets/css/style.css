@@ -13,14 +13,10 @@ body{
 
 	.jumbotron {
 		opacity: 0.4;
-		min-height: 100%;
-		min-width: 340px;
+	
 		
 	}
-	
-		.container {
-		
-		min-height: 100%;
+
 	
 html, body {
     height:100%;
