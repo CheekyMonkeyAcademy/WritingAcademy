@@ -4,3 +4,78 @@
   <li>{{dataValues.title}}</li>
 {{/each}}
 </ul>
+
+  
+    <div class="container">
+      <div class ="row">
+        <div class="text-center">
+          <h2>Suggestions</h2>
+        </div>
+      </div>
+      <div class="row" id="suggestion">
+       
+       
+              <div class="col-sm-4">
+                
+                <a href="#">
+                  <img src="/assets/images/notes.jpg" height="400px" />
+                  <h4>Suggestion 1</h4>
+                </a>
+              </div>
+              
+              <div class="col-sm-4">
+                <a href="#">
+                  <img src="/assets/images/notes.jpg" height="400px" />
+                  <h4>Suggestion 2</h4>
+                </a>
+                </div>
+              <div class="col-sm-4">
+                <a href="#">
+                  <img src="/assets/images/notes.jpg" height="400px" />
+                  <h4>Suggestion 3</h4>
+                </a>
+</div>
+            </div>
+        
+    
+    
+
+
+  <div class="row">
+    <div class="col-md-4 col-md-offset-1">
+      <div class="panel-panel default">
+        <ul class="list-group">
+          {{#each story}} {{#unless this.post}}
+          <li class="list-group-item">
+            <div class="input-group">
+              <p class="lead"> {{this.story_name}} </p>
+              <span class="input-group-btn">
+                <form action="burgers/update/{{this.id}}?_method=PUT" method="POST">
+                  <input type="hidden" name="devoured" value="true">
+                  <button class="btn btn-default btn-lg" type="submit"> Write! </button>
+                </form>
+              </span>
+            </div>
+          </li>
+          {{/unless}} {{/each}}
+        </ul>
+      </div>
+    </div>
+
+
+   
+
+    <div class="col-md-10 col-md-offset-1">
+      <p class="lead"> Enter Your Name & click the submit button. </p>
+
+      {{!-- section to add Story --}}
+      <form class="create-update-form" action="stiry/create" method="POST">
+
+        <div class="form-group">
+          <textarea class="form-control input-lg" type="text" name="story_name" rows="3"> </textarea>
+        </div>
+
+        <button class="btn btn-default btn-lg" type="submit">Add Story!</button>
+      </form>
+    </div>
+  </div>
