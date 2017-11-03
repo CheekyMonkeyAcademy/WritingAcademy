@@ -4,7 +4,11 @@
         "password": "password",
         "database": "writing_db",
         "host": "localhost",
-        "dialect": "mysql"
+        "dialect": "mysql",
+        "twitterKeys": {
+            "CONSUMER_KEY": "aI0LlGbbkANCJj3RkS08mTC2f",
+            "CONSUMER_SECRET": "ggEYwryfDm7kGW5obxAUm3eufouK3RtuRZ4DMi2hBCYGTuzGEZ"
+        }
     },
     "test": {
         "username": "root",
