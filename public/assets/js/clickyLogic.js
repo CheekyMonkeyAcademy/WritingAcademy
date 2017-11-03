@@ -7,7 +7,8 @@ $("#createStory").on("click", function(){
     var newStory = {
         title: $("#createStoryTitle").val(),
         genre: $("#createStoryGenre").val(),
-        open: $("#openToOthers").val(),
+        openWriting: $("#openWritingToOthers").val(),
+        openVoting: $("#openVotingToOthers").val(),
         visible: $("#visibleToPublic").val()
     }
   
@@ -32,7 +33,8 @@ $("#createStory").on("click", function(){
     //Clear form values
     title: $("#createStoryTitle").val("");
     genre: $("#createStoryGenre").val("");
-    open: $("#openToOthers").val("");
+    openWriting: $("#openWritingToOthers").val("");
+    openVoting: $("#openVotingToOthers").val("");
     visible: $("#visibleToPublic").val("")
 
 
