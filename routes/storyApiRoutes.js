@@ -40,7 +40,8 @@ module.exports = function(app){
         db.Story.create({
             title:req.body.title,
             genre:req.body.genre,
-            openToAllUsers: req.body.open,
+            openWritingToAllUsers: req.body.openWriting,
+            openVotingToAllUsers: req.body.openVoting,
             publiclyVisible:req.body.visible
         })
     })

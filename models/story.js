@@ -19,7 +19,12 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false,
             defaultValue: false
         },
-        openToAllUsers: {
+        openVotingToAllUsers: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: false
+        },
+        openWritingToAllUsers: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
