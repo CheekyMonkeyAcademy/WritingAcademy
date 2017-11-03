@@ -35,11 +35,21 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false,
             defaultValue: 0,
             len: [1]
-        }
+        },
+        // createdAt: Sequelize.DATE,
+        // updatedAt: Sequelize.DATE,
     });
 
     Story.associate = function(models) {
-        // TODO fix this for realsies
+        Story.hasMany(models.Line, {
+           onDelete:"cascade"           
+        })            
+    }
+    
+        
+        
+        
+            // Country.hasMany(City, {foreignKey: 'countryCode', sourceKey: 'isoCode'});)
 
         // We're saying that a Post should belong to an User
         // A Post can't be created without an User due to the foreign key constraint
@@ -48,7 +58,7 @@ module.exports = function(sequelize, DataTypes) {
         //         allowNull: false
         //     }
         // });
-    };
+    
 
     return Story;
 };

@@ -4,8 +4,39 @@
 // DELETE--DELETE
 
 //ROUTING PSEUDO-CODE
+var db = require("../models");
 
-    //ROOT Page???
+module.exports = function(app){
+    
+    //Read
+        //Route to read a specific story id           
+    app.get("/api/story/:id", function(req, res){
+        db.Story.findOne({
+            include:[db.Line],
+            where: {
+                id: req.params.id
+            }
+        }).then(function(story){
+            // console.log(story)       
+            var storiesObject = {
+                callThisVariableInHandlebarsForEach: story
+              };
+            res.render("index", storiesObject);
+            console.log("**These are lines**********************")  
+            //   console.log(storiesObject.callThisVariableInHandlebarsForEach.dataValues)
+            console.log(storiesObject.callThisVariableInHandlebarsForEach.dataValues.Lines[0].dataValues.lineText)
+            
+            //This is called in handlebars like this: 
+            //{{callThisVariableInHandlebarsForEach.dataValues.title}}
+        });
+    })
+     
+
+   
+
+}
+
+//ROOT Page???
 
     //Create a story
         //app.post("")
@@ -18,14 +49,7 @@
 
         //app.put("")
             //This is handle the specifics of updating the actual story
-
-    //Read
-        //app.get("")
-        //Route to read a specific story id
-            //Includes lines from said story
-    
-    //***** */
+ //***** */
     //DELETE a story?? Maybe??
     //Possibly hide story or update it to where it is no longer visible???
     //Global hide variable
-
