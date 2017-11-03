@@ -5,6 +5,7 @@
 
 //ROUTING PSEUDO-CODE
 var db = require("../models");
+// var clickyLogic = require("./assets/js/clickyLogic")
 
 module.exports = function(app){
     
@@ -30,10 +31,19 @@ module.exports = function(app){
             //{{callThisVariableInHandlebarsForEach.dataValues.title}}
         });
     })
-     
-
-   
-
+    
+    //Create Story Route
+    app.post("/api/newStory", function(req, res){
+        console.log("New Story Specs: ******************")
+        var newCreatedStory = req.body;
+        console.log(newCreatedStory);
+        db.Story.create({
+            title:req.body.title,
+            genre:req.body.genre,
+            openToAllUsers: req.body.open,
+            publiclyVisible:req.body.visible
+        })
+    })
 }
 
 //ROOT Page???
