@@ -1,6 +1,14 @@
 
-<ul>
-{{#each callThisVariableInHandlebarsForEach }}
-  <li>{{dataValues.title}}</li>
-{{/each}}
+
+{{!-- {{#each callThisVariableInHandlebarsForEach }}
+  {{!-- <li>{{dataValues.line}}</li> --}}
+{{!-- {{/each}} --}} 
+
+{{!--This is for the findById query}}--}}
+{{callThisVariableInHandlebarsForEach.dataValues.title}}
+<ul>  
+    {{#each callThisVariableInHandlebarsForEach.dataValues.Lines}}
+    <li>{{dataValues.lineText}}</li>
+    {{/each}}
+  
 </ul>
