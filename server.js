@@ -3,7 +3,9 @@ var express = require("express");
 var exphbs = require("express-handlebars");
 var bodyParser = require("body-parser");
 var passport = require('passport');
+var session = require('express-session');
 var Strategy = require('passport-twitter').Strategy;
+var env = require('dotenv').load();
 
 passport.use(new Strategy({
         consumerKey: './config/config.twitterKeys.CONSUMER_KEY',
@@ -34,9 +36,24 @@ var PORT = process.env.PORT || 8080;
 // Set Handlebars as the default templating engine.
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
+// app.get('/', (req, res) => {
+//     res.send('./views/main.hbs')
+// }) // need to change to render handlebar home maybe...
 
 // Requiring our models for syncing
 var db = require("./models");
+var models = require('./models');
+
+
+var authRoute = require('./routes/auth')(app, passport);
+
+require('./config/passport/passport')(passport, models.user);
+
+models.sequelize.sync().then(() => {
+    console.log('Database is working!')
+}).catch((err) => {
+    console.log(err, 'Why are you breaking my DB?')
+})
 
 // console.log(config)
 
@@ -67,7 +84,7 @@ require("./routes/logins")(app);
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
-db.sequelize.sync({ force: true }).then(function() {
+db.sequelize.sync({ force: false }).then(function() {
     app.listen(PORT, function() {
         console.log("App listening on PORT " + PORT);
     });
