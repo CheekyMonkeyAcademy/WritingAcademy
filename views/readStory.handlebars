@@ -1,6 +1,35 @@
-<h1>Title: {{callThisVariableInHandlebarsForEach.dataValues.title}}</h1>
-<h3>Story:</h3>    
-{{#each callThisVariableInHandlebarsForEach.dataValues.Lines}}
-  {{dataValues.lineText}} 
-{{/each}}
-  
+<div class="container">
+  <div class="row">
+    <div class="col-sm-2">
+      <h3>Title: {{callThisVariableInHandlebarsForEach.dataValues.title}}</h3>
+    </div>
+    <div class="col-sm-2">
+      <h3>Visibility: {{callThisVariableInHandlebarsForEach.dataValues.publiclyVisible}}</h3>
+    </div>
+    <div class="col-sm-2">
+      <h3>Genre: {{callThisVariableInHandlebarsForEach.dataValues.genre}}</h3>
+    </div>
+    <div class="col-sm-2">
+      <h3>_________: {{callThisVariableInHandlebarsForEach.dataValues.________}}</h3>
+    </div>
+    <div class="col-sm-2">
+      <h3>Story:</h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <form>
+        <div class="form-group">
+        <label for="exampleFormControlTextarea1">STORY</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="10"></textarea>
+      </div>
+    </form>
+
+ {{#each callThisVariableInHandlebarsForEach.dataValues.Lines}} {{dataValues.lineText}} {{/each}}
+
+  </div>
+
+
+ 
+
+</div>
