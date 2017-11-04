@@ -18,8 +18,13 @@ module.exports = function(app) {
     //     });
     // });
 
-    //EXAMPLE HTML FILE TEST
-    app.get('/', function(req, res){
+    //EXAMPLE HTML FILE TEST 
+    //This route here shows the create story html page
+
+    app.get('/test', function(req, res){
        res.sendFile(path.join(__dirname, "../public/test.html"));
     })
+
+    
+   
 }

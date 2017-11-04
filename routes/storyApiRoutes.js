@@ -11,31 +11,31 @@ module.exports = function(app){
     
     //Read
         //Route to read a specific story id           
-    app.get("/api/story/:id", function(req, res){
-        db.Story.findOne({
-            include:[{ model: db.Line, 
-                where: { 
-                    lineSelected: true
-                    // TODO add order by line number
-                }
-            }],
-            where: {
-                id: req.params.id
-            }
-        }).then(function(story){
-            // console.log(story)       
-            var storiesObject = {
-                callThisVariableInHandlebarsForEach: story
-              };
-            res.render("readStory", storiesObject);
-            console.log("**These are lines**********************")  
-            //   console.log(storiesObject.callThisVariableInHandlebarsForEach.dataValues)
-            console.log(storiesObject.callThisVariableInHandlebarsForEach.dataValues.Lines[0].dataValues.lineText)
+    // app.get("/api/story/:id", function(req, res){
+    //     db.Story.findOne({
+    //         include:[{ model: db.Line, 
+    //             where: { 
+    //                 lineSelected: true
+    //                 // TODO add order by line number
+    //             }
+    //         }],
+    //         where: {
+    //             id: req.params.id
+    //         }
+    //     }).then(function(story){
+    //         // console.log(story)       
+    //         var storiesObject = {
+    //             callThisVariableInHandlebarsForEach: story
+    //           };
+    //         res.render("readStory", storiesObject);
+    //         console.log("**These are lines**********************")  
+    //         //   console.log(storiesObject.callThisVariableInHandlebarsForEach.dataValues)
+    //         console.log(storiesObject.callThisVariableInHandlebarsForEach.dataValues.Lines[0].dataValues.lineText)
             
-            //This is called in handlebars like this: 
-            //{{callThisVariableInHandlebarsForEach.dataValues.title}}
-        });
-    })
+    //         //This is called in handlebars like this: 
+    //         //{{callThisVariableInHandlebarsForEach.dataValues.title}}
+    //     });
+    // })
     
     //Create Story Route
     app.post("/api/newStory", function(req, res){
@@ -50,13 +50,26 @@ module.exports = function(app){
             publiclyVisible:req.body.visible
         })
     })
+
+
+//I want to get info from the database and post it to a different handlebars page
+    app.get("/api/viewAllCreated", function(req, res){
+        db.Story.findAll({
+
+        }).then(function(story){
+            var allMyStoriesCreatedObject = {
+                handlebarsCall:story
+            };
+            // console.log("****Get all stories****")
+            // console.log(story)           
+            // console.log(allMyStoriesCreatedObject.handlebarsCall[0].dataValues)
+            // console.log(allMyStoriesCreatedObject.handlebarsCall)
+            res.render("viewMyStories", allMyStoriesCreatedObject)
+        })
+    })
+
 }
-
-//ROOT Page???
-
-    //Create a story
-        //app.post("")
-        //Route to create story
+ 
 
     //Update a story
         //UPDATE WILL NEED BOTH A GET AND A PUT ROUTE

@@ -24,10 +24,12 @@ $("#createStory").on("click", function(){
         // data: newStory,
         dataType: 'json',
         contentType: 'application/json',
-        success: function(newStory){
+        success: 
+        function(newStory){
             console.log(newStory)
-        }
-            
+            //I want to go to the index.handlebars to view the stories I have created
+            // location.href = "/"
+        }            
     })
 
     //Clear form values
@@ -36,8 +38,14 @@ $("#createStory").on("click", function(){
     openWriting: $("#openWritingToOthers").val("");
     openVoting: $("#openVotingToOthers").val("");
     visible: $("#visibleToPublic").val("")
+})
 
-
+//Edit Created Story Logic
+$("#editStory").on("click", function(){
+    // event.preventDefault();
+    console.log("WORKING?? WORKING??");
+    // var thisStoryUpdateId = $(this).attr('thisStoryId');
+    // console.log(thisStoryUpdateId);
 })
 
 
