@@ -27,7 +27,9 @@ module.exports = function(app){
             var storiesObject = {
                 callThisVariableInHandlebarsForEach: story
               };
+            // res.render("readStory", storiesObject);
             res.render("readStory", storiesObject);
+
             console.log("**These are lines**********************")  
             //   console.log(storiesObject.callThisVariableInHandlebarsForEach.dataValues)
             console.log(storiesObject.callThisVariableInHandlebarsForEach.dataValues.Lines[0].dataValues.lineText)
