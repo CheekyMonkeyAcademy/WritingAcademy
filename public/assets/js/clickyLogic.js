@@ -27,7 +27,6 @@ $("#createStory").on("click", function(){
         success: 
         function(newStory){
             console.log(newStory)
-            //I want to go to the index.handlebars to view the stories I have created
             // location.href = "/"
         }            
     })
@@ -40,14 +39,32 @@ $("#createStory").on("click", function(){
     visible: $("#visibleToPublic").val("")
 })
 
-//Edit Created Story Logic
-$("#editStory").on("click", function(){
-    // event.preventDefault();
-    console.log("WORKING?? WORKING??");
-    // var thisStoryUpdateId = $(this).attr('thisStoryId');
-    // console.log(thisStoryUpdateId);
-})
+//Update Story Click Function
+$("#updateStory").on("click", function(){
+    event.preventDefault();
+   
+    var updatedStory = {
+        title: $("#createStoryTitle").val(),
+        genre: $("#createStoryGenre").val(),
+        openWriting: $("#openWritingToOthers").val(),
+        openVoting: $("#openVotingToOthers").val(),
+        visible: $("#visibleToPublic").val()
+    }
 
+    //Ajax call here to update story:
+    $.ajax({
+        type: "PUT", 
+        url: "/api/stories/" +$("form").data('id'),
+        data: JSON.stringify(updatedStory),
+        // data: newStory,
+        dataType: 'json',
+        contentType: 'application/json',
+        success: 
+             console.log(updatedStory)
+            // location.href = "/"
+                   
+    })
+})
 
 
 
