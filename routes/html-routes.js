@@ -18,8 +18,15 @@ module.exports = function(app) {
     //     });
     // });
 
+    
     //EXAMPLE HTML FILE TEST
     app.get('/', function(req, res){
-       res.sendFile(path.join(__dirname, "../public/test.html"));
+        res.sendFile(path.join(__dirname, "../public/test.html"));
+    //    res.sendFile(path.join(__dirname, "../public/test.html"));
+    })
+
+    app.get('/createStory', function (req, res) {
+        res.render("createStory");
+        //    res.sendFile(path.join(__dirname, "../public/test.html"));
     })
 }
