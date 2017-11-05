@@ -1,7 +1,8 @@
 $(document).ready(function(){
 
+
 //Submit new story logic
-$("#createStory").on("click", function(){
+    $("#createStory").on("click", function(){
     event.preventDefault();
 
     var newStory = {

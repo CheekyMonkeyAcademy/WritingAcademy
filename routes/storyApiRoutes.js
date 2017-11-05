@@ -46,7 +46,7 @@ module.exports = function(app){
     app.post("/api/newStory", function(req, res){
         console.log("New Story Specs: ******************")
         var newCreatedStory = req.body;
-        console.log(newCreatedStory);
+        console.log("/ = "+newCreatedStory.title);
         db.Story.create({
             title:req.body.title,
             genre:req.body.genre,
@@ -55,7 +55,20 @@ module.exports = function(app){
             publiclyVisible:req.body.visible
         })
     })
+
+    app.post("/api/writeStory", function (req, res) {
+        console.log("New Story Specs: ******************")
+        var newCreatedStoryBody = req.body;  
+        // ???
+        console.log(newCreatedStoryBody);
+        db.Story.create({
+            body: req.body
+        
+        })
+    })
 }
+
+
 
 //ROOT Page???
 
