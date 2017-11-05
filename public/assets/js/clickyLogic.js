@@ -24,10 +24,11 @@ $("#createStory").on("click", function(){
         // data: newStory,
         dataType: 'json',
         contentType: 'application/json',
-        success: function(newStory){
+        success: 
+        function(newStory){
             console.log(newStory)
-        }
-            
+            // location.href = "/"
+        }            
     })
 
     //Clear form values
@@ -36,10 +37,34 @@ $("#createStory").on("click", function(){
     openWriting: $("#openWritingToOthers").val("");
     openVoting: $("#openVotingToOthers").val("");
     visible: $("#visibleToPublic").val("")
-
-
 })
 
+//Update Story Click Function
+$("#updateStory").on("click", function(){
+    event.preventDefault();
+   
+    var updatedStory = {
+        title: $("#createStoryTitle").val(),
+        genre: $("#createStoryGenre").val(),
+        openWriting: $("#openWritingToOthers").val(),
+        openVoting: $("#openVotingToOthers").val(),
+        visible: $("#visibleToPublic").val()
+    }
+
+    //Ajax call here to update story:
+    $.ajax({
+        type: "PUT", 
+        url: "/api/stories/" +$("form").data('id'),
+        data: JSON.stringify(updatedStory),
+        // data: newStory,
+        dataType: 'json',
+        contentType: 'application/json',
+        success: 
+             console.log(updatedStory)
+            // location.href = "/"
+                   
+    })
+})
 
 
 

@@ -18,15 +18,31 @@ module.exports = function(app) {
     //     });
     // });
 
-    
-    //EXAMPLE HTML FILE TEST
-    app.get('/', function(req, res){
-        res.sendFile(path.join(__dirname, "../public/test.html"));
-    //    res.sendFile(path.join(__dirname, "../public/test.html"));
+
+    //EXAMPLE HTML FILE TEST 
+    //This route here shows the create story html page
+    app.get('/test', function(req, res){
+       res.sendFile(path.join(__dirname, "../public/test.html"));
     })
 
     app.get('/createStory', function (req, res) {
         res.render("createStory");
-        //    res.sendFile(path.join(__dirname, "../public/test.html"));
     })
+
+    //This route goes to the update form
+    app.get("/updateStoryForm/:id", function(req, res){
+        db.Story.findOne({
+            where: {
+                id: req.params.id
+            }
+        }).then(function(story){
+            var storiesObject = {
+                handlebarCall: story
+                };
+                res.render("updateMyStories", storiesObject)
+                console.log(storiesObject);
+            })
+        })
+    
+   
 }
