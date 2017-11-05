@@ -21,12 +21,26 @@ module.exports = function(app) {
     
     //EXAMPLE HTML FILE TEST
     app.get('/', function(req, res){
+        console.log("TEST");
         res.sendFile(path.join(__dirname, "../public/test.html"));
     //    res.sendFile(path.join(__dirname, "../public/test.html"));
     })
 
     app.get('/createStory', function (req, res) {
+        console.log("TEST create story");
         res.render("createStory");
         //    res.sendFile(path.join(__dirname, "../public/test.html"));
+        console.log(req);
     })
+
+    app.get('/writeStory', function (req, res) {
+        res.render("writeStory");
+        //    res.sendFile(path.join(__dirname, "../public/test.html"));
+    })
+
+    app.get('/readStory', function (req, res) {
+        res.render("readStory");
+        //    res.sendFile(path.join(__dirname, "../public/test.html"));
+    })
+
 }
