@@ -5,12 +5,11 @@
 
 //ROUTING PSEUDO-CODE
 var db = require("../models");
-// var clickyLogic = require("./assets/js/clickyLogic")
 
 module.exports = function(app){
     
     //Read
-        //Route to read a specific story id           
+        // Route to read a specific story id           
     app.get("/api/story/:id", function(req, res){
         console.log("TEST");
         db.Story.findOne({
@@ -28,20 +27,27 @@ module.exports = function(app){
             var storiesObject = {
                 callThisVariableInHandlebarsForEach: story
               };
+            // YOU WILL NEED ALL OF THIS LATER TO GET THE INDIVIDUAL LINES--KEEP
 
-            console.log("MY OBJ:" + storiesObject);
             res.render("readStory", storiesObject);
             console.log("MY OBJ:" + storiesObject.callThisVariableInHandlebarsForEach);
 
             console.log("**These are lines**********************")  
-            // hkjhk  console.log(storiesObject.callThisVariableInHandlebarsForEach.dataValues)
+
+            //console.log(storiesObject.callThisVariableInHandlebarsForEach.dataValues)
             //console.log(storiesObject.callThisVariableInHandlebarsForEach.dataValues.Lines[0].dataValues.lineText)
             
             //This is called in handlebars like this: 
             //{{callThisVariableInHandlebarsForEach.dataValues.title}}
+
+            console.log(storiesObject.callThisVariableInHandlebarsForEach.dataValues)
+            console.log(storiesObject.callThisVariableInHandlebarsForEach.dataValues.Lines[0].dataValues.lineText)
+            // This is called in handlebars like this: 
+            {{callThisVariableInHandlebarsForEach.dataValues.title}}
         });
     })
-    
+
+            
     //Create Story Route
     app.post("/api/newStory", function(req, res){
         console.log("New Story Specs: ******************")
@@ -56,34 +62,47 @@ module.exports = function(app){
         })
     })
 
-    app.post("/api/writeStory", function (req, res) {
-        console.log("New Story Specs: ******************")
-        var newCreatedStoryBody = req.body;  
-        // ???
-        console.log(newCreatedStoryBody);
-        db.Story.create({
-            body: req.body
-        
+//I want to get info from the database and post it to a different handlebars page
+    app.get("/api/", function(req, res){
+        db.Story.findAll({
+        }).then(function(story){
+            var allMyStoriesCreatedObject = {
+                handlebarsCall:story
+            };
+            // console.log("****Get all stories****")
+            // console.log(story)           
+            // console.log(allMyStoriesCreatedObject.handlebarsCall[0].dataValues)
+            // console.log(allMyStoriesCreatedObject.handlebarsCall)
+            res.render("viewMyStories", allMyStoriesCreatedObject)
         })
-    })
-}
-
-
-
-//ROOT Page???
-
-    //Create a story
-        //app.post("")
-        //Route to create story
+    }) 
 
     //Update a story
-        //UPDATE WILL NEED BOTH A GET AND A PUT ROUTE
-       //app.get("")
-        //This will get the specific story with an id passed in its parameters
+    //Do not api if client is expecting an html change
+    app.put("/api/stories/:id", function(req, res){       
+            console.log("****Updated Story Spec******")
+            var updatedStorySpecs = req.body;
+            var id = req.params.id;
+            //This works I am getting the correct req.body
+            console.log(req.body)
+            db.Story.update(updatedStorySpecs,{            
+                    where: {
+                        id: req.params.id
+                    }                
+            }).then(function(Story){
+                var allMyStoriesCreatedObject = {
+                    handlebarsCall:story
+                }
+                //res.render("viewMyStories", allMyStoriesCreatedObject)
+                //res.redirect('/stories') to the view page
+            })       
+    })
 
-        //app.put("")
-            //This is handle the specifics of updating the actual story
- //***** */
-    //DELETE a story?? Maybe??
-    //Possibly hide story or update it to where it is no longer visible???
-    //Global hide variable
+
+
+
+
+
+
+
+}//End of module.exports

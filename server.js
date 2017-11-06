@@ -9,6 +9,7 @@ passport.use(new Strategy({
         consumerKey: './config/config.twitterKeys.CONSUMER_KEY',
         consumerSecret: './config/config.twitterKeys.CONSUMER_SECRET',
         callbackURL: 'http://127.0.0.1:3000/login/twitter/return'
+        // TODO this will NOT work when hosted - only local (we get a random port from Heroku)
     },
     function(token, tokenSecret, profile, cb) {
 
@@ -61,7 +62,7 @@ app.use(express.static("public"));
 // Routes
 // =============================================================
 require("./routes/html-routes.js")(app);
-require("./routes/storyApiRoutes.js")(app); // TODO make real routes
+require("./routes/storyApiRoutes.js")(app);
 // require("./routes/author-api-routes.js")(app); // TODO make real routes
 require("./routes/logins")(app);
 
