@@ -1,0 +1,13 @@
+<<<<<<< basicuserInterface
+
+    app.post("/api/writeStory", function (req, res) {
+        console.log("New Story Specs: ******************")
+        var newCreatedStoryBody = req.body;  
+        // ???
+        console.log(newCreatedStoryBody);
+        db.Story.create({
+            body: req.body
+        
+        })
+    })
+}
