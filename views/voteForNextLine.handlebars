@@ -1,0 +1,31 @@
+<container>
+  <row>
+    <div class="col-sm-6">
+      <h3>Title: {{callThisVariableInHandlebarsForEach.dataValues.title}}</h3>
+    </div>
+    <div class="col-sm-3">
+      <h3>Genre: {{callThisVariableInHandlebarsForEach.dataValues.genre}}</h3>
+    </div>
+    <div class="col-sm-3">
+      <h3>Story:</h3>
+    </div>
+  </row>
+
+  <row>
+    {{!-- <form>
+        <div class="form-group">
+        <label for="exampleFormControlTextarea1">STORY</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="18"></textarea>
+        <button type="button" class="btn btn-outline-success" style="float: right" id="SubmitStorey">Submit</button>
+      </div>
+    </form> --}}
+
+    {{#each callThisVariableInHandlebarsForEach.dataValues.Lines}} {{dataValues.lineText}} {{/each}}
+
+
+  </row>
+
+
+ 
+
+</container>

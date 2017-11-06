@@ -14,25 +14,34 @@
 	</head>
 	<body>
 
-	
-
-
+	    <div class="container">
+        <a class="navbar-brand" href="#">
+            <img src="http://i.imgur.com/GAQSCtB.png" width="25" />
+        </a>
+        <div class="nav pull-right">
+          <button type="button" class="btn btn-primary navbar-btn">
+            <span class="glyphicon glyphicon-plus"></span> 
+            Activiteit toevoegen
+          </button>
+        </div>
+    </div>
 
 		<div class='main-wrapper'>
 			<header class="text-center">
-				<nav class="navbar navbar-default navbar-fixed-top">
-					<h1>Writing Academy!</h1>
-					<div class="buttons">
-					<button type="button" class="btn btn-outline-primary" style="float: right" id="createStory">11111111111</button>
-					<button type="button" class="btn btn-outline-primary" style="float: right" id="search">2222222222</button>
-					<button type="button" class="btn btn-outline-primary" style="float: right" id="main">333333333</button>
-					</div>
-							
-					
-					{{!-- <h4>Read,</h4> <h3>Write,</h3> <h2>Compete!</h2> --}}
-					{{!-- link to oauth route... --}}
-					{{!-- <a href="../../routes/provider">Log In</a>   --}}
-				</nav>
+				<container class="navbar navbar-default navbar-fixed-top">
+					<a class="navbar-brand" href="/">
+            			<img src="http://wikiclipart.com/wp-content/uploads/2017/04/Write-writing-conclusion-clipart.png" width="25" />
+       				 </a>
+					<nav class="nav">
+						<a href="" class="btn btn-primary">Read</a>
+						<a href="" class="btn btn-primary">Write</a>
+						<a href="" class="btn btn-primary">Vote</a>
+						<a href="" class="btn btn-primary">Compete</a>
+						<a href="/" class="btn btn-primary">Writing Academy!</a>
+						<a href="/login" class="btn btn-primary">Login</a> 
+						{{!-- TODO make the login button show if you're logged in dynamically --}}
+						<a href="https://www.reddit.com/r/WritingPrompts/" class="btn btn-primary navbar-btn float-left" target="new">Writing Prompts (Reddit)</a>
+				</container>
 			</header>
 
 			
