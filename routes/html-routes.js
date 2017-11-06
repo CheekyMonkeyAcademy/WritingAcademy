@@ -18,17 +18,13 @@ module.exports = function(app) {
     //     });
     // });
 
-
     //EXAMPLE HTML FILE TEST 
     //This route here shows the create story html page
     app.get('/test', function(req, res){
        res.sendFile(path.join(__dirname, "../public/test.html"));
     })
 
-    app.get('/createStory', function (req, res) {
-        res.render("createStory");
-    })
-
+   
     //This route goes to the update form
     app.get("/updateStoryForm/:id", function(req, res){
         db.Story.findOne({
@@ -46,3 +42,4 @@ module.exports = function(app) {
     
    
 }
+

@@ -11,6 +11,7 @@ module.exports = function(app){
     //Read
         // Route to read a specific story id           
     app.get("/api/story/:id", function(req, res){
+        console.log("TEST");
         db.Story.findOne({
             include:[{ model: db.Line, 
                 where: { 
@@ -26,12 +27,20 @@ module.exports = function(app){
             var storiesObject = {
                 callThisVariableInHandlebarsForEach: story
               };
-          
             // YOU WILL NEED ALL OF THIS LATER TO GET THE INDIVIDUAL LINES--KEEP
+
             res.render("readStory", storiesObject);
+            console.log("MY OBJ:" + storiesObject.callThisVariableInHandlebarsForEach);
 
             console.log("**These are lines**********************")  
-              console.log(storiesObject.callThisVariableInHandlebarsForEach.dataValues)
+
+            //console.log(storiesObject.callThisVariableInHandlebarsForEach.dataValues)
+            //console.log(storiesObject.callThisVariableInHandlebarsForEach.dataValues.Lines[0].dataValues.lineText)
+            
+            //This is called in handlebars like this: 
+            //{{callThisVariableInHandlebarsForEach.dataValues.title}}
+
+            console.log(storiesObject.callThisVariableInHandlebarsForEach.dataValues)
             console.log(storiesObject.callThisVariableInHandlebarsForEach.dataValues.Lines[0].dataValues.lineText)
             // This is called in handlebars like this: 
             {{callThisVariableInHandlebarsForEach.dataValues.title}}
@@ -43,7 +52,7 @@ module.exports = function(app){
     app.post("/api/newStory", function(req, res){
         console.log("New Story Specs: ******************")
         var newCreatedStory = req.body;
-        console.log(newCreatedStory);
+        console.log("/ = "+newCreatedStory.title);
         db.Story.create({
             title:req.body.title,
             genre:req.body.genre,
