@@ -10,49 +10,48 @@ module.exports = function(app){
     
     //Read
         // Route to read a specific story id           
-    app.get("/api/story/:id", function(req, res){
-        console.log("TEST");
-        db.Story.findOne({
-            include:[{ model: db.Line, 
-                where: { 
-                    lineSelected: true
-                    // TODO add order by line number
-                }
-            }],
-            where: {
-                id: req.params.id
-            }
-        }).then(function(story){
-            // console.log(story)       
-            var storiesObject = {
-                callThisVariableInHandlebarsForEach: story
-              };
-            // YOU WILL NEED ALL OF THIS LATER TO GET THE INDIVIDUAL LINES--KEEP
+    // app.get("/api/story/:id", function(req, res){
+    //     // console.log("TEST");
+    //     db.Story.findOne({
+    //         include:[{ model: db.Line, 
+    //             where: { 
+    //                 lineSelected: true
+    //                 // TODO add order by line number
+    //             }
+    //         }],
+    //         where: {
+    //             id: req.params.id
+    //         }
+    //     }).then(function(story){
+    //         // console.log(story)       
+    //         var storiesObject = {
+    //             callThisVariableInHandlebarsForEach: story
+    //           };
+    //         // YOU WILL NEED ALL OF THIS LATER TO GET THE INDIVIDUAL LINES--KEEP
 
-            res.render("readStory", storiesObject);
-            console.log("MY OBJ:" + storiesObject.callThisVariableInHandlebarsForEach);
+    //         res.render("readStory", storiesObject);
+    //         console.log(storiesObject.callThisVariableInHandlebarsForEach);
 
-            console.log("**These are lines**********************")  
+    //         console.log("**These are lines**********************")  
 
-            //console.log(storiesObject.callThisVariableInHandlebarsForEach.dataValues)
-            //console.log(storiesObject.callThisVariableInHandlebarsForEach.dataValues.Lines[0].dataValues.lineText)
+    //         //console.log(storiesObject.callThisVariableInHandlebarsForEach.dataValues)
+    //         //console.log(storiesObject.callThisVariableInHandlebarsForEach.dataValues.Lines[0].dataValues.lineText)
             
-            //This is called in handlebars like this: 
-            //{{callThisVariableInHandlebarsForEach.dataValues.title}}
+    //         //This is called in handlebars like this: 
+    //         //{{callThisVariableInHandlebarsForEach.dataValues.title}}
 
-            console.log(storiesObject.callThisVariableInHandlebarsForEach.dataValues)
-            console.log(storiesObject.callThisVariableInHandlebarsForEach.dataValues.Lines[0].dataValues.lineText)
-            // This is called in handlebars like this: 
-            {{callThisVariableInHandlebarsForEach.dataValues.title}}
-        });
-    })
-
+    //         console.log(storiesObject.callThisVariableInHandlebarsForEach.dataValues)
+    //         console.log(storiesObject.callThisVariableInHandlebarsForEach.dataValues.Lines[0].dataValues.lineText)
+    //         // This is called in handlebars like this: 
+    //         // {{callThisVariableInHandlebarsForEach.dataValues.title}}
+    //     });
+    // })
             
     //Create Story Route
     app.post("/api/newStory", function(req, res){
         console.log("New Story Specs: ******************")
         var newCreatedStory = req.body;
-        console.log("/ = "+newCreatedStory.title);
+        console.log(newCreatedStory.title);
         db.Story.create({
             title:req.body.title,
             genre:req.body.genre,
@@ -60,6 +59,7 @@ module.exports = function(app){
             openVotingToAllUsers: req.body.openVoting,
             publiclyVisible:req.body.visible
         })
+        //TODO: WITH OLEG- WORK ON HIS MAIN PAGE DIRECTING TO CREATE A NEW STORY ROUTE- THIS ROUTING SHOULD BE HANDLED IN THE HTML ROUTE FILE
     })
 
 //I want to get info from the database and post it to a different handlebars page
@@ -74,12 +74,13 @@ module.exports = function(app){
             // console.log(allMyStoriesCreatedObject.handlebarsCall[0].dataValues)
             // console.log(allMyStoriesCreatedObject.handlebarsCall)
             res.render("viewMyStories", allMyStoriesCreatedObject)
+            //TODO: WITH OLEG- HAVE THIS INFORMATON RENDER VIEW ALL PAGE WITH STYLEs
         })
     }) 
 
     //Update a story
     //Do not api if client is expecting an html change
-    app.put("/api/stories/:id", function(req, res){       
+    app.put("/api/story/:id", function(req, res){       
             console.log("****Updated Story Spec******")
             var updatedStorySpecs = req.body;
             var id = req.params.id;
@@ -89,20 +90,14 @@ module.exports = function(app){
                     where: {
                         id: req.params.id
                     }                
-            }).then(function(Story){
+            }).then(function(story){
                 var allMyStoriesCreatedObject = {
-                    handlebarsCall:story
+                    handlebarsCall: story
                 }
+                //TODO: WITH OLEG- WORK ON REDIRECT TO VIEW ALL STORIES PAGE
                 //res.render("viewMyStories", allMyStoriesCreatedObject)
                 //res.redirect('/stories') to the view page
-            })       
+        })       
     })
-
-
-
-
-
-
-
 
 }//End of module.exports

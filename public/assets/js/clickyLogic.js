@@ -67,6 +67,10 @@ $("#updateStory").on("click", function(){
     })
 })
 
+//Click Function for Genre Search Button
+$("#searchGenre").on("click", function(){
+    console.log("Search Button is working")
+})
 
 
 })//End of document.ready 

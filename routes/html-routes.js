@@ -24,7 +24,6 @@ module.exports = function(app) {
        res.sendFile(path.join(__dirname, "../public/test.html"));
     })
 
-   
     //This route goes to the update form
     app.get("/updateStoryForm/:id", function(req, res){
         db.Story.findOne({
@@ -42,4 +41,3 @@ module.exports = function(app) {
     
    
 }
-
