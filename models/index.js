@@ -33,5 +33,5 @@ Object.keys(db).forEach(modelName => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-// console.log(config)
+console.log(config)
 module.exports = db;

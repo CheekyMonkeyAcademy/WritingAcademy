@@ -3,18 +3,46 @@ var express = require("express");
 var exphbs = require("express-handlebars");
 var bodyParser = require("body-parser");
 var passport = require('passport');
-var Strategy = require('passport-twitter').Strategy;
 
-passport.use(new Strategy({
-        consumerKey: './config/config.twitterKeys.CONSUMER_KEY',
-        consumerSecret: './config/config.twitterKeys.CONSUMER_SECRET',
-        callbackURL: 'http://127.0.0.1:3000/login/twitter/return'
-        // TODO this will NOT work when hosted - only local (we get a random port from Heroku)
+var TwitterStrategy = require('passport-twitter').Strategy;
+var FacebookStrategy = require('passport-facebook').Strategy;
+var RedditStrategy = require('passport-reddit').Strategy;
+
+//Twitter strat
+passport.use(new TwitterStrategy({
+        consumerKey: 'aI0LlGbbkANCJj3RkS08mTC2f',
+        consumerSecret: 'ggEYwryfDm7kGW5obxAUm3eufouK3RtuRZ4DMi2hBCYGTuzGEZ',
+        callbackURL: 'http://localhost:8080/twitter/return'
+
     },
     function(token, tokenSecret, profile, cb) {
+        // User.findOrCreate({ twitterId: profile.id }, function(err, user) {
+        //     return cb(err);
+        //     this.redirect()
+        this.redirect('/'); /*this needs to re-direct to the correct page but for now it routes back to home*/
+        // });
+    }
+));
+// console.log()
+passport.use(new FacebookStrategy({
+        clientID: '[FBID]',
+        clientSecret: '[FBSECRET]',
+        callbackURL: 'http://localhost:8080/facebook-token'
+    },
+    function(accessToken, refreshToken, profile, done) {
+        // asynchronous verification, for effect...
+        process.nextTick(function() {
 
-        return cb(null, profile);
-    }));
+            // To keep the example simple, the user's Facebook profile is returned to
+            // represent the logged-in user.  In a typical application, you would want
+            // to associate the Facebook account with a user record in your database,
+            // and return that user instead.
+            return done(null, profile);
+        });
+    }
+));
+
+
 
 
 passport.serializeUser(function(user, cb) {
@@ -24,6 +52,8 @@ passport.serializeUser(function(user, cb) {
 passport.deserializeUser(function(obj, cb) {
     cb(null, obj);
 });
+
+
 
 
 

@@ -30,13 +30,13 @@ module.exports = function(sequelize, DataTypes) {
             defaultValue: false
         },
         numberOfTimesViewed: {
-            type:  DataTypes.INTEGER,
+            type: DataTypes.INTEGER,
             allowNull: false,
             defaultValue: 0,
             len: [1]
         },
-        numberOfTimesUpvoted:  {
-            type:  DataTypes.INTEGER,
+        numberOfTimesUpvoted: {
+            type: DataTypes.INTEGER,
             allowNull: false,
             defaultValue: 0,
             len: [1]
@@ -47,23 +47,23 @@ module.exports = function(sequelize, DataTypes) {
 
     Story.associate = function(models) {
         Story.hasMany(models.Line, {
-           onDelete:"cascade"           
-        })            
+            onDelete: "cascade"
+        })
     }
-    
-        
-        
-        
-            // Country.hasMany(City, {foreignKey: 'countryCode', sourceKey: 'isoCode'});)
 
-        // We're saying that a Post should belong to an User
-        // A Post can't be created without an User due to the foreign key constraint
-        // Post.belongsTo(models.User, {
-        //     foreignKey: {
-        //         allowNull: false
-        //     }
-        // });
-    
+
+
+
+    // Country.hasMany(City, {foreignKey: 'countryCode', sourceKey: 'isoCode'});)
+
+    // We're saying that a Post should belong to an User
+    // A Post can't be created without an User due to the foreign key constraint
+    // Post.belongsTo(models.User, {
+    //     foreignKey: {
+    //         allowNull: false
+    //     }
+    // });
+
 
     return Story;
 };
