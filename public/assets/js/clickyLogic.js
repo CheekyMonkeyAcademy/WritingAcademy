@@ -62,22 +62,25 @@ $("#updateStory").on("click", function(){
         success: 
              console.log(updatedStory)
             // location.href = "/"
-                   
     })
 })
 
 $(".yesVote").on("click", function(){
     console.log(`clicked: yes vote for panel` + $(this).attr('targetId'));
     let target = 'panel' + $(this).attr('targetId');
-    
+    let id = $(this).attr('targetId');
 
     // Hide the target panel (we're done with voting for this one)
     $("#"+target).css('display', 'none');
 
     // TODO Add a vote for that target line
-    // $.ajax
-
-    
+    $.ajax({
+        url: `/api/line/${id}/voteYes`,
+        type: 'PUT',
+        success: function(result) {
+            console.log(`successfully posted a yes vote for id: ${id}`);
+        }
+    });
 });
 
 $(".noVote").on("click", function(){

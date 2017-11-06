@@ -5,7 +5,6 @@
 
 //ROUTING PSEUDO-CODE
 var db = require("../models");
-var sequelize = require('sequelize');
 
 module.exports = function(app){
     
@@ -93,6 +92,7 @@ module.exports = function(app){
     //prep interface for voting
     app.get("/api/story/:id/voting", function(req, res){       
         var id = req.params.id;
+        // first we get our lines that we need to vote on
         db.Story.findOne({
             include:[{ model: db.Line, 
                 where: { 
@@ -102,17 +102,30 @@ module.exports = function(app){
             where: {
                 id: req.params.id
             }
-        }).then(function(story){
-            console.log(story)       
+        }).then(function(storyToBeVotedOn){
+            console.log(storyToBeVotedOn) 
+            // add first to stories object      
             var storiesObject = {
-                callThisVariableInHandlebarsForEach: story
+                storyLinesToBeVotedOn: storyToBeVotedOn
               };
-            res.render("voteForNextLine", storiesObject);
+              // then we get our lines that already exist in the story
+              db.Story.findOne({
+                include:[{ model: db.Line, 
+                    where: { 
+                        lineSelected: true
+                        // TODO add order by line number
+                    }
+                }],
+                where: {
+                    id: req.params.id
+                }
+            }).then(function(storyLinesAlreadyWritten){
+                // add second to storiesObject - so we can call both on the front end --- note the names are more descriptive :)
+                storiesObject.storyLinesAlreadyWritten = storyLinesAlreadyWritten;
+                res.render("voteForNextLine", storiesObject);
+            });
         });    
     })
-
-
-
 
 
 
