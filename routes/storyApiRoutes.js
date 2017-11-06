@@ -91,23 +91,13 @@ module.exports = function(app){
     })
 
     //prep interface for voting
-    app.get("/api/stories/:id/voting", function(req, res){       
+    app.get("/api/story/:id/voting", function(req, res){       
         var id = req.params.id;
         db.Story.findOne({
             include:[{ model: db.Line, 
-                // returns only ONE - no realistic way to find the right limit.
-                // order: [
-                //     ["lineOrder", "DESC"]
-                //   ],
-                //   limit: 1,
-                // where: {
-                //     lineOrder: max(lineOrder)
-                // }
-                // TODO find the max of the line order
-                // where: { 
-                    
-                //     attributes: [[sequelize.fn('max', sequelize.col('lineOrder')), 'lineOrder']]
-                // }
+                where: { 
+                    lineVotedOn: false
+                }
             }],
             where: {
                 id: req.params.id
@@ -117,15 +107,7 @@ module.exports = function(app){
             var storiesObject = {
                 callThisVariableInHandlebarsForEach: story
               };
-          
-            // YOU WILL NEED ALL OF THIS LATER TO GET THE INDIVIDUAL LINES--KEEP
             res.render("voteForNextLine", storiesObject);
-
-            console.log("**These are lines**********************")  
-              console.log(storiesObject.callThisVariableInHandlebarsForEach.dataValues)
-            console.log(storiesObject.callThisVariableInHandlebarsForEach.dataValues.Lines[0].dataValues.lineText)
-            // This is called in handlebars like this: 
-            {{callThisVariableInHandlebarsForEach.dataValues.title}}
         });    
     })
 

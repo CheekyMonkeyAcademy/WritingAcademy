@@ -66,6 +66,28 @@ $("#updateStory").on("click", function(){
     })
 })
 
+$(".yesVote").on("click", function(){
+    console.log(`clicked: yes vote for panel` + $(this).attr('targetId'));
+    let target = 'panel' + $(this).attr('targetId');
+    
 
+    // Hide the target panel (we're done with voting for this one)
+    $("#"+target).css('display', 'none');
+
+    // TODO Add a vote for that target line
+    // $.ajax
+
+    
+});
+
+$(".noVote").on("click", function(){
+    console.log(`clicked: no vote for panel` + $(this).attr('targetId'));
+    let target = 'panel' + $(this).attr('targetId');
+
+    // Hide the target panel (we're done with voting for this one)
+    $("#"+target).css('display', 'none');
+
+    // the 'No' votes are not tallied - so we're done
+});
 
 })//End of document.ready 

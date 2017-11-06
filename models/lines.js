@@ -19,6 +19,16 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false,
             len: [1]
         },
+        lineVotedOn: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            default: false
+        },
+        lineVoteCount: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            default: 0
+        }
 
         // createdAt: Sequelize.DATE,
         // updatedAt: Sequelize.DATE,
