@@ -5,7 +5,25 @@ html, body {
 	min-width: 340px;
 }
 
-.navbar, footer {
+/* * {
+    outline: 1px solid red;
+} */
+
+.height30 {
+	height: 30%
+}
+
+.height50 {
+	height: 50%
+}
+
+.nav {
+	background-color:rgb(165, 171, 195);
+	height:50px; 
+	min-width: 340px;
+}
+
+footer {
 	background-color:rgb(165, 171, 195);
 	height:70px; 
 	min-width: 340px;
@@ -17,8 +35,8 @@ html, body {
 	position: relative;
 	margin:0px;
 	padding:0px;
-	padding-top:20px;
-	padding-bottom:70px;
+	padding-top:50px;
+	padding-bottom: 70px;
 }
 
 footer {
@@ -34,12 +52,3 @@ footer {
 	height: 25px;
 	width: 25px;
 }
-
-/* h2, h3, h4, input, select, button{
-    margin-left: 5%;
-    margin-right: 5%;
-}
-
-.form-control, .btn {
-    width: 90%
-} */
