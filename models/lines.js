@@ -13,7 +13,7 @@ module.exports = function(sequelize, DataTypes) {
             validate: {
                 len: [1]
             }
-        },        
+        },
         lineSelected: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
@@ -27,19 +27,19 @@ module.exports = function(sequelize, DataTypes) {
     Line.associate = function(models) {
         // We're saying that a Line belongs to a Story
         // A Line cannot be created without a Story because of fk contstraint
-        Line.belongsTo(models.Story, {            
+        Line.belongsTo(models.Story, {
             foreignKey: {
                 allowNull: false
             }
         });
-        
+
 
         //TODO::ROBERTTT!!!!!!
-        // Line.belongsTo(models.User, {
-        //     foreignKey: {
-        //         allowNull:false
-        //     }
-        // });
+        Line.belongsTo(models.User, {
+            foreignKey: {
+                allowNull: false
+            }
+        });
     };
     return Line;
 };
