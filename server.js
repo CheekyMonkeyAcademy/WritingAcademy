@@ -3,6 +3,7 @@ var express = require("express");
 var exphbs = require("express-handlebars");
 var bodyParser = require("body-parser");
 var passport = require('passport');
+
 var TwitterStrategy = require('passport-twitter').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var RedditStrategy = require('passport-reddit').Strategy;
@@ -12,6 +13,7 @@ passport.use(new TwitterStrategy({
         consumerKey: 'aI0LlGbbkANCJj3RkS08mTC2f',
         consumerSecret: 'ggEYwryfDm7kGW5obxAUm3eufouK3RtuRZ4DMi2hBCYGTuzGEZ',
         callbackURL: 'http://localhost:8080/twitter/return'
+
     },
     function(token, tokenSecret, profile, cb) {
         // User.findOrCreate({ twitterId: profile.id }, function(err, user) {
@@ -90,7 +92,7 @@ app.use(express.static("public"));
 // Routes
 // =============================================================
 require("./routes/html-routes.js")(app);
-require("./routes/storyApiRoutes.js")(app); // TODO make real routes
+require("./routes/storyApiRoutes.js")(app);
 // require("./routes/author-api-routes.js")(app); // TODO make real routes
 require("./routes/logins")(app);
 
