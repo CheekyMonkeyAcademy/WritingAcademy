@@ -1,7 +1,8 @@
 $(document).ready(function(){
 
+
 //Submit new story logic
-$("#createStory").on("click", function(){
+    $("#createStory").on("click", function(){
     event.preventDefault();
 
     var newStory = {
@@ -63,6 +64,11 @@ $("#updateStory").on("click", function(){
              console.log(updatedStory)
             // location.href = "/"
     })
+})
+
+//Click Function for Genre Search Button
+$("#searchGenre").on("click", function(){
+    console.log("Search Button is working")
 })
 
 $(".yesVote").on("click", function(){

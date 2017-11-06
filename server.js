@@ -25,20 +25,16 @@ passport.use(new TwitterStrategy({
 ));
 // console.log()
 passport.use(new FacebookStrategy({
-        clientID: '[FBID]',
-        clientSecret: '[FBSECRET]',
-        callbackURL: 'http://localhost:8080/facebook-token'
+        clientID: '143546596268969',
+        clientSecret: '558778b491ff119cb794d9fcd5965aa0',
+        callbackURL: 'http://localhost:8080/auth/facebook/callback'
     },
     function(accessToken, refreshToken, profile, done) {
-        // asynchronous verification, for effect...
-        process.nextTick(function() {
-
-            // To keep the example simple, the user's Facebook profile is returned to
-            // represent the logged-in user.  In a typical application, you would want
-            // to associate the Facebook account with a user record in your database,
-            // and return that user instead.
-            return done(null, profile);
-        });
+        //     if (err) { return done(err); }
+        //     User.findOrCreate({ facebookId: profile.id }, (err, user) => {
+        //     done(null, user);
+        // });
+        this.redirect('/');
     }
 ));
 
@@ -94,7 +90,7 @@ app.use(express.static("public"));
 require("./routes/html-routes.js")(app);
 require("./routes/storyApiRoutes.js")(app);
 require("./routes/lineApiRoutes.js")(app);
-// require("./routes/author-api-routes.js")(app); // TODO make real routes
+require("./routes/genreApiSearchRoute.js")(app);
 require("./routes/logins")(app);
 
 // Syncing our sequelize models and then starting our Express app

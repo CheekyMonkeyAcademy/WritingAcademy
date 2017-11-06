@@ -1,3 +1,4 @@
+
 <div class="container">
   <div class="row">
     <div class="col-sm-2">
@@ -18,10 +19,15 @@
   </div>
 
   <div class="row">
-   
+    <form>
+        <div class="form-group">
+        <label for="exampleFormControlTextarea1">STORY</label>
+        <textarea class="form-control" id="storyBody" rows="18"></textarea>
+        <button type="button" class="btn btn-outline-success" style="float: right" id="SubmitStory">Submit</button>
+      </div>
+    </form>
 
  {{#each callThisVariableInHandlebarsForEach.dataValues.Lines}} {{dataValues.lineText}} {{/each}}
- {{#each callThisVariableInHandlebarsForEach.dataValues.body}} {{dataValues.body}} {{/each}}
 
 
   </div>
@@ -30,3 +36,5 @@
  
 
 </div>
+
+<script src="./assets/js/submitStory.js"></script>
