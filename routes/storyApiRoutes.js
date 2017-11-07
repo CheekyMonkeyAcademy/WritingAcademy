@@ -26,7 +26,7 @@ module.exports = function(app){
             var storiesObject = {
                 callThisVariableInHandlebarsForEach: story
               };
-            res.render("readStory", storiesObject);
+            res.render("writeLine", storiesObject);
             //console.log(storiesObject.callThisVariableInHandlebarsForEach.dataValues.Lines[0].dataValues.lineText)
             
            //This is called in handlebars like this: 

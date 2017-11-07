@@ -1,5 +1,37 @@
 
 <div class="container">
+{{!-- Text area to show lines submitted to the story --}}
+  <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+           <div class="form-group">
+              <label for="exampleTextarea">{{ }}</label>
+              <textarea class="form-control" id="storySoFar" rows="20"></textarea>
+          </div>
+        </div>
+    </div>
+
+{{!-- This is the row to write line --}}
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+           <div class="form-group">
+              <label for="exampleTextarea">Type your line here!</label>
+              <textarea class="form-control" id="writeLineHere" rows="10"></textarea>
+          </div>
+        </div>
+      <button type="submit" id="submitLine" class="btn btn-primary">Submit Line</button>
+    </div>
+
+
+
+
+
+
+
+
+
+  
   <div class="row">
     <div class="col-sm-2">
       <h3>Title: {{callThisVariableInHandlebarsForEach.dataValues.title}}</h3>
