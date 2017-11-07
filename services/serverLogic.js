@@ -5,7 +5,7 @@
 
 // goal:  if not met min voters or min writers, return and do not toggle -- DONE
 
-// goal:  handle a tie scenario for voting - WORKING ON IT
+// goal:  handle a tie scenario for voting - DONE
 
 // stretch goal:  setup a schedule - suggest:  https://www.npmjs.com/package/timers -- NOT YET
 var db = require("../models");
