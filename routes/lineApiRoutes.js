@@ -7,6 +7,7 @@ var db = require("../models");
 
 module.exports = function(app){
 
+<<<<<<< HEAD
 //**Seperate file with logic to be required in HERE! ()******
 
 //After the voting has been "processed", then some logic will happen here to UPDATE the story with the accepted line
@@ -24,3 +25,27 @@ module.exports = function(app){
         //id as a parameter
         
 }
+=======
+
+
+    app.put("/api/line/:id/voteYes", function(req, res){       
+        console.log(req.params.id);
+        db.Line.findOne({
+            where: {
+                id: req.params.id
+            }
+        })
+        .then(function(thisLine){
+            var newVoteCount = thisLine.lineVoteCount;
+            newVoteCount++;
+            console.log(`${thisLine.lineVoteCount} is now ${newVoteCount}`)
+            return thisLine.update({lineVoteCount: newVoteCount});
+        }).then(function (recordUpdate) {
+            res.sendStatus(200);
+        });
+    })
+
+}
+
+
+>>>>>>> b05889ab366a9b975b2735787789e2592943c1d0

@@ -84,6 +84,8 @@ $("#genreButton").on("click", function(){
         location.href = `/api/genre/${searchDataForThisGenre}`
         //console.log(searchDataForThisGenre)
     })
+
+    //Clear form HERE...
 })
 
 $(".yesVote").on("click", function(){
