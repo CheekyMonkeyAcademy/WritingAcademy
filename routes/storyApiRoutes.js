@@ -10,42 +10,29 @@ module.exports = function(app){
     
     //Read
         // Route to read a specific story id           
-    // app.get("/api/story/:id", function(req, res){
-    //     // console.log("TEST");
-    //     db.Story.findOne({
-    //         include:[{ model: db.Line, 
-    //             where: { 
-    //                 lineSelected: true
-    //                 // TODO add order by line number
-    //             }
-    //         }],
-    //         where: {
-    //             id: req.params.id
-    //         }
-    //     }).then(function(story){
-    //         // console.log(story)       
-    //         var storiesObject = {
-    //             callThisVariableInHandlebarsForEach: story
-    //           };
-    //         // YOU WILL NEED ALL OF THIS LATER TO GET THE INDIVIDUAL LINES--KEEP
-
-    //         res.render("readStory", storiesObject);
-    //         console.log(storiesObject.callThisVariableInHandlebarsForEach);
-
-    //         console.log("**These are lines**********************")  
-
-    //         //console.log(storiesObject.callThisVariableInHandlebarsForEach.dataValues)
-    //         //console.log(storiesObject.callThisVariableInHandlebarsForEach.dataValues.Lines[0].dataValues.lineText)
+    app.get("/api/story/:id", function(req, res){
+        db.Story.findOne({
+            include:[{ model: db.Line, 
+                where: { 
+                    lineSelected: true
+                    // TODO add order by line number
+                }
+            }],
+            where: {
+                id: req.params.id
+            }
+        }).then(function(story){
+            // console.log(story)       
+            var storiesObject = {
+                callThisVariableInHandlebarsForEach: story
+              };
+            res.render("readStory", storiesObject);
+            //console.log(storiesObject.callThisVariableInHandlebarsForEach.dataValues.Lines[0].dataValues.lineText)
             
-    //         //This is called in handlebars like this: 
-    //         //{{callThisVariableInHandlebarsForEach.dataValues.title}}
-
-    //         console.log(storiesObject.callThisVariableInHandlebarsForEach.dataValues)
-    //         console.log(storiesObject.callThisVariableInHandlebarsForEach.dataValues.Lines[0].dataValues.lineText)
-    //         // This is called in handlebars like this: 
-    //         // {{callThisVariableInHandlebarsForEach.dataValues.title}}
-    //     });
-    // })
+           //This is called in handlebars like this: 
+            //{{callThisVariableInHandlebarsForEach.dataValues.title}}           
+         });
+    })
             
     //Create Story Route
     app.post("/api/newStory", function(req, res){
