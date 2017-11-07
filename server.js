@@ -90,6 +90,7 @@ app.use(express.static("public"));
 require("./routes/html-routes.js")(app);
 require("./routes/storyApiRoutes.js")(app);
 require("./routes/genreApiSearchRoute.js")(app);
+require("./routes/lineApiRoutes.js")(app);
 // require("./routes/author-api-routes.js")(app); // TODO make real routes
 require("./routes/logins")(app);
 
