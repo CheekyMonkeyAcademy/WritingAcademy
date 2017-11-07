@@ -1,0 +1,29 @@
+<container class="height30">
+  <row>
+    <div class="col-xs-6">
+      <h3>Title: {{storyLinesAlreadyWritten.dataValues.title}}</h3>
+    </div>
+    <div class="col-xs-3">
+      <h3>Genre: {{storyLinesAlreadyWritten.dataValues.genre}}</h3>
+    </div>
+    <div class="col-xs-3">
+      <h3>ID:  {{storyLinesAlreadyWritten.dataValues.id}}</h3>
+    </div>
+  </row>
+   {{#each storyLinesAlreadyWritten.dataValues.Lines}} 
+        {{dataValues.lineText}} 
+  {{/each}}
+</container>
+
+<container>
+  <row>
+      {{#each storyLinesToBeVotedOn.dataValues.Lines}}
+      <div class="panel-body" id="panel{{dataValues.id}}" style="border: 1px solid black">
+        <div class="col-xs-10">{{dataValues.lineText}}</div>
+        <div class="col-xs-1 yesVote" targetId="{{dataValues.id}}"><img class="smallImg" title="I like it!" src="https://cdn2.iconfinder.com/data/icons/arrows-and-universal-actions-icon-set/256/ok_circle-128.png"></div> 
+        <div class="col-xs-1 noVote" targetId="{{dataValues.id}}"><img class="smallImg" title="Hmmm, pass..." src="https://cdn2.iconfinder.com/data/icons/arrows-and-universal-actions-icon-set/256/cancel_circle-128.png"></div>
+      </div>
+      {{/each}}
+  </row>
+
+</container>
