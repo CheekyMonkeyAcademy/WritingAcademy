@@ -21,16 +21,11 @@ module.exports = function(app){
             where: {
                 id: req.params.id
             }
-        }).then(function(story){
-            // console.log(story)       
+        }).then(function(story){              
             var storiesObject = {
                 callThisVariableInHandlebarsForEach: story
               };
-            res.render("readStory", storiesObject);
-            //console.log(storiesObject.callThisVariableInHandlebarsForEach.dataValues.Lines[0].dataValues.lineText)
-            
-           //This is called in handlebars like this: 
-            //{{callThisVariableInHandlebarsForEach.dataValues.title}}           
+            res.render("readStory", storiesObject);                     
          });
     })
             

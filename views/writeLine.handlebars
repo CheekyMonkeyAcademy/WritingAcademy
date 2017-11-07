@@ -2,35 +2,47 @@
 <div class="container">
 {{!-- A few story specs so the user knows which story they are writing for --}}
   <div class="row">
-    <div class="col-sm-2"></div>
-    <div class="col-sm-8">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-10">
       <p>Story: {{callThisVariableInHandlebarsForEach.dataValues.title}}</p>
       <p>Genre: {{callThisVariableInHandlebarsForEach.dataValues.genre}}</p>
     </div>
   </div>
-  
+
 {{!-- Text area to show lines submitted to the story --}}
   <div class="row">
-        <div class="col-sm-2"></div>
-        <div class="col-sm-8">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
            <div class="form-group">
-              <label for="exampleTextarea">{{ }}</label>
-              <textarea class="form-control" id="storySoFar" rows="20"></textarea>
+              <label for="storySoFar"></label>
+              <textarea disabled class="form-control" id="storySoFar" rows="20">
+                {{#each callThisVariableInHandlebarsForEach.dataValues.Lines}} 
+                      {{dataValues.lineText}} 
+                {{/each}}
+              </textarea>
           </div>
         </div>
     </div>
 
 {{!-- This is the row to write line --}}
     <div class="row">
-        <div class="col-sm-2"></div>
-        <div class="col-sm-8">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
            <div class="form-group">
-              <label for="exampleTextarea">Type your line here!</label>
-              <textarea class="form-control" id="writeLineHere" rows="10"></textarea>
+              <label for="exampleTextarea"></label>
+              <textarea class="form-control" id="writeLineHere" rows="10" placeholder="Type your line here!"></textarea>
           </div>
-        </div>
-      <button type="submit" id="submitLine" class="btn btn-primary">Submit Line</button>
+        </div>     
     </div>
+  
+{{!-- Line for submit line --}}
+  <div class="row">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4">
+       <button type="button" class="btn btn-primary btn-lg btn-block">Block level button</button>
+    </div>
+  </div>
+
 
 
 
