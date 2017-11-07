@@ -66,9 +66,24 @@ $("#updateStory").on("click", function(){
     })
 })
 
-//Click Function for Genre Search Button
-$("#searchGenre").on("click", function(){
-    console.log("Search Button is working")
+//Logic for Genre Search
+$("#genreButton").on("click", function(){
+    event.preventDefault();
+
+    //This works!! Getting user input
+    var searchDataForThisGenre = $("#genreSearchInput").val()
+    console.log(searchDataForThisGenre);
+
+    $.ajax({
+        type: "GET",
+        url: `/api/genre/${searchDataForThisGenre}`,
+        data: JSON.stringify(searchDataForThisGenre),
+        dataType:'json',
+        contentType:'application/json',
+        success:
+        location.href = `/api/genre/${searchDataForThisGenre}`
+        //console.log(searchDataForThisGenre)
+    })
 })
 
 $(".yesVote").on("click", function(){
@@ -98,5 +113,7 @@ $(".noVote").on("click", function(){
 
     // the 'No' votes are not tallied - so we're done
 });
+
+
 
 })//End of document.ready 

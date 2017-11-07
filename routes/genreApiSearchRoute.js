@@ -21,7 +21,8 @@ module.exports = function(app){
 
             // console.log("***GENRE STORIES")
             console.log(allStoriesByGenre);
-            res.render("genreSearchResults", allMyStoriesByGenre)
+            res.render("genreSearchResults", allStoriesByGenre)
+           
         })
     
 });

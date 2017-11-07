@@ -1,6 +1,14 @@
 <h1>Genre Search Results will display here!</h1>
 
 {{#each handlebarsCall}}
+<p>title: {{dataValues.title}}</p>
+    <ul>        
+        <li>Story Genre: {{dataValues.genre}}</li>
+    </ul>
+{{/each}}
+
+{{!-- 
+{{#each handlebarsCall}}
     <p>title: {{dataValues.title}}</p>
     <ul>
         <li>id: {{dataValues.id}}</li>
@@ -9,4 +17,4 @@
         <li>open voting to all users: {{dataValues.openVotingToAllUsers}}</li>
         <li>open writing to all users: {{dataValues.openWritingToAllUsers}}</li>
     </ul>  
-{{/each}}
+{{/each}} --}}
