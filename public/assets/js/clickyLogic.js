@@ -85,23 +85,25 @@ $(document).ready(function(){
         })
     })
 
-    $(".yesVote").on("click", function(){
-        console.log(`clicked: yes vote for panel` + $(this).attr('targetId'));
-        let target = 'panel' + $(this).attr('targetId');
-        let id = $(this).attr('targetId');
+    //Clear form HERE...
+})
 
-        // Hide the target panel (we're done with voting for this one)
-        $("#"+target).css('display', 'none');
+$(".yesVote").on("click", function(){
+    console.log(`clicked: yes vote for panel` + $(this).attr('targetId'));
+    let target = 'panel' + $(this).attr('targetId');
+    let id = $(this).attr('targetId');
 
-        // TODO Add a vote for that target line
-        $.ajax({
-            url: `/api/line/${id}/voteYes`,
-            type: 'PUT',
-            success: function(result) {
-                console.log(`successfully posted a yes vote for line id: ${id}`);
-            }
-        });
-    });
+    // Hide the target panel (we're done with voting for this one)
+    $("#"+target).css('display', 'none');
+
+    // TODO Add a vote for that target line
+    $.ajax({
+        url: `/api/line/${id}/voteYes`,
+        type: 'PUT',
+        success: function(result) {
+            console.log(`successfully posted a yes vote for id: ${id}`);
+        }
+    })  
 
     $(".noVote").on("click", function(){
         console.log(`clicked: no vote for panel` + $(this).attr('targetId'));
@@ -133,5 +135,13 @@ $(document).ready(function(){
         //Clear form values
         title: $("#storyBody").val("");
     });
+
+    //Submit Line Logic
+    $("#submitYourLine").on("click", function(){
+        event.preventDefault();
+
+        console.log("working")
+    
+    })
 
 })//End of document.ready 

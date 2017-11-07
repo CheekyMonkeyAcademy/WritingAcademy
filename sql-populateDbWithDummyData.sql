@@ -1,7 +1,7 @@
 use writing_db;
 
-INSERT INTO `writing_db`.`stories` (`title`, `createdAt`, `UpdatedAt`) VALUES ('The Test Story', '2014-01-04', '2015-02-15');
-INSERT INTO `writing_db`.`stories` (`title`, `createdAt`, `UpdatedAt`) VALUES ('Wweeeee win', '2014-01-04', '2015-02-15');
+INSERT INTO `writing_db`.`stories` (`title`, `genre`, `createdAt`, `UpdatedAt`) VALUES ('The Test Story', 'adventure', '2014-01-04', '2015-02-15'); 
+INSERT INTO `writing_db`.`stories` (`title`,  `genre`,`createdAt`, `UpdatedAt`) VALUES ('Wweeeee win', 'adventure','2014-01-04', '2015-02-15');
 
 select * from stories;
 
