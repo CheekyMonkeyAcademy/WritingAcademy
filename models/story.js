@@ -46,7 +46,7 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false,
             defaultValue: 1,
             len: [1]
-        },
+        },  
         minimumNumberOfWriters: {
             type: DataTypes.INTEGER,
             allowNull: false,

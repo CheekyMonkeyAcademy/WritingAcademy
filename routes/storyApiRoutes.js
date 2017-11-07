@@ -57,8 +57,15 @@ module.exports = function(app){
             genre:req.body.genre,
             openWritingToAllUsers: req.body.openWriting,
             openVotingToAllUsers: req.body.openVoting,
-            publiclyVisible:req.body.visible
-        })
+            publiclyVisible: req.body.visible,
+            minimumNumberOfVoters: req.body.minimumNumberOfVoters,
+            minimumNumberOfWriters: req.body.minimumNumberOfWriters,
+            scheduleActive: req.body.scheduleActive,
+            writingTimePeriodInMins: req.body.writingTimePeriodInMins,
+            votingTimePeriodInMins: req.body.votingTimePeriodInMins
+
+        });
+        res.render("createStory");
         //TODO: WITH OLEG- WORK ON HIS MAIN PAGE DIRECTING TO CREATE A NEW STORY ROUTE- THIS ROUTING SHOULD BE HANDLED IN THE HTML ROUTE FILE
     })
 
