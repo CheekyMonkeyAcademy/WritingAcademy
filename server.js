@@ -3,6 +3,7 @@ var express = require("express");
 var exphbs = require("express-handlebars");
 var bodyParser = require("body-parser");
 var passport = require('passport');
+var crypto = require('crypto');
 
 var TwitterStrategy = require('passport-twitter').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
@@ -18,7 +19,7 @@ passport.use(new TwitterStrategy({
     function(token, tokenSecret, profile, cb) {
         // User.findOrCreate({ twitterId: profile.id }, function(err, user) {
         //     return cb(err);
-        //     this.redirect()
+
         this.redirect('/'); /*this needs to re-direct to the correct page but for now it routes back to home*/
         // });
     }
@@ -33,6 +34,19 @@ passport.use(new FacebookStrategy({
         //     if (err) { return done(err); }
         //     User.findOrCreate({ facebookId: profile.id }, (err, user) => {
         //     done(null, user);
+        // });
+        this.redirect('/');
+    }
+));
+
+passport.use(new RedditStrategy({
+        clientID: 'A-_bBpq2-Q7RBg',
+        clientSecret: 'D52frJChsu2sbr3RUS3TKWBsAFs',
+        callbackURL: "http://localhost:8080/auth/reddit/callback"
+    },
+    function(accessToken, refreshToken, profile, done) {
+        // User.findOrCreate({ redditId: profile.id }, function(err, user) {
+        //     return done(err, user);
         // });
         this.redirect('/');
     }
