@@ -41,6 +41,43 @@ module.exports = function(sequelize, DataTypes) {
             defaultValue: 0,
             len: [1]
         },
+        minimumNumberOfVoters: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 1,
+            len: [1]
+        },
+        minimumNumberOfWriters: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 1,
+            len: [1]
+        },
+        toggleWritingTrueOrVotingFalse: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: true
+        },
+        // autoToggleWritingAndVoting: { // Is this just schedule being active?
+        //     type: DataTypes.BOOLEAN,
+        //     allowNull: false,
+        //     defaultValue: true
+        // },
+        scheduleActive: { // Is this just schedule being active?
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: true
+        },
+        writingTimePeriodInMins: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 0 // not sure on this default
+        },
+        votingTimePeriodInMins: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 0 // not sure on this default
+        }
         // createdAt: Sequelize.DATE,
         // updatedAt: Sequelize.DATE,
     });
