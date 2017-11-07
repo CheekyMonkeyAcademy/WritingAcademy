@@ -10,7 +10,7 @@ module.exports = function(app){
     
     //Read
         // Route to read a specific story id           
-    app.get("/api/story/:id", function(req, res){
+    app.get("/api/story/:id/read", function(req, res){
         db.Story.findOne({
             include:[{ model: db.Line, 
                 where: { 
@@ -26,7 +26,7 @@ module.exports = function(app){
             var storiesObject = {
                 callThisVariableInHandlebarsForEach: story
               };
-            res.render("writeLine", storiesObject);
+            res.render("readStory", storiesObject);
             //console.log(storiesObject.callThisVariableInHandlebarsForEach.dataValues.Lines[0].dataValues.lineText)
             
            //This is called in handlebars like this: 

@@ -1,5 +1,14 @@
 
 <div class="container">
+{{!-- A few story specs so the user knows which story they are writing for --}}
+  <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+      <p>Story: {{callThisVariableInHandlebarsForEach.dataValues.title}}</p>
+      <p>Genre: {{callThisVariableInHandlebarsForEach.dataValues.genre}}</p>
+    </div>
+  </div>
+  
 {{!-- Text area to show lines submitted to the story --}}
   <div class="row">
         <div class="col-sm-2"></div>
@@ -32,7 +41,7 @@
 
 
   
-  <div class="row">
+  {{!-- <div class="row">
     <div class="col-sm-2">
       <h3>Title: {{callThisVariableInHandlebarsForEach.dataValues.title}}</h3>
     </div>
@@ -59,14 +68,7 @@
       </div>
     </form>
 
- {{#each callThisVariableInHandlebarsForEach.dataValues.Lines}} {{dataValues.lineText}} {{/each}}
+ {{#each callThisVariableInHandlebarsForEach.dataValues.Lines}} {{dataValues.lineText}} {{/each}} --}}
 
-
-  </div>
-
-
- 
-
-</div>
 
 {{!-- <script src="./assets/js/submitStory.js"></script> --}}
