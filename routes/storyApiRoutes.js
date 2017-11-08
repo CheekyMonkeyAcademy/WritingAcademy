@@ -85,7 +85,7 @@ module.exports = function(app){
                     handlebarsCall: story
                 }
                 //TODO: WITH OLEG- WORK ON REDIRECT TO VIEW ALL STORIES PAGE
-                //res.render("viewMyStories", allMyStoriesCreatedObject)
+                res.render("viewMyStories", allMyStoriesCreatedObject)
                 //res.redirect('/stories') to the view page
         })       
     })
