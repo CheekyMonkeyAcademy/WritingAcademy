@@ -1,33 +1,26 @@
 <h1>You want to see all stories created HERE!</h1>
-
-{{!-- Attempt to create partial template --}}
-<div id="hideForPartialsTemplate">
-    <div id="partialsTempleteHere">
-        {{#each handlebarsCall}}
-            {{dataValues.title}}
-        {{/each}}
-    </div>
-</div>
-    
+<hr> 
 
 {{#each handlebarsCall}}
-    <p>title:<a href="/api/story/{{dataValues.id}}/read">{{dataValues.title}}</a></p>
+    <h1>Title:<a href="/api/story/{{dataValues.id}}/read">{{dataValues.title}}</a></h1>
     <ul>
         <li data-id="{{dataValues.id}}">id: {{dataValues.id}}</li>
-        <li>genre: {{dataValues.genre}}</li>
-        <li>visible to public: {{dataValues.publiclyVisible}}</li>
-        <li>open voting to all users: {{dataValues.openVotingToAllUsers}}</li>
-        <li>open writing to all users: {{dataValues.openWritingToAllUsers}}</li>
+        <li>Genre: {{dataValues.genre}}</li>
+        <li>Visible to public: {{dataValues.publiclyVisible}}</li>
+        <li>Open writing to all users: {{dataValues.openWritingToAllUsers}}</li>
+        <li>Open voting to all users: {{dataValues.openVotingToAllUsers}}</li>
+        <li>Current Status: {{dataValues.storyProgressionError}}</li>
     </ul>
     
-<p><a href="/updateStoryForm/{{dataValues.id}}">Edit</a></p>
+<p><a class="btn btn-default" href="/updateStoryForm/{{dataValues.id}}">Edit</a></p>
 
 {{#if dataValues.toggleWritingTrueOrVotingFalse}}
-<p><a href="/api/story/{{dataValues.id}}/write">Write For This Story</a></p>
+<p><a class="btn btn-primary" href="/api/story/{{dataValues.id}}/write">Write For This Story</a></p>
     {{else}}
-<p><a href="/api/story/{{dataValues.id}}/voting">Vote For This Story</a></p>
+<p><a class="btn btn-danger" href="/api/story/{{dataValues.id}}/voting">Vote For This Story</a></p>
 {{/if}}
-    <p>*****</p>    
+<p><a class="updateStoryStatus btn btn-success" storyId="{{dataValues.id}}" href="/viewStories">Update Story Status</a></p>
+<hr>
 {{/each}}
 
   <!--Input area to search by genre-->

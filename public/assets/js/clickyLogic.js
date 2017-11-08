@@ -1,5 +1,19 @@
 $(document).ready(function(){
 
+    $(".updateStoryStatus").on("click", function(){
+        event.preventDefault();
+
+        let thisId = $(this).attr('storyId');
+
+        $.ajax({
+            type: "PUT", 
+            url: "/api/stories/" +$("form").data('id'),
+            url: "/api/story/" + thisId + "/updateStoryStatus",
+            success: `Successfully kicked off a story status check for story ID: '${thisId}'`
+        });
+
+    });
+
     //Submit new story logic
     $("#createStory").on("click", function(){
         event.preventDefault();
