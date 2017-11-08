@@ -9,6 +9,11 @@ $(document).ready(function(){
             genre: $("#createStoryGenre").val(),
             openWriting: $("#openWritingToOthers").val(),
             openVoting: $("#openVotingToOthers").val(),
+            minimumNumberOfVoters: $("#minimumNumberOfVoters").val(),
+            minimumNumberOfWriters: $("#minimumNumberOfWriters").val(),
+            scheduleActive: $("#scheduleActive").val(),
+            writingTimePeriodInMins: $("#writingTimePeriodInMins").val(),
+            votingTimePeriodInMins: $("#votingTimePeriodInMins").val(),
             visible: $("#visibleToPublic").val()
         }
   
@@ -36,7 +41,13 @@ $(document).ready(function(){
         genre: $("#createStoryGenre").val("");
         openWriting: $("#openWritingToOthers").val("");
         openVoting: $("#openVotingToOthers").val("");
+        minimumNumberOfVoters: $("#minimumNumberOfVoters").val("");
+        minimumNumberOfWriters: $("#minimumNumberOfWriters").val("");
+        scheduleActive: $("#scheduleActive").val("");
+        writingTimePeriodInMins: $("#writingTimePeriodInMins").val("");
+        votingTimePeriodInMins: $("#votingTimePeriodInMins").val("");
         visible: $("#visibleToPublic").val("")
+        
     })
 
     //Update Story Click Function
@@ -48,6 +59,11 @@ $(document).ready(function(){
             genre: $("#createStoryGenre").val(),
             openWriting: $("#openWritingToOthers").val(),
             openVoting: $("#openVotingToOthers").val(),
+            minimumNumberOfVoters: $("#minimumNumberOfVoters").val(),
+            minimumNumberOfWriters: $("#minimumNumberOfWriters").val(),
+            scheduleActive: $("#scheduleActive").val(),
+            writingTimePeriodInMins: $("#writingTimePeriodInMins").val(),
+            votingTimePeriodInMins: $("#votingTimePeriodInMins").val(),
             visible: $("#visibleToPublic").val()
         }
 
