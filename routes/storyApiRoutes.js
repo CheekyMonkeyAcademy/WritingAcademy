@@ -123,9 +123,8 @@ module.exports = function(app){
         });    
     })
 
-    // app.put("/api/story/:id/updateStoryStatus", function(req, res){        
-    //     storyService(req.params.id);
-
-       
+    app.put("/api/story/:id/updateStoryStatus", function(req, res){        
+        storyService(req.params.id);
+    });
 
 }//End of module.exports
