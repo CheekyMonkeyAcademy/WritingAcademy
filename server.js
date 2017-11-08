@@ -124,6 +124,7 @@ require("./routes/storyApiRoutes.js")(app);
 require("./routes/lineApiRoutes.js")(app);
 require("./routes/genreApiSearchRoute.js")(app);
 require("./routes/logins")(app);
+require("./routes/permissionApiRoutes.js")(app);
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================

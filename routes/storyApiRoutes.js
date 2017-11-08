@@ -45,11 +45,21 @@ module.exports = function(app){
             minimumNumberOfWriters: req.body.minimumNumberOfWriters,
             scheduleActive: req.body.scheduleActive,
             writingTimePeriodInMins: req.body.writingTimePeriodInMins,
-            votingTimePeriodInMins: req.body.votingTimePeriodInMins
-
+            votingTimePeriodInMins: req.body.votingTimePeriodInMins,
+            storyProgressionStatus: 'Initial Setup Complete'
+        })
+        .then(function(storyObject){
+            console.log('##########################################################');
+            console.log(storyObject);
+            res.render("updateMyStories", storyObject);
+            let userId = 5 // ummm yeah, TODO FIX THIS FIX THIS FIX THIS UGLY THING!
+            db.Permission.create({
+                permissionText: 'Admin',
+                StoryId: storyObject.dataValues.id,
+                UserId: userId // how do we get the user Id?
+            });
+        
         });
-        res.render("createStory");
-        //TODO: WITH OLEG- WORK ON HIS MAIN PAGE DIRECTING TO CREATE A NEW STORY ROUTE- THIS ROUTING SHOULD BE HANDLED IN THE HTML ROUTE FILE
     })
 
 //I want to get info from the database and post it to a different handlebars page
