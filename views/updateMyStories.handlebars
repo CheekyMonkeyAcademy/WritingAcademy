@@ -61,6 +61,7 @@
                                 <option value="true">true</option>
                                 <option value="false">false</option>                        
                             </select>
+
                     </div>
 
                     <div class="form-group">
@@ -86,6 +87,33 @@
                     </div>
 
                     <div class="form-group">
+
+                        </div>
+
+                    <div class="form-group">
+                        <h4>Open Voting To Others</h4>
+                            <select data-placeholder="" class="chosen-select" id="openVotingToOthers" >
+                                    <option value= "">{{handlebarCall.dataValues.openVotingToAllUsers}}</option>
+                                    <option value="true">true</option>
+                                    <option value="false">false</option>                        
+                            </select>
+                    </div>
+                {{!-- </div> --}}
+            </div>
+            
+            <div class="column">
+                {{!-- <div class="col-sm-4"> --}}
+                    <div class="form-group">
+                        <h4>Publicly Visible</h4>
+                            <select data-placeholder="" class="chosen-select" id="visibleToPublic">
+                                    <option value= "">{{handlebarCall.dataValues.publiclyVisible}}</option>
+                                    <option value="true">true</option>
+                                    <option value="false">false</option>                        
+                            </select>
+                    </div>
+
+                    <div class="form-group">
+
                         <h4>Pause Story Voting Period</h4>
                             <select data-placeholder="" class="chosen-select" id="scheduleActive">
                                 <option value="">{{handlebarCall.dataValues.scheduleActive}}</option>
@@ -100,12 +128,14 @@
         </form>
     </div>
 
+
 <div class="row">
     <div="col-sm-2"></div>
     <div="col-sm-9">
         <button type="submit" id="updateStory" class="btn">Update My Story!</button>
     </div>
 </div>
+
 
 {{!-- End of container for first column --}}
 </div> 

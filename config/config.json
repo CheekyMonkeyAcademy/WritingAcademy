@@ -11,17 +11,17 @@
         }
     },
     "test": {
+        "username": "root",
+        "password": null,
+        "database": "database_test",
+        "host": "localhost",
+        "dialect": "mysql"
+    },
+    "production": {
         "username": "wft6y6ph6shdr4hd",
         "password": "dft7qpqh9jeei9pu",
         "database": "mnvrsaf2rl6441ma",
         "host": "x3ztd854gaa7on6s.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-        "dialect": "mysql"
-    },
-    "production": {
-        "username": "root",
-        "password": null,
-        "database": "database_production",
-        "host": "localhost",
         "dialect": "mysql"
     }
 }
