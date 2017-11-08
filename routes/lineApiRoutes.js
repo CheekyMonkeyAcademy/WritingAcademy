@@ -27,9 +27,10 @@ module.exports = function(app){
     //Route to write a line in the story and submit to the database
     app.get("/api/story/:id/write", function(req, res){
         db.Story.findOne({
-            include:[{ model: db.Line, 
+            include:[{ model: db.Line, required:false,
                 where: { 
                     lineSelected: true
+
                     // TODO add order by line number
                 }
             }],
@@ -46,8 +47,25 @@ module.exports = function(app){
 
 
     app.post("/api/story/:id/:currentLineGroup", function (req, res){
-       
+       console.log("Line Just Added****************")
+       var lineJustAdded = req.body;
+       var lineGroup = req.params.currentLineGroup;
+       var storyId = req.params.id;
+       var writeLineForThisStory = req.params
+       console.log(lineJustAdded);
+    //    console.log(params)
+       db.Line.create({
+            lineText: lineJustAdded.lineBody,
+            lineOrder:lineGroup,
+            lineVotedOn: false,
+            lineVoteCount: 0, 
+            StoryId:storyId,
+            lineSelected:false
+       })
     })
+
+
+
 }//End of module.exports
 
 
