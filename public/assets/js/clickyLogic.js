@@ -172,10 +172,12 @@ $(".yesVote").on("click", function(){
             dataType: 'json',
             contentType: 'application/json',
             success: 
-                console.log("YAY!!!")
-            
-        })
-    
+                console.log("YAY!!!")            
+        })    
+    })
+
+    $("#startHere").on("click", function(){
+        console.log("working?")
     })
 
 })//End of document.ready 

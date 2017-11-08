@@ -39,5 +39,7 @@ module.exports = function(app) {
             })
         })
     
-       
+    app.get('/createStory', function(req, res){
+        res.render("createStory");
+    })   
 }//End of module.exports
