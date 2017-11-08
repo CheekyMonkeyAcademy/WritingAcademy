@@ -30,7 +30,6 @@ module.exports = function(app){
             include:[{ model: db.Line, required:false,
                 where: { 
                     lineSelected: true
-
                     // TODO add order by line number
                 }
             }],
@@ -41,7 +40,8 @@ module.exports = function(app){
             var storiesObject = {
                 callThisVariableInHandlebarsForEach: story
               };
-            res.render("writeLine", storiesObject);                     
+            res.render("writeLine", storiesObject);    
+            console.log(storiesObject)                 
          });
     })
 
@@ -64,7 +64,7 @@ module.exports = function(app){
        })
     })
 
-
+    
 
 }//End of module.exports
 

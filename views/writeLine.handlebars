@@ -1,17 +1,32 @@
 
 <div class="container">
 {{!-- A few story specs so the user knows which story they are writing for --}}
-  <div class="row">
-    <div class="col-sm-1"></div>
-    <div class="col-sm-10">
+  <div class="row">    
+    <div class="col-sm-2"></div>
+    <div class="col-sm-9">
       <p>Story: {{callThisVariableInHandlebarsForEach.dataValues.title}}</p>
       <p>Genre: {{callThisVariableInHandlebarsForEach.dataValues.genre}}</p>
     </div>
   </div>
 
+ 
+
 {{!-- Text area to show lines submitted to the story --}}
   <div class="row">
-        <div class="col-sm-1"></div>
+        <div class="col-sm-2">
+            {{!-- A way to choose story to write on from the main page --}}            
+            {{!-- <div class="form-group">
+                <h3>Choose story to write to</h3>
+                  <select data-placeholder="" class="chosen-select" id="chooseStoryScroll">
+                      <option value="">Select One</option>         
+                      {{#each callThisToPopStory}}                            
+                      <option value="{{dataValues.id}}">{{dataValues.title}}</option>     
+                      {{/each}}                                 
+                  </select>
+              </div>             --}}
+            </div> 
+
+       
         <div class="col-sm-10">
            <div class="form-group">
               <label for="storySoFar"></label>
@@ -26,7 +41,7 @@
 
 {{!-- This is the row to write line --}}
     <div class="row">
-        <div class="col-sm-1"></div>
+        <div class="col-sm-2"></div>
         <div class="col-sm-10">
            <div class="form-group">
               <label for="exampleTextarea"></label>
@@ -56,6 +71,3 @@
 
 
 
-
-
-  

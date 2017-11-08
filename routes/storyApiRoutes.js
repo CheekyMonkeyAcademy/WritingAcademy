@@ -5,6 +5,7 @@
 
 //ROUTING PSEUDO-CODE
 var db = require("../models");
+var storyService = require("../services/serverLogic");
 
 module.exports = function(app){
     
@@ -57,13 +58,8 @@ module.exports = function(app){
         }).then(function(story){
             var allMyStoriesCreatedObject = {
                 handlebarsCall:story
-            };
-            // console.log("****Get all stories****")
-            // console.log(story)           
-            // console.log(allMyStoriesCreatedObject.handlebarsCall[0].dataValues)
-            // console.log(allMyStoriesCreatedObject.handlebarsCall)
+            };            
             res.render("viewMyStories", allMyStoriesCreatedObject)
-            //TODO: WITH OLEG- HAVE THIS INFORMATON RENDER VIEW ALL PAGE WITH STYLEs
         })
     }) 
 
@@ -84,7 +80,7 @@ module.exports = function(app){
                     handlebarsCall: story
                 }
                 //TODO: WITH OLEG- WORK ON REDIRECT TO VIEW ALL STORIES PAGE
-                //res.render("viewMyStories", allMyStoriesCreatedObject)
+                res.render("viewMyStories", allMyStoriesCreatedObject)
                 //res.redirect('/stories') to the view page
         })       
     })
@@ -126,5 +122,10 @@ module.exports = function(app){
             });
         });    
     })
+
+    // app.put("/api/story/:id/updateStoryStatus", function(req, res){        
+    //     storyService(req.params.id);
+
+       
 
 }//End of module.exports

@@ -7,22 +7,25 @@ var db = require("../models");
 // Routes
 // =============================================================
 module.exports = function(app) {
-    // app.get('/', function(req, res) {
-    //     db.Story.findAll({}).then(function(stories){
+    app.get('/viewStories', function(req, res) {
+        db.Story.findAll({}).then(function(stories){
         
-    //     var storiesObject = {
-    //         callThisVariableInHandlebarsForEach: stories
-    //       };    
-    //     console.log(storiesObject);
-    //         res.render("index", storiesObject);
-    //     });
-    // });
+        var storiesObject ={
+            handlebarsCall: stories
+        }
+
+        console.log(storiesObject);
+            res.render("viewMyStories", storiesObject);
+            // res.json("writeLine", storiesObject)
+            
+        });
+    });
 
     //EXAMPLE HTML FILE TEST 
     //This route here shows the create story html page
-    app.get('/test', function(req, res){
-       res.sendFile(path.join(__dirname, "../public/test.html"));
-    })
+    // app.get('/test', function(req, res){
+    //    res.sendFile(path.join(__dirname, "../public/test.html"));
+    // })
 
     //This route goes to the update form
     app.get("/updateStoryForm/:id", function(req, res){
@@ -42,4 +45,37 @@ module.exports = function(app) {
     app.get('/createStory', function(req, res){
         res.render("createStory");
     })   
+
+    app.get('/viewStories', function(req, res){
+        res.render("viewMyStories")
+    })
+
+    app.get('/writeStory', function(req, res){
+        //TODO: WHEN THIS IS CLICKED--NEED TO GET EXACT STORY ID
+        res.render("writeLine");
+    })
+
+    app.get('/voteLines', function(req, res){
+        res.render("voteForNextLine")
+    })
+
+    app.get('/readStory', function(req, res){
+        res.render("readStory")
+    })
+
+    //DOES NOT WORK!!!
+
+    // app.get("/chooseStory", function(req, res){
+    //     db.Story.findAll({            
+    //     }).then(function(story){
+    //         var chooseAStory = {
+    //             callThisToPopStory:story
+    //         };
+    //         res.render("writeLine", chooseAStory)
+    //         console.log("****This is choose a story****")
+    //         // console.log(chooseAStory);
+    //         // console.log(chooseAStory.callThisToPopStory[0].dataValues)
+    //         // console.log(chooseAStory.callThisToPopStory[0].dataValues.title)
+    //     })
+    // })
 }//End of module.exports
