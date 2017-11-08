@@ -35,40 +35,38 @@
                             <option value="false">false</option>                        
                     </select>
                 </div>
-
-                    <!-- ++++++++++++++++++++++++++++++++ -->
                     
                     <div class="form-group">
                         <label for="minimumNumberOfVoters">Minimum Number Of Voters</label>
-                        <input type="text" id="minimumNumberOfVoters" name="name">
+                        <input type="text" id="minimumNumberOfVoters" name="name" value="{{handlebarCall.dataValues.minimumNumberOfVoters}}">
                     </div>
                     
                     
                     
                     <div class="form-group">
                         <label for="minimumNumberOfWriters">Minimum Number Of Writers</label>
-                        <input type="text" id="minimumNumberOfWriters" name="name">
+                        <input type="text" id="minimumNumberOfWriters" name="name" value="{{handlebarCall.dataValues.minimumNumberOfWriters}}">
                     </div>
                     
                     
                     <div class="form-group">
-                        <h3>Schedule Active</h3>
+                        <h3>Pause Story Voting Period</h3>
                         <select data-placeholder="" class="chosen-select" id="scheduleActive">
-                            <option value="">Select One</option>
+                            <option value="">{{handlebarCall.dataValues.scheduleActive}}</option>
                             <option value="true">true</option>
                             <option value="false">false</option>
                         </select>
                     </div>
                     
                     <div class="form-group">
-                        <label for="writingTimePeriodInMins">Writing Time Period In Mins</label>
-                        <input type="text" id="writingTimePeriodInMins" name="name">
+                        <label for="writingTimePeriodInMins">Writing Period In Minutes</label>
+                        <input type="text" id="writingTimePeriodInMins" name="name" value="{{handlebarCall.dataValues.writingTimePeriodInMins}}">
                     </div>
                     
                     
                     <div class="form-group">
-                        <label for="votingTimePeriodInMins">Voting Time Period In Mins</label>
-                        <input type="text" id="votingTimePeriodInMins" name="name">
+                        <label for="votingTimePeriodInMins">Voting Period In Minutes</label>
+                        <input type="text" id="votingTimePeriodInMins" name="name" value="{{handlebarCall.dataValues.votingTimePeriodInMins}}">
                     </div>
                     
                     <hr>

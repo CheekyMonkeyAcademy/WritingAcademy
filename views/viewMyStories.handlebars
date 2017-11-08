@@ -21,7 +21,12 @@
     </ul>
     
 <p><a href="/updateStoryForm/{{dataValues.id}}">Edit</a></p>
+
+{{#if dataValues.toggleWritingTrueOrVotingFalse}}
 <p><a href="/api/story/{{dataValues.id}}/write">Write For This Story</a></p>
+    {{else}}
+<p><a href="/api/story/{{dataValues.id}}/voting">Vote For This Story</a></p>
+{{/if}}
     <p>*****</p>    
 {{/each}}
 
