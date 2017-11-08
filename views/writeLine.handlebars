@@ -17,7 +17,7 @@
               <label for="storySoFar"></label>
               <textarea disabled class="form-control" id="storySoFar" rows="20">
                 {{#each callThisVariableInHandlebarsForEach.dataValues.Lines}} 
-                      {{dataValues.lineText}} 
+                {{dataValues.lineText}} 
                 {{/each}}
               </textarea>
           </div>
@@ -39,7 +39,7 @@
   <div class="row">
     <div class="col-sm-4"></div>
     <div class="col-sm-4">
-       <button type="button" id="submitYourLine" class="btn btn-primary btn-lg btn-block">Submit Your Line</button>
+       <button type="button" id="lineSubmission" class="btn btn-primary btn-lg btn-block" thisStoryId="{{callThisVariableInHandlebarsForEach.dataValues.id}}" thisLineGroup="{{callThisVariableInHandlebarsForEach.dataValues.currentLineGroup}}">Submit Your Line</button>      
     </div>
   </div>
 
@@ -47,6 +47,7 @@
     <div class="col-sm-12">      
     </div>
   </div>
+
 </div>
 
 

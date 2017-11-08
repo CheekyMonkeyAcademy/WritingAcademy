@@ -44,6 +44,10 @@ module.exports = function(app){
          });
     })
 
-}
+
+    app.post("/api/story/:id/:currentLineGroup", function (req, res){
+       
+    })
+}//End of module.exports
 
 

@@ -58,11 +58,11 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false,
             defaultValue: true
         },
-        // autoToggleWritingAndVoting: { // Is this just schedule being active?
-        //     type: DataTypes.BOOLEAN,
-        //     allowNull: false,
-        //     defaultValue: true
-        // },
+        currentLineGroup: { 
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 1           
+        },
         scheduleActive: { // Is this just schedule being active?
             type: DataTypes.BOOLEAN,
             allowNull: false,
