@@ -66,17 +66,22 @@ footer {
 }
 
 #startHere{
-	padding: 10px;
+	padding-left: 35px;
+	padding-right:35px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	/* padding:30px; */
 	color: black;
-	border: 3px solid green;	
+	border: 2px solid green;	
 	background: white;
 	/* font-weight:bold; */
+	font-size: 25px;
 }
 
 #startHere:hover {
 	background:green;
 	color:white;
-	font-weight: bold;
+	
 }
 
 .separation{
@@ -85,3 +90,71 @@ footer {
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
 }
 
+#headerStyle{
+	margin-left: 10px;
+}
+
+#genreStyle{
+	margin-right:15px;
+}
+
+#genreButton{
+	background:#FF5733;
+	color:white;
+	padding-left:20px;
+	padding-right:20px;
+}
+
+#genreButton:hover{
+	background: #ff8c00;
+}
+
+#editButton{
+	border: 2px solid #FF5733;	
+}
+
+#editButton:hover{
+	background: #FF5733;
+	border:none;
+	color:white;
+}
+
+#writeToggle{
+	border: 2px solid #337ab7;
+	background:white;
+	color:black
+}
+
+#writeToggle:hover{
+	background: #286090;
+	border:none;
+	color:white;
+}
+
+#voteToggle{
+	background: #C70039;
+	color:white;	
+}
+
+.indexColumn{
+	border: 1px dashed #C70039;
+}
+
+.updateStoryStatus {
+	border: 2px solid #449d44;
+	background: white;
+	color:black;
+}
+
+.updateStoryStatus:hover{
+	border:none;
+}
+
+#genreResultsStyle{
+	/* border: 1px dashed #C70039; */
+	background: #e5e6e8;
+}
+
+#genreBackground{
+	background: rgba(199, 0, 57, 0.8)
+}
