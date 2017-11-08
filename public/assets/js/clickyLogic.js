@@ -7,7 +7,6 @@ $(document).ready(function(){
 
         $.ajax({
             type: "PUT", 
-            url: "/api/stories/" +$("form").data('id'),
             url: "/api/story/" + thisId + "/updateStoryStatus",
             success: `Successfully kicked off a story status check for story ID: '${thisId}'`
         });
