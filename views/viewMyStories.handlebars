@@ -11,7 +11,8 @@
     </ul>
 
     {{!-- <button type="button" thisStoryId="{{dataValues.id}}" class="editStory btn btn-info">Edit {{dataValues.id}}</button> --}}
-<a href="/updateStoryForm/{{dataValues.id}}">Edit</a>
+<p><a href="/updateStoryForm/{{dataValues.id}}">Edit</a></p>
+<p><a href="/api/story/{{dataValues.id}}/write">Write For This Story</a></p>
     <p>*****</p>    
 {{/each}}
 

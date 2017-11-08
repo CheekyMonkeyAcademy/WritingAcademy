@@ -30,7 +30,6 @@ module.exports = function(app){
             include:[{ model: db.Line, required:false,
                 where: { 
                     lineSelected: true
-
                     // TODO add order by line number
                 }
             }],
@@ -41,7 +40,8 @@ module.exports = function(app){
             var storiesObject = {
                 callThisVariableInHandlebarsForEach: story
               };
-            res.render("writeLine", storiesObject);                     
+            res.render("writeLine", storiesObject);    
+            console.log(storiesObject)                 
          });
     })
 
@@ -64,7 +64,19 @@ module.exports = function(app){
        })
     })
 
-
+    app.get("/api/chooseStory", function(req, res){
+        db.Story.findAll({            
+        }).then(function(story){
+            var chooseAStory = {
+                callThisToPopStory:story
+            };
+            res.render("writeLine", chooseAStory)
+            console.log("****This is choose a story****")
+            // console.log(chooseAStory);
+            // console.log(chooseAStory.callThisToPopStory[0].dataValues)
+            // console.log(chooseAStory.callThisToPopStory[0].dataValues.title)
+        })
+    })
 
 }//End of module.exports
 

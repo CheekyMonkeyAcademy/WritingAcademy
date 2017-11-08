@@ -16,14 +16,16 @@ module.exports = function(app) {
 
         console.log(storiesObject);
             res.render("viewMyStories", storiesObject);
+            // res.json("writeLine", storiesObject)
+            
         });
     });
 
     //EXAMPLE HTML FILE TEST 
     //This route here shows the create story html page
-    app.get('/test', function(req, res){
-       res.sendFile(path.join(__dirname, "../public/test.html"));
-    })
+    // app.get('/test', function(req, res){
+    //    res.sendFile(path.join(__dirname, "../public/test.html"));
+    // })
 
     //This route goes to the update form
     app.get("/updateStoryForm/:id", function(req, res){
@@ -56,4 +58,20 @@ module.exports = function(app) {
     app.get('/voteLines', function(req, res){
         res.render("voteForNextLine")
     })
+
+    //DOES NOT WORK!!!
+
+    // app.get("/chooseStory", function(req, res){
+    //     db.Story.findAll({            
+    //     }).then(function(story){
+    //         var chooseAStory = {
+    //             callThisToPopStory:story
+    //         };
+    //         res.render("writeLine", chooseAStory)
+    //         console.log("****This is choose a story****")
+    //         // console.log(chooseAStory);
+    //         // console.log(chooseAStory.callThisToPopStory[0].dataValues)
+    //         // console.log(chooseAStory.callThisToPopStory[0].dataValues.title)
+    //     })
+    // })
 }//End of module.exports

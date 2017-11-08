@@ -58,13 +58,8 @@ module.exports = function(app){
         }).then(function(story){
             var allMyStoriesCreatedObject = {
                 handlebarsCall:story
-            };
-            // console.log("****Get all stories****")
-            // console.log(story)           
-            // console.log(allMyStoriesCreatedObject.handlebarsCall[0].dataValues)
-            // console.log(allMyStoriesCreatedObject.handlebarsCall)
+            };            
             res.render("viewMyStories", allMyStoriesCreatedObject)
-            //TODO: WITH OLEG- HAVE THIS INFORMATON RENDER VIEW ALL PAGE WITH STYLEs
         })
     }) 
 
@@ -128,12 +123,9 @@ module.exports = function(app){
         });    
     })
 
-    app.put("/api/story/:id/updateStoryStatus", function(req, res){        
-        storyService(req.params.id);
+    // app.put("/api/story/:id/updateStoryStatus", function(req, res){        
+    //     storyService(req.params.id);
 
-    })
-
-
-    
+       
 
 }//End of module.exports
