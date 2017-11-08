@@ -7,16 +7,17 @@ var db = require("../models");
 // Routes
 // =============================================================
 module.exports = function(app) {
-    // app.get('/', function(req, res) {
-    //     db.Story.findAll({}).then(function(stories){
+    app.get('/viewStories', function(req, res) {
+        db.Story.findAll({}).then(function(stories){
         
-    //     var storiesObject = {
-    //         callThisVariableInHandlebarsForEach: stories
-    //       };    
-    //     console.log(storiesObject);
-    //         res.render("index", storiesObject);
-    //     });
-    // });
+        var storiesObject ={
+            handlebarsCall: stories
+        }
+
+        console.log(storiesObject);
+            res.render("viewMyStories", storiesObject);
+        });
+    });
 
     //EXAMPLE HTML FILE TEST 
     //This route here shows the create story html page
@@ -42,4 +43,17 @@ module.exports = function(app) {
     app.get('/createStory', function(req, res){
         res.render("createStory");
     })   
+
+    app.get('/viewStories', function(req, res){
+        res.render("viewMyStories")
+    })
+
+    app.get('/writeStory', function(req, res){
+        //TODO: WHEN THIS IS CLICKED--NEED TO GET EXACT STORY ID
+        res.render("writeLine");
+    })
+
+    app.get('/voteLines', function(req, res){
+        res.render("voteForNextLine")
+    })
 }//End of module.exports
