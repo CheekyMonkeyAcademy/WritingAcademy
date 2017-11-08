@@ -5,6 +5,7 @@
 
 //ROUTING PSEUDO-CODE
 var db = require("../models");
+var storyService = require("../services/serverLogic");
 
 module.exports = function(app){
     
@@ -126,5 +127,13 @@ module.exports = function(app){
             });
         });    
     })
+
+    app.put("/api/story/:id/updateStoryStatus", function(req, res){        
+        storyService(req.params.id);
+
+    })
+
+
+    
 
 }//End of module.exports
