@@ -66,5 +66,16 @@ footer {
 }
 
 #startHere{
-	padding: 40px;
+	padding: 10px;
+	color: black;
+	border: 3px solid green;	
+	background: white;
+	/* font-weight:bold; */
+}
+
+#startHere:hover {
+	background:green;
+	color:white;
+	font-weight: bold;
+
 }
