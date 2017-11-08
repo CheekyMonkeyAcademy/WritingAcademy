@@ -10,7 +10,7 @@ module.exports = function(app){
         console.log(req.params.genre)
         db.Story.findAll({
             where:{
-                genre: req.params.genre
+                genre: {$like: '%' + req.params.genre + '%'}
               }
         }).then(function(story){
             // res.json(story);

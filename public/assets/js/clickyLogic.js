@@ -1,5 +1,6 @@
 $(document).ready(function(){
 
+    
     $(".updateStoryStatus").on("click", function(){
         event.preventDefault();
 
@@ -12,7 +13,7 @@ $(document).ready(function(){
         });
 
     });
-
+    
     //Submit new story logic
     $("#createStory").on("click", function(){
         event.preventDefault();
@@ -189,13 +190,7 @@ $(".yesVote").on("click", function(){
         })    
     })
 
-    //Let's see if I can smash out some partials
-//STEP ONE: hide div with template on it
-    function hideTemplateDiv(){
-        $("#hideForPartialsTemplate").hide();
-    }
-
-    hideTemplateDiv();
+    
 
 
 
