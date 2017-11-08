@@ -1,6 +1,14 @@
 <h1>You want to see all stories created HERE!</h1>
 
 {{!-- Attempt to create partial template --}}
+<div id="hideForPartialsTemplate">
+    <div id="partialsTempleteHere">
+        {{#each handlebarsCall}}
+            {{dataValues.title}}
+        {{/each}}
+    </div>
+</div>
+    
 
 {{#each handlebarsCall}}
     <p>title:<a href="/api/story/{{dataValues.id}}/read">{{dataValues.title}}</a></p>
@@ -11,8 +19,7 @@
         <li>open voting to all users: {{dataValues.openVotingToAllUsers}}</li>
         <li>open writing to all users: {{dataValues.openWritingToAllUsers}}</li>
     </ul>
-
-    {{!-- <button type="button" thisStoryId="{{dataValues.id}}" class="editStory btn btn-info">Edit {{dataValues.id}}</button> --}}
+    
 <p><a href="/updateStoryForm/{{dataValues.id}}">Edit</a></p>
 <p><a href="/api/story/{{dataValues.id}}/write">Write For This Story</a></p>
     <p>*****</p>    

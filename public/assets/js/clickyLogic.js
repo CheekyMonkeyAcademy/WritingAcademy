@@ -176,6 +176,20 @@ $(".yesVote").on("click", function(){
         })    
     })
 
-    
+    //Let's see if I can smash out some partials
+//STEP ONE: hide div with template on it
+    function hideTemplateDiv(){
+        $("#hideForPartialsTemplate").hide();
+    }
+
+    hideTemplateDiv();
+
+
+
+
+
+
+
+
 
 })//End of document.ready 
