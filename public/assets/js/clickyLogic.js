@@ -86,7 +86,7 @@ $(document).ready(function(){
     })
 
     //Clear form HERE...
-})
+
 
 $(".yesVote").on("click", function(){
     console.log(`clicked: yes vote for panel` + $(this).attr('targetId'));
@@ -103,7 +103,8 @@ $(".yesVote").on("click", function(){
         success: function(result) {
             console.log(`successfully posted a yes vote for id: ${id}`);
         }
-    })  
+    }) 
+}); 
 
     $(".noVote").on("click", function(){
         console.log(`clicked: no vote for panel` + $(this).attr('targetId'));
@@ -137,10 +138,10 @@ $(".yesVote").on("click", function(){
     });
 
     //Submit Line Logic
-    $("#submitYourLine").on("click", function(){
+    $("#lineSubmission").on("click", function(){
         event.preventDefault();
-
-        console.log("working")
+        var lineToSubmit = $("#writeLineHere").val();
+        console.log(lineToSubmit)
     
     })
 

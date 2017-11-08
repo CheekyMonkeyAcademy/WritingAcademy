@@ -31,7 +31,10 @@ function toggleWritingAndVoting(storyId){
             if (checkMinWriters(thisStory.dataValues)){
                 console.log(`Switching from writing to voting`);
                 // It's time to switch from writing to voting:
+                let newLineGroup = thisStory.dataValues.currentLineGroup
+                newLineGroup++;
                 thisStory.update({toggleWritingTrueOrVotingFalse: false});
+                thisStory.update({currentLineGroup: newLineGroup})
             }
             else {
                 console.log(`We're not quite ready to switch from writing to voting`)
