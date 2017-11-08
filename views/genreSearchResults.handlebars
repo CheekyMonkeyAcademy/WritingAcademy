@@ -10,15 +10,16 @@
 </div>
 
 <div class="row">
-    <div class="col-sm-5"></div>
-    <div class="col-sm-6">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6" id="genreResultsStyle">
         {{#each handlebarsCall}}
-        <h3><p>Story Title: {{dataValues.title}}</p></h3>
+        <h3><p>Title: <a href="/api/story/{{dataValues.id}}/read">{{dataValues.title}}</a></p></h3>
             <ul>        
-               <li><h4>Story Genre: {{dataValues.genre}}</h4></li>
+               <li><h4>Genre: {{dataValues.genre}}</h4></li>
             </ul>
         {{/each}}
     </div>
+    <div class="col-sm-3"></div>
 </div>
 
 </div>
