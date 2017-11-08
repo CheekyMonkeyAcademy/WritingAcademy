@@ -176,8 +176,6 @@ $(".yesVote").on("click", function(){
         })    
     })
 
-    $("#startHere").on("click", function(){
-        console.log("working?")
-    })
+    
 
 })//End of document.ready 

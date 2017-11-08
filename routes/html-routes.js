@@ -59,6 +59,10 @@ module.exports = function(app) {
         res.render("voteForNextLine")
     })
 
+    app.get('/readStory', function(req, res){
+        res.render("readStory")
+    })
+
     //DOES NOT WORK!!!
 
     // app.get("/chooseStory", function(req, res){

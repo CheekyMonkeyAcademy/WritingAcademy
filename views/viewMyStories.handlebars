@@ -1,7 +1,9 @@
 <h1>You want to see all stories created HERE!</h1>
 
+{{!-- Attempt to create partial template --}}
+
 {{#each handlebarsCall}}
-    <p>title: {{dataValues.title}}</p>
+    <p>title:<a href="/api/story/{{dataValues.id}}/read">{{dataValues.title}}</a></p>
     <ul>
         <li data-id="{{dataValues.id}}">id: {{dataValues.id}}</li>
         <li>genre: {{dataValues.genre}}</li>
