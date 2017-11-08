@@ -43,11 +43,7 @@ $(document).ready(function(){
             // data: newStory,
             dataType: 'json',
             contentType: 'application/json',
-            success: 
-            function(newStory){
-                console.log(newStory)
-                // location.href = "/"
-            }            
+            success: console.log("hooray, we made a story!")    
         })
 
         //Clear form values
