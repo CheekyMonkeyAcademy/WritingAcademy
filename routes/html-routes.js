@@ -24,11 +24,6 @@ module.exports = function(app) {
        res.sendFile(path.join(__dirname, "../public/test.html"));
     })
 
-    //Create new story
-    app.get('/createStory', function (req, res) {
-        res.render("createStory");
-    })    
-
     //This route goes to the update form
     app.get("/updateStoryForm/:id", function(req, res){
         db.Story.findOne({
