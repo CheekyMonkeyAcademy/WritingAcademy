@@ -9,7 +9,12 @@ $(document).ready(function(){
             genre: $("#createStoryGenre").val(),
             openWriting: $("#openWritingToOthers").val(),
             openVoting: $("#openVotingToOthers").val(),
-            visible: $("#visibleToPublic").val()
+            visible: $("#visibleToPublic").val(),
+            minimumNumberOfVoters: $("#minimumNumberOfVoters").val(),
+            minimumNumberOfWriters: $("#minimumNumberOfWriters").val(),
+            scheduleActive: $("#scheduleActive").val(),
+            writingTimePeriodInMins: $("#writingTimePeriodInMins").val(),
+            votingTimePeriodInMins: $("#votingTimePeriodInMins").val()
         }
   
         //This Works!!!!
@@ -36,7 +41,12 @@ $(document).ready(function(){
         genre: $("#createStoryGenre").val("");
         openWriting: $("#openWritingToOthers").val("");
         openVoting: $("#openVotingToOthers").val("");
-        visible: $("#visibleToPublic").val("")
+        visible: $("#visibleToPublic").val("");
+        minimumNumberOfVoters: $("#minimumNumberOfVoters").val("");
+        minimumNumberOfWriters: $("#minimumNumberOfWriters").val("");
+        scheduleActive: $("#scheduleActive").val("");
+        writingTimePeriodInMins: $("#writingTimePeriodInMins").val("");
+        votingTimePeriodInMins: $("#votingTimePeriodInMins").val("")
     })
 
     //Update Story Click Function
@@ -48,7 +58,12 @@ $(document).ready(function(){
             genre: $("#createStoryGenre").val(),
             openWriting: $("#openWritingToOthers").val(),
             openVoting: $("#openVotingToOthers").val(),
-            visible: $("#visibleToPublic").val()
+            visible: $("#visibleToPublic").val(),
+            minimumNumberOfVoters: $("#minimumNumberOfVoters").val(),
+            minimumNumberOfWriters: $("#minimumNumberOfWriters").val(),
+            scheduleActive: $("#scheduleActive").val(),
+            writingTimePeriodInMins: $("#writingTimePeriodInMins").val(),
+            votingTimePeriodInMins: $("#votingTimePeriodInMins").val()
         }
 
         //Ajax call here to update story:
