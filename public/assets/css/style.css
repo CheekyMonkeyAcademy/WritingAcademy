@@ -56,3 +56,11 @@ footer {
 #spacing{
 	margin-bottom: 20px;
 }
+
+.column{
+	float:left;
+	margin:10px;
+	border: solid 1px black;
+	padding:20px;
+	border-radius: 10px;
+}

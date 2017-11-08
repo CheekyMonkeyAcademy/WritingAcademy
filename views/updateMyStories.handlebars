@@ -1,75 +1,133 @@
-<h2>Update Your Story Here:</h2>
-              <form class="create-form" data-id="{{handlebarCall.dataValues.id}}">
-                <div class="form-group">
-                    <label for="createStoryTitle" >Story Title Here </label>   
-                    <input type="text" id="createStoryTitle" name="name" value="{{handlebarCall.dataValues.title}}"> 
-                </div>
-                <div class="form-group">
-                    <label for="createStoryGenre" >Type Genre Here: </label>   
-                    <input type="text" id="createStoryGenre" name="name" value="{{handlebarCall.dataValues.genre}}"> 
-                </div>
-            
-                <div class="form-group">
-                    <h3>Open Writing To Others</h3>
-                    <select data-placeholder="" class="chosen-select" id="openWritingToOthers" >
-                            <option value= "">{{handlebarCall.dataValues.openWritingToAllUsers}}</option>
-                            <option value="true">true</option>
-                            <option value="false">false</option>                        
-                    </select>
-                </div>
+<div class="container">
 
-                <div class="form-group">
-                    <h3>Open Voting To Others</h3>
-                    <select data-placeholder="" class="chosen-select" id="openVotingToOthers" >
-                            <option value= "">{{handlebarCall.dataValues.openVotingToAllUsers}}</option>
-                            <option value="true">true</option>
-                            <option value="false">false</option>                        
-                    </select>
-                </div>
+<div class="row">    
+    {{!-- <div class="col-sm-2"></div> --}}
+    <div class="col-sm-8">
+        <div class="page-header">
+            <h1>Update Story</h1>
+        </div>
+    </div>
+</div>
 
-                <div class="form-group">
-                    <h3>Publicly Visible</h3>
-                    <select data-placeholder="" class="chosen-select" id="visibleToPublic">
-                            <option value= "">{{handlebarCall.dataValues.publiclyVisible}}</option>
-                            <option value="true">true</option>
-                            <option value="false">false</option>                        
-                    </select>
-                </div>
-                    
+<div class="container">
+    <div class="row">
+        {{!-- Create form --}}
+        <form class="create-form" data-id="{{handlebarCall.dataValues.id}}">
+            <div class="column">
+                {{!-- <div class="col-sm-2"> --}}
+                    <div class="form-group">
+                        <label for="createStoryTitle" >Story Title Here </label>   
+                            <input type="text" id="createStoryTitle" name="name" value="{{handlebarCall.dataValues.title}}"> 
+                    </div>
+                    <div class="form-group">
+                        <label for="createStoryGenre" >Type Genre Here: </label>   
+                            <input type="text" id="createStoryGenre" name="name" value="{{handlebarCall.dataValues.genre}}"> 
+                    </div>
+
                     <div class="form-group">
                         <label for="minimumNumberOfVoters">Minimum Number Of Voters</label>
-                        <input type="text" id="minimumNumberOfVoters" name="name" value="{{handlebarCall.dataValues.minimumNumberOfVoters}}">
-                    </div>
-                    
-                    
-                    
+                            <input type="text" id="minimumNumberOfVoters" name="name" value="{{handlebarCall.dataValues.minimumNumberOfVoters}}">
+                    </div>        
+                {{!-- </div> --}}
+            </div> 
+
+            <div class="column">
+                {{!-- <div class="col-sm-2"> --}}
                     <div class="form-group">
                         <label for="minimumNumberOfWriters">Minimum Number Of Writers</label>
-                        <input type="text" id="minimumNumberOfWriters" name="name" value="{{handlebarCall.dataValues.minimumNumberOfWriters}}">
+                            <input type="text" id="minimumNumberOfWriters" name="name" value="{{handlebarCall.dataValues.minimumNumberOfWriters}}">
                     </div>
-                    
-                    
-                    <div class="form-group">
-                        <h3>Pause Story Voting Period</h3>
-                        <select data-placeholder="" class="chosen-select" id="scheduleActive">
-                            <option value="">{{handlebarCall.dataValues.scheduleActive}}</option>
-                            <option value="true">true</option>
-                            <option value="false">false</option>
-                        </select>
-                    </div>
-                    
+
                     <div class="form-group">
                         <label for="writingTimePeriodInMins">Writing Period In Minutes</label>
-                        <input type="text" id="writingTimePeriodInMins" name="name" value="{{handlebarCall.dataValues.writingTimePeriodInMins}}">
+                            <input type="text" id="writingTimePeriodInMins" name="name" value="{{handlebarCall.dataValues.writingTimePeriodInMins}}">
                     </div>
-                    
-                    
+                            
                     <div class="form-group">
                         <label for="votingTimePeriodInMins">Voting Period In Minutes</label>
-                        <input type="text" id="votingTimePeriodInMins" name="name" value="{{handlebarCall.dataValues.votingTimePeriodInMins}}">
-                    </div>
-                    
-                    <hr>
-                <button type="submit" id="updateStory">Update My Story!</button>
-              </form>
+                            <input type="text" id="votingTimePeriodInMins" name="name" value="{{handlebarCall.dataValues.votingTimePeriodInMins}}">
+                    </div> 
+                {{!-- </div> --}}
+            </div>
+        </div>
 
+        <div class="row">
+            <div class="column">
+                {{!-- <div class="col-sm-4">                --}}
+                    <div class="form-group">
+                        <h4>Open Writing To Others</h4>
+                            <select data-placeholder="" class="chosen-select" id="openWritingToOthers" >
+                                <option value= "">{{handlebarCall.dataValues.openWritingToAllUsers}}</option>
+                                <option value="true">true</option>
+                                <option value="false">false</option>                        
+                            </select>
+                        </div>
+
+                    <div class="form-group">
+                        <h4>Open Voting To Others</h4>
+                            <select data-placeholder="" class="chosen-select" id="openVotingToOthers" >
+                                    <option value= "">{{handlebarCall.dataValues.openVotingToAllUsers}}</option>
+                                    <option value="true">true</option>
+                                    <option value="false">false</option>                        
+                            </select>
+                    </div>
+                {{!-- </div> --}}
+            </div>
+            
+            <div class="column">
+                {{!-- <div class="col-sm-4"> --}}
+                    <div class="form-group">
+                        <h4>Publicly Visible</h4>
+                            <select data-placeholder="" class="chosen-select" id="visibleToPublic">
+                                    <option value= "">{{handlebarCall.dataValues.publiclyVisible}}</option>
+                                    <option value="true">true</option>
+                                    <option value="false">false</option>                        
+                            </select>
+                    </div>
+
+                    <div class="form-group">
+                        <h4>Pause Story Voting Period</h4>
+                            <select data-placeholder="" class="chosen-select" id="scheduleActive">
+                                <option value="">{{handlebarCall.dataValues.scheduleActive}}</option>
+                                <option value="true">true</option>
+                                <option value="false">false</option>
+                            </select>
+                    </div>
+                {{!-- </div> --}}
+            </div>
+        </div>
+    {{!-- End of row, end of form --}}
+        </form>
+    </div>
+
+{{!-- End of container for first column --}}
+</div> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{!-- End of container --}}
+</div> 
