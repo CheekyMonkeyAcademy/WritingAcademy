@@ -4,7 +4,7 @@ var exphbs = require("express-handlebars");
 var bodyParser = require("body-parser");
 var passport = require('passport');
 var crypto = require('crypto');
-var colors = require('colors');
+// var colors = require('colors');
 
 var TwitterStrategy = require('passport-twitter').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
@@ -26,8 +26,6 @@ passport.use(new TwitterStrategy({
             provider: profile.provider,
             userId: profile.id,
             displayName: profile.displayName
-
-
 
         }, function(err, user) {
             return cb(err);
@@ -84,8 +82,6 @@ passport.use(new RedditStrategy({
     }
 ));
 
-
-
 passport.use(new GoogleStrategy({
         clientID: '975477224458-fvreqnf88mijr6nt29lhjsjahjqf0b9k.apps.googleusercontent.com',
         clientSecret: 'GuhqDBsS8kRJgTa4cdM9nNob',
@@ -100,9 +96,6 @@ passport.use(new GoogleStrategy({
     }
 ));
 
-
-
-
 passport.serializeUser(function(user, cb) {
     cb(null, user);
 });
@@ -110,10 +103,6 @@ passport.serializeUser(function(user, cb) {
 passport.deserializeUser(function(obj, cb) {
     cb(null, obj);
 });
-
-
-
-
 
 // Create an instance of the express app.
 var app = express();
