@@ -12,6 +12,7 @@ module.exports = function(app){
     //Read
     // Route to read a specific story id           
     app.get("/api/story/:id/read", function(req, res){
+        console.log(`Called read story ID: ${req.params.id}`);
         db.Story.findOne({
             include:[{ model: db.Line,
                 where: { 
