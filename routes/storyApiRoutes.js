@@ -11,7 +11,7 @@ module.exports = function(app){
     
     //Read
     // Route to read a specific story id           
-    app.get("api/story/:id/read", function(req, res){
+    app.get("/api/story/:id/read", function(req, res){
         db.Story.findOne({
             include:[{ model: db.Line,
                 where: { 
@@ -26,11 +26,9 @@ module.exports = function(app){
             var storiesObject = {
                 callThisVariableInHandlebarsForEach: story
               };
-            res.render("readStory", storiesObject); 
-            console.log("****Looking for this*****")  
-            console.log(storiesObject)                  
-         });
-    })
+            res.render("readStory", storiesObject);             
+        });
+    });
             
     //Create Story Route
     app.post("/api/newStory", function(req, res){
@@ -65,9 +63,9 @@ module.exports = function(app){
                 res.render("updateMyStories", newStoryObject);
             });
         });
-    })
+    });
 
-//I want to get info from the database and post it to a different handlebars page
+    //I want to get info from the database and post it to a different handlebars page
     app.get("/api/", function(req, res){
         db.Story.findAll({
         }).then(function(story){
@@ -75,8 +73,8 @@ module.exports = function(app){
                 handlebarsCall:story
             };            
             res.render("viewMyStories", allMyStoriesCreatedObject)
-        })
-    }) 
+        });
+    });
 
     //Update a story
     //Do not api if client is expecting an html change
@@ -95,8 +93,8 @@ module.exports = function(app){
                 handlebarsCall: story
             }
             res.render("viewMyStories", allMyStoriesCreatedObject)
-        })       
-    })
+        });
+    });
 
     //prep interface for voting
     app.get("/api/story/:id/voting", function(req, res){       
@@ -134,7 +132,7 @@ module.exports = function(app){
                 res.render("voteForNextLine", storiesObject);
             });
         });    
-    })
+    });
 
     app.put("/api/story/:id/updateStoryStatus", function(req, res){        
         storyService(req.params.id);

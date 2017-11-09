@@ -1,4 +1,4 @@
--- use writing_db;
+use writing_db;
 -- use mnvrsaf2rl6441ma;
 
 DROP TABLE `Lines`;
