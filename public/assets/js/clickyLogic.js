@@ -43,10 +43,11 @@ $(document).ready(function(){
             // data: newStory,
             dataType: 'json',
             contentType: 'application/json',
-            success: 
-            function(newStory){
-                console.log(newStory)
-                // location.href = "/"
+            success: function(newStory){
+                // console.log(newStory)
+                // // location.href = "/"
+                // $('#createModal').modal('toggle');
+                // $("#title").html("Your story" + newStory.title + "has been created!")
             }            
         })
 

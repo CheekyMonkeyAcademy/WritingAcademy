@@ -20,12 +20,13 @@
             			<img src="http://wikiclipart.com/wp-content/uploads/2017/04/Write-writing-conclusion-clipart.png" width="25" />
        				 </a> --}}
 					<div id="headerStyle">
-						<a href="/" class="btn btn-primary navbar-btn">Writing Academy
+						<a href="/" class="btn btn-primary navbar-btn topBtn">Writing Academy
 							<span class="glyphicon glyphicon-home" aria-hidden="true"></span> 
 						</a>
-						<a href="/login" class="btn btn-primary navbar-btn">Login</a> 
-						<a href="/viewStories" class="btn btn-primary navbar-btn">View All Stories</a>
-						<a href="https://www.reddit.com/r/WritingPrompts/" class="btn btn-primary navbar-btn" target="new">Reddit Writing Prompts</a>
+						<a href="/login" class="btn btn-primary navbar-btn topBtn">Login</a> 
+						<a href="/viewStories" class="btn btn-primary navbar-btn topBtn">View All Stories</a>
+						<a href="https://www.reddit.com/r/WritingPrompts/" class="btn btn-primary navbar-btn topBtn" target="new">Reddit Writing Prompts</a>
+						<a href="/createStory" class="btn btn-primary navbar-btn topBtn">Create A Story</a>
 
 						{{!-- <a href="/viewStories" class="btn btn-primary navbar-btn">View All Stories</a> --}}
 						{{!-- <a href="/writeStory" class="btn btn-primary navbar-btn">Write Story</a> --}}
@@ -58,3 +59,13 @@
 		</div> 
 	</body>
 </html>
+
+
+<!--This is the modal-->
+<div class="modal fade bs-example-modal-sm text-center" id="createModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <h2 id="title"></h2>
+        </div>
+    </div>
+</div>
