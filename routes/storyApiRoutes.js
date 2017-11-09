@@ -52,10 +52,7 @@ module.exports = function(app){
                 UserId: userId // how do we get the user Id?
             })
             .then(function(story){
-                // TODO fix this - it isn't rendering the right page for no good reason that I can find.  
-                // res.render("updateMyStories", newStoryObject);\
                 res.json(story);
-                // res.redirect("/updateStoryForm/1");
             });
         });
     });
