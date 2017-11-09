@@ -10,7 +10,7 @@ var storyService = require("../services/serverLogic");
 module.exports = function(app){
     
     //Read
-        // Route to read a specific story id           
+    // Route to read a specific story id           
     app.get("api/story/:id/read", function(req, res){
         db.Story.findOne({
             include:[{ model: db.Line,
@@ -35,6 +35,7 @@ module.exports = function(app){
     //Create Story Route
     app.post("/api/newStory", function(req, res){
         console.log("New Story Specs: ******************")
+        let newStoryObject = {};
         var newCreatedStory = req.body;
         console.log(newCreatedStory.title);
         db.Story.create({
@@ -47,11 +48,23 @@ module.exports = function(app){
             minimumNumberOfWriters: req.body.minimumNumberOfWriters,
             scheduleActive: req.body.scheduleActive,
             writingTimePeriodInMins: req.body.writingTimePeriodInMins,
-            votingTimePeriodInMins: req.body.votingTimePeriodInMins
-
+            votingTimePeriodInMins: req.body.votingTimePeriodInMins,
+            storyProgressionStatus: 'Initial Setup Complete'
+        })
+        .then(function(storyObject){
+            newStoryObject.handlebarCall = storyObject;
+            
+            let userId = 5 // ummm yeah, TODO FIX THIS FIX THIS FIX THIS UGLY THING!
+            db.Permission.create({
+                permissionText: 'Admin',
+                StoryId: storyObject.dataValues.id,
+                UserId: userId // how do we get the user Id?
+            })
+            .then(function(story){
+                // TODO fix this - it isn't rendering the right page for no good reason that I can find.  
+                res.render("updateMyStories", newStoryObject);
+            });
         });
-        res.render("createStory");
-        //TODO: WITH OLEG- WORK ON HIS MAIN PAGE DIRECTING TO CREATE A NEW STORY ROUTE- THIS ROUTING SHOULD BE HANDLED IN THE HTML ROUTE FILE
     })
 
 //I want to get info from the database and post it to a different handlebars page
@@ -68,22 +81,20 @@ module.exports = function(app){
     //Update a story
     //Do not api if client is expecting an html change
     app.put("/api/story/:id", function(req, res){       
-            console.log("****Updated Story Spec******")
-            var updatedStorySpecs = req.body;
-            var id = req.params.id;
-            //This works I am getting the correct req.body
-            console.log(req.body)
-            db.Story.update(updatedStorySpecs,{            
-                    where: {
-                        id: req.params.id
-                    }                
-            }).then(function(story){
-                var allMyStoriesCreatedObject = {
-                    handlebarsCall: story
-                }
-                //TODO: WITH OLEG- WORK ON REDIRECT TO VIEW ALL STORIES PAGE
-                res.render("viewMyStories", allMyStoriesCreatedObject)
-                //res.redirect('/stories') to the view page
+        console.log("****Updated Story Spec******")
+        var updatedStorySpecs = req.body;
+        var id = req.params.id;
+        //This works I am getting the correct req.body
+        console.log(req.body)
+        db.Story.update(updatedStorySpecs,{            
+                where: {
+                    id: req.params.id
+                }                
+        }).then(function(story){
+            var allMyStoriesCreatedObject = {
+                handlebarsCall: story
+            }
+            res.render("viewMyStories", allMyStoriesCreatedObject)
         })       
     })
 

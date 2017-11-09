@@ -1,3 +1,7 @@
-DROP TABLE `writing_db`.`lines`;
-DROP TABLE `writing_db`.`stories`;
-DROP TABLE `writing_db`.`users`;
+-- use writing_db;
+-- use mnvrsaf2rl6441ma;
+
+DROP TABLE `Lines`;
+DROP TABLE `Permissions`;
+DROP TABLE `Stories`;
+DROP TABLE `Users`;

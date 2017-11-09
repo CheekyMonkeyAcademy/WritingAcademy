@@ -24,11 +24,11 @@ function toggleWritingAndVoting(storyId){
                 newLineGroup++;
                 thisStory.update({toggleWritingTrueOrVotingFalse: false});
                 thisStory.update({currentLineGroup: newLineGroup});
-                thisStory.update({storyProgressionError: 'No Error: Just switched from writing to voting.'});
+                thisStory.update({storyProgressionStatus: 'No Error: Just switched from writing to voting.'});
             }
             else {
                 console.log(`We're not quite ready to switch from writing to voting`)
-                thisStory.update({storyProgressionError: 'Error: We need more lines written (more writers, or less required writers) to satisfy the requirements.'});
+                thisStory.update({storyProgressionStatus: 'Error: We need more lines written (more writers, or less required writers) to satisfy the requirements.'});
             }
         }
         else if (!(writingTrueOrVotingFalse)){
@@ -41,17 +41,17 @@ function toggleWritingAndVoting(storyId){
                     markLineAsWinner(thisStory.dataValues);
                     // It's time to switch from voting to writing
                     thisStory.update({toggleWritingTrueOrVotingFalse: true});
-                    thisStory.update({storyProgressionError: 'No Error: Just switched from voting to writing.'});
+                    thisStory.update({storyProgressionStatus: 'No Error: Just switched from voting to writing.'});
                 }
                 else {
                     console.log(`We're tied!  So we need to do some magic`);
                     markNonTiedLineAsVotedOn(thisStory.dataValues);
-                    thisStory.update({storyProgressionError: 'Error: Voting is tied - votes that are not tied for highest have been dropped, please vote for the remaining options again.'});
+                    thisStory.update({storyProgressionStatus: 'Error: Voting is tied - votes that are not tied for highest have been dropped, please vote for the remaining options again.'});
                 }
             }
             else {
                 console.log(`We're not quite ready to switch from voting to writing`);
-                thisStory.update({storyProgressionError: 'Error: Voting requires a minimum number of "yes" votes to succeed, we need additional votes to meet the requirement.'});
+                thisStory.update({storyProgressionStatus: 'Error: Voting requires a minimum number of "yes" votes to succeed, we need additional votes to meet the requirement.'});
             }
         }
         else {

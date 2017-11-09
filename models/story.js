@@ -17,17 +17,17 @@ module.exports = function(sequelize, DataTypes) {
         publiclyVisible: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
-            defaultValue: false
+            defaultValue: true
         },
         openVotingToAllUsers: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
-            defaultValue: false
+            defaultValue: true
         },
         openWritingToAllUsers: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
-            defaultValue: false
+            defaultValue: true
         },
         numberOfTimesViewed: {
             type: DataTypes.INTEGER,
@@ -66,19 +66,19 @@ module.exports = function(sequelize, DataTypes) {
         scheduleActive: { // Is this just schedule being active?
             type: DataTypes.BOOLEAN,
             allowNull: false,
-            defaultValue: true
+            defaultValue: false
         },
         writingTimePeriodInMins: {
             type: DataTypes.INTEGER,
             allowNull: false,
-            defaultValue: 0 // not sure on this default
+            defaultValue: 5 // not sure on this default
         },
         votingTimePeriodInMins: {
             type: DataTypes.INTEGER,
             allowNull: false,
-            defaultValue: 0 // not sure on this default
+            defaultValue: 5 // not sure on this default
         },
-        storyProgressionError: {
+        storyProgressionStatus: {
             type: DataTypes.STRING,
             allowNull: true
         }
