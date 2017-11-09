@@ -1,6 +1,5 @@
 $(document).ready(function(){
 
-    
     $(".updateStoryStatus").on("click", function(){
         event.preventDefault();
 
