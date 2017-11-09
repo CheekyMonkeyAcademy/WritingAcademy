@@ -78,7 +78,7 @@ module.exports = function(app){
 
     //Update a story
     //Do not api if client is expecting an html change
-    app.put("/api/story/:id", function(req, res){       
+    app.put("/api/story/:id/update", function(req, res){       
         console.log("****Updated Story Spec******")
         var updatedStorySpecs = req.body;
         var id = req.params.id;

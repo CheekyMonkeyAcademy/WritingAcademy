@@ -12,7 +12,7 @@
 <div class="container">
     <div class="row">
         {{!-- Create form --}}
-        <form class="create-form" data-id="{{handlebarCall.dataValues.id}}">
+        <form class="create-form" id="updateStoryForm" data-id="{{handlebarCall.dataValues.id}}">
             <div class="column columnCreate">
                 {{!-- <div class="col-sm-2"> --}}
                     <div class="form-group">
@@ -57,7 +57,7 @@
                     <div class="form-group">
                         <h4>Open Writing To Others</h4>
                             <select data-placeholder="" class="chosen-select" id="openWritingToOthers" >
-                                <option value= "">{{handlebarCall.dataValues.openWritingToAllUsers}}</option>
+                                <option value= "{{handlebarCall.dataValues.openWritingToAllUsers}}">{{handlebarCall.dataValues.openWritingToAllUsers}}</option>
                                 <option value="true">true</option>
                                 <option value="false">false</option>                        
                             </select>
@@ -67,7 +67,7 @@
                     <div class="form-group">
                         <h4>Open Voting To Others</h4>
                             <select data-placeholder="" class="chosen-select" id="openVotingToOthers" >
-                                    <option value= "">{{handlebarCall.dataValues.openVotingToAllUsers}}</option>
+                                    <option value= "{{handlebarCall.dataValues.openVotingToAllUsers}}">{{handlebarCall.dataValues.openVotingToAllUsers}}</option>
                                     <option value="true">true</option>
                                     <option value="false">false</option>                        
                             </select>
@@ -81,7 +81,7 @@
                     <div class="form-group">
                         <h4>Publicly Visible</h4>
                             <select data-placeholder="" class="chosen-select" id="visibleToPublic">
-                                    <option value= "">{{handlebarCall.dataValues.publiclyVisible}}</option>
+                                    <option value= "{{handlebarCall.dataValues.publiclyVisible}}">{{handlebarCall.dataValues.publiclyVisible}}</option>
                                     <option value="true">true</option>
                                     <option value="false">false</option>                        
                             </select>
@@ -91,7 +91,7 @@
 
                         <h4>Pause Story Voting Period</h4>
                             <select data-placeholder="" class="chosen-select" id="scheduleActive">
-                                <option value="">{{handlebarCall.dataValues.scheduleActive}}</option>
+                                <option value="{{handlebarCall.dataValues.scheduleActive}}">{{handlebarCall.dataValues.scheduleActive}}</option>
                                 <option value="true">true</option>
                                 <option value="false">false</option>
                             </select>
