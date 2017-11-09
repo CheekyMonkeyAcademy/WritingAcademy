@@ -11,9 +11,9 @@ module.exports = function(app){
     
     //Read
         // Route to read a specific story id           
-    app.get("/api/story/:id/read", function(req, res){
+    app.get("api/story/:id/read", function(req, res){
         db.Story.findOne({
-            include:[{ model: db.Line, 
+            include:[{ model: db.Line,
                 where: { 
                     lineSelected: true
                     // TODO add order by line number
@@ -26,7 +26,9 @@ module.exports = function(app){
             var storiesObject = {
                 callThisVariableInHandlebarsForEach: story
               };
-            res.render("readStory", storiesObject);                     
+            res.render("readStory", storiesObject); 
+            console.log("****Looking for this*****")  
+            console.log(storiesObject)                  
          });
     })
             
