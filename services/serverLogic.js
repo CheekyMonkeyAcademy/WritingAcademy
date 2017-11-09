@@ -1,16 +1,6 @@
-// goal:  automagic toggle between writing and voting -- DONE
-    // should we hide this ENTIRELY from user view?  -- YEP
-
-// goal:  if voting tied, return tied and do not toggle -- DONE
-
-// goal:  if not met min voters or min writers, return and do not toggle -- DONE
-
-// goal:  handle a tie scenario for voting - DONE
-
 // stretch goal:  setup a schedule - suggest:  https://www.npmjs.com/package/timers -- NOT YET
-var db = require("../models");
 
-toggleWritingAndVoting(1);
+var db = require("../models");
 
 function toggleWritingAndVoting(storyId){
     db.Story.findOne({
@@ -23,7 +13,6 @@ function toggleWritingAndVoting(storyId){
             id: storyId
         }
     }).then(function(thisStory){
-        console.log('******************* toggleWritingAndVoting Then Clause');
         let writingTrueOrVotingFalse = thisStory.dataValues.toggleWritingTrueOrVotingFalse;
         console.log(`We're currently at writing true voting false of: ${writingTrueOrVotingFalse}`);
         if (writingTrueOrVotingFalse){
@@ -34,11 +23,12 @@ function toggleWritingAndVoting(storyId){
                 let newLineGroup = thisStory.dataValues.currentLineGroup
                 newLineGroup++;
                 thisStory.update({toggleWritingTrueOrVotingFalse: false});
-                thisStory.update({currentLineGroup: newLineGroup})
+                thisStory.update({currentLineGroup: newLineGroup});
+                thisStory.update({storyProgressionError: 'No Error: Just switched from writing to voting.'});
             }
             else {
                 console.log(`We're not quite ready to switch from writing to voting`)
-                // TODO kick off some sort of 'add more writers' ?
+                thisStory.update({storyProgressionError: 'Error: We need more lines written (more writers, or less required writers) to satisfy the requirements.'});
             }
         }
         else if (!(writingTrueOrVotingFalse)){
@@ -51,16 +41,17 @@ function toggleWritingAndVoting(storyId){
                     markLineAsWinner(thisStory.dataValues);
                     // It's time to switch from voting to writing
                     thisStory.update({toggleWritingTrueOrVotingFalse: true});
+                    thisStory.update({storyProgressionError: 'No Error: Just switched from voting to writing.'});
                 }
                 else {
                     console.log(`We're tied!  So we need to do some magic`);
                     markNonTiedLineAsVotedOn(thisStory.dataValues);
-                    // TODO kick off our 'we are tied' logic - this needs to be built.  
+                    thisStory.update({storyProgressionError: 'Error: Voting is tied - votes that are not tied for highest have been dropped, please vote for the remaining options again.'});
                 }
             }
             else {
                 console.log(`We're not quite ready to switch from voting to writing`);
-                // TODO kick off some sort of 'add more voters' ?
+                thisStory.update({storyProgressionError: 'Error: Voting requires a minimum number of "yes" votes to succeed, we need additional votes to meet the requirement.'});
             }
         }
         else {
@@ -71,12 +62,10 @@ function toggleWritingAndVoting(storyId){
 
 function checkMinVotes(storyObject){
     let returnValue = false;
-    console.log('$$$$$$$$$$$$$$$$$$$ check min votes');
     targetMinVotes = storyObject.minimumNumberOfVoters;
     console.log(`Current target for min votes: ${targetMinVotes}`);
     storyObject.Lines.forEach(function(line){
         // let's see if *any* of the lines has sufficient votes to pass
-        console.log(`Checking line ID: ${line.dataValues.id}`)
         if (line.dataValues.lineVoteCount >= targetMinVotes) {
             console.log(`We have a winner!  ID: ${line.dataValues.id} has votes of: ${line.dataValues.lineVoteCount} - target is: ${targetMinVotes}`);
             returnValue = true;
@@ -86,19 +75,22 @@ function checkMinVotes(storyObject){
 }
 
 function markAllLinesAsVotedOn(storyObject){
-    // Since we've selected a line that is our winner
+    // Since we've selected a line that is our winner - we need to mark the rest as 'done'
     storyObject.Lines.forEach(function(line){
-        console.log(`Checking line ID: ${line.dataValues.id} - currently voted on of: ${line.dataValues.lineVotedOn}`)
         line.update({lineVotedOn: true});
     });
 }
 
 function markLineAsWinner(storyObject){
+    // This marks our single line as a winner - we've alread verified we're not tied, so only one should remain
+
+    // First get our max number out of the available lines
     let maxVoteCount = Math.max.apply(Math,storyObject.Lines.map(function(line){
         return Math.max(line.dataValues.lineVoteCount);
     }));
     console.log(maxVoteCount);
     
+    // Then mark this specific line as the 'lineSelected' - aka the winning line from said group
     storyObject.Lines.forEach(function(line){
         console.log(`Checking line ID: ${line.dataValues.id} - currently voted on of: ${line.dataValues.lineVotedOn}`)
         if (line.lineVoteCount === maxVoteCount) {
@@ -111,7 +103,6 @@ function checkVotesToSeeIfTied(storyObject){
     let returnValue = true;
     // we need to find out if we have multiple lines with the same number of votes.  
     
-    // let's use a map.
     let maxVoteCount = Math.max.apply(Math,storyObject.Lines.map(function(line){
         return Math.max(line.dataValues.lineVoteCount);
     }));
@@ -119,10 +110,8 @@ function checkVotesToSeeIfTied(storyObject){
 
     let countOfLinesAtNumber = 0;
     storyObject.Lines.forEach(function(line){
-        console.log(`Checking line ID: ${line.dataValues.id} - currently voted on of: ${line.dataValues.lineVotedOn}`)
         if (line.dataValues.lineVoteCount === maxVoteCount) {
             countOfLinesAtNumber++;
-            console.log(`Adding one line at the max number - line ID: ${line.dataValues.id}`)
         }
     });
 
@@ -144,9 +133,8 @@ function markNonTiedLineAsVotedOn(storyObject){
     console.log(maxVoteCount);
 
     storyObject.Lines.forEach(function(line){
-        console.log(`Checking line ID: ${line.dataValues.id} - currently voted on of: ${line.dataValues.lineVotedOn}`)
         if (line.dataValues.lineVoteCount === maxVoteCount) {
-            console.log(`This one passes, it had a tie for most votes - line ID: ${line.dataValues.id}`)
+            console.log(`This one passes, it had a tie for most votes - line ID: ${line.dataValues.id}`);
         }
         else {
             console.log(`This one didn't have enough votes - buh bye!`);
@@ -157,9 +145,7 @@ function markNonTiedLineAsVotedOn(storyObject){
 
 function checkMinWriters(storyObject){
     let returnValue = false;
-    console.log('$$$$$$$$$$$$$$$$$$$ check min writers');
     targetMinWriters = storyObject.minimumNumberOfWriters;
-    console.log(`Current target for min writers: ${targetMinWriters}`);
     if (targetMinWriters <= storyObject.Lines.length){
         console.log(`Annnd we have enough writers!  Target:  ${targetMinWriters} - we have: ${storyObject.Lines.length}`)
         returnValue = true;

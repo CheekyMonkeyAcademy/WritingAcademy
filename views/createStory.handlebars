@@ -1,82 +1,112 @@
-<h1>Testing, Testing 1, 2, 3</h1>
+<div class="container">
 
-<!--Testing create a story-->
-<!--ADD A SMOOTHIE BUTTON!!!!!-->
-<h2>Add A New Story Here:</h2>
-<form class="create-form">
-    <div class="form-group">
-        <label for="createStoryTitle">Story Title Here </label>
-        <input type="text" id="createStoryTitle" name="name">
+<div class="row">    
+    {{!-- <div class="col-sm-2"></div> --}}
+    <div class="col-sm-8">
+        <div class="page-header">
+            <h1>Create A Story</h1>
+        </div>
     </div>
-    <div class="form-group">
-        <label for="createStoryGenre">Type Genre Here: </label>
-        <input type="text" id="createStoryGenre" name="name">
+</div>
+
+<div class="container">
+    <div class="row">
+        {{!-- Create form --}}
+        <form class="create-form">
+            <div class="column">
+                {{!-- <div class="col-sm-2"> --}}
+                    <div class="form-group">
+                        <label for="createStoryTitle" >Story Title Here </label>   
+                            <input type="text" id="createStoryTitle" name="name"> 
+                    </div>
+                    <div class="form-group">
+                        <label for="createStoryGenre" >Type Genre Here: </label>   
+                            <input type="text" id="createStoryGenre" name="name"> 
+                    </div>
+
+                    <div class="form-group">
+                        <label for="minimumNumberOfVoters">Minimum Number Of Voters</label>
+                            <input type="text" id="minimumNumberOfVoters" name="name">
+                    </div>        
+                {{!-- </div> --}}
+            </div> 
+
+            <div class="column">
+                {{!-- <div class="col-sm-2"> --}}
+                    <div class="form-group">
+                        <label for="minimumNumberOfWriters">Minimum Number Of Writers</label>
+                            <input type="text" id="minimumNumberOfWriters" name="name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="writingTimePeriodInMins">Writing Period In Minutes</label>
+                            <input type="text" id="writingTimePeriodInMins" name="name">
+                    </div>
+                            
+                    <div class="form-group">
+                        <label for="votingTimePeriodInMins">Voting Period In Minutes</label>
+                            <input type="text" id="votingTimePeriodInMins" name="name">
+                    </div> 
+                {{!-- </div> --}}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="column">
+                {{!-- <div class="col-sm-4">                --}}
+                    <div class="form-group">
+                        <h4>Open Writing To Others</h4>
+                            <select data-placeholder="" class="chosen-select" id="openWritingToOthers" >
+                                <option value= "">Choose One</option>
+                                <option value="true">true</option>
+                                <option value="false">false</option>                        
+                            </select>
+                    </div>
+
+                    <div class="form-group">
+                        <h4>Open Voting To Others</h4>
+                            <select data-placeholder="" class="chosen-select" id="openVotingToOthers">
+                                    <option value= "">Choose One</option>
+                                    <option value="true">true</option>
+                                    <option value="false">false</option>                        
+                            </select>
+                    </div>
+                {{!-- </div> --}}
+            </div>
+            
+            <div class="column">
+                {{!-- <div class="col-sm-4"> --}}
+                    <div class="form-group">
+                        <h4>Publicly Visible</h4>
+                            <select data-placeholder="" class="chosen-select" id="visibleToPublic">
+                                    <option value= "">Choose One</option>
+                                    <option value="true">true</option>
+                                    <option value="false">false</option>                        
+                            </select>
+                    </div>
+
+                    <div class="form-group">
+                        <h4>Pause Story Voting Period</h4>
+                            <select data-placeholder="" class="chosen-select" id="scheduleActive">
+                                <option value="">Choose One</option>
+                                <option value="true">true</option>
+                                <option value="false">false</option>
+                            </select>
+                    </div>
+                {{!-- </div> --}}
+            </div>
+        </div>
+    {{!-- End of row, end of form --}}
+        </form>    
     </div>
 
-    <div class="form-group">
-        <h3>Open Writing To Others</h3>
-        <select data-placeholder="" class="chosen-select" id="openWritingToOthers">
-            <option value="">Select One</option>
-            <option value="true">true</option>
-            <option value="false">false</option>
-        </select>
+<div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-9">
+        <button class="btn btn-primary" type="submit" id="createStory">Create My Story!</button>
     </div>
+</div>
 
-    <div class="form-group">
-        <h3>Open Voting To Others</h3>
-        <select data-placeholder="" class="chosen-select" id="openVotingToOthers">
-            <option value="">Select One</option>
-            <option value="true">true</option>
-            <option value="false">false</option>
-        </select>
-    </div>
+{{!-- End of container for first column --}}
+</div>
 
-    <div class="form-group">
-        <h3>Publicly Visible</h3>
-        <select data-placeholder="" class="chosen-select" id="visibleToPublic">
-            <option value="">Select One</option>
-            <option value="true">true</option>
-            <option value="false">false</option>
-        </select>
-    </div>
-
-    <!-- ++++++++++++++++++++++++++++++++ -->
-
-    <div class="form-group">
-        <label for="minimumNumberOfVoters">Minimum Number Of Voters</label>
-        <input type="text" id="minimumNumberOfVoters" name="name">
-    </div>
-
-
-
-    <div class="form-group">
-        <label for="minimumNumberOfWriters">Minimum Number Of Writers</label>
-        <input type="text" id="minimumNumberOfWriters" name="name">
-    </div>
-
-
-    <div class="form-group">
-        <h3>Schedule Active</h3>
-        <select data-placeholder="" class="chosen-select" id="scheduleActive">
-            <option value="">Select One</option>
-            <option value="true">true</option>
-            <option value="false">false</option>
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label for="writingTimePeriodInMins">Writing Time Period In Mins</label>
-        <input type="text" id="writingTimePeriodInMins" name="name">
-    </div>
-
-
-    <div class="form-group">
-        <label for="votingTimePeriodInMins">Voting Time Period In Mins</label>
-        <input type="text" id="votingTimePeriodInMins" name="name">
-    </div>
-
-<hr>
-
-
-    <button type="submit" id="createStory">Create My Story!</button>
-</form>

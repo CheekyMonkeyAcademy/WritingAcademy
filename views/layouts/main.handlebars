@@ -14,20 +14,36 @@
 	</head>
 	<body>
 		<div class='main-wrapper'>
-			<header class="text-center">
+			<header class="text-left">
 				<container class="navbar navbar-default navbar-fixed-top">
-					<a class="navbar-brand" href="/">
+					{{!-- <a class="navbar-brand" href="/">
             			<img src="http://wikiclipart.com/wp-content/uploads/2017/04/Write-writing-conclusion-clipart.png" width="25" />
-       				 </a>
-					<div>
-						<a href="" class="btn btn-primary navbar-btn">Read</a>
-						<a href="" class="btn btn-primary navbar-btn">Write</a>
-						<a href="" class="btn btn-primary navbar-btn">Vote</a>
-						<a href="" class="btn btn-primary navbar-btn">Compete</a>
-						<a href="/" class="btn btn-primary navbar-btn">Writing Academy!</a>
+       				 </a> --}}
+					<div id="headerStyle">
+						<a href="/" class="btn btn-primary navbar-btn">Writing Academy
+							<span class="glyphicon glyphicon-home" aria-hidden="true"></span> 
+						</a>
 						<a href="/login" class="btn btn-primary navbar-btn">Login</a> 
+						<a href="/viewStories" class="btn btn-primary navbar-btn">View All Stories</a>
+						<a href="https://www.reddit.com/r/WritingPrompts/" class="btn btn-primary navbar-btn" target="new">Reddit Writing Prompts</a>
+
+						{{!-- <a href="/viewStories" class="btn btn-primary navbar-btn">View All Stories</a> --}}
+						{{!-- <a href="/writeStory" class="btn btn-primary navbar-btn">Write Story</a> --}}
+						{{!-- <a href="/readStory" class="btn btn-primary navbar-btn">Read A Story</a> --}}
+						{{!-- <a href="/voteLines" class="btn btn-primary navbar-btn">Vote</a> --}}
+						{{!-- <a href="" class="btn btn-primary navbar-btn">Compete</a> --}}
+						
+
+						<form class="navbar-form navbar-right" id="genreStyle">
+							<div class="form-group">
+								<input type="text" class="form-control" id="genreSearchInput" placeholder="Search Stories By Genre" name="name">
+							</div>
+							<button type="submit" id="genreButton" class="btn btn-default">Search</button>
+						</form>
+
+						{{!-- <a href="/login" class="btn btn-primary navbar-btn">Login</a>  --}}
 						{{!-- TODO make the login button show if you're logged in dynamically --}}
-						<a href="https://www.reddit.com/r/WritingPrompts/" class="btn btn-primary navbar-btn" target="new">Writing Prompts (Reddit)</a>
+						{{!-- <a href="https://www.reddit.com/r/WritingPrompts/" class="btn btn-primary navbar-btn" target="new">Writing Prompts (Reddit)</a> --}}
 					</div>
 				</container>
 			</header>
