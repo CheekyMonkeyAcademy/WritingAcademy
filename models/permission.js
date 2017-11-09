@@ -1,7 +1,7 @@
 module.exports = function(sequelize, DataTypes) {
     let Permission = sequelize.define("Permission", {
         permissionText: {
-            // Basic idea:  
+            // Basic idea: 
             // There are three levels of permission:
             // 1. Admin - can change story options, write lines, and vote
             // 2. Writer - can write lines and vote

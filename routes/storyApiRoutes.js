@@ -1,9 +1,3 @@
-// POST--CREATE
-// GET--READ
-// PUT--UPDATE
-// DELETE--DELETE
-
-//ROUTING PSEUDO-CODE
 var db = require("../models");
 var storyService = require("../services/serverLogic");
 
@@ -24,7 +18,7 @@ module.exports = function(app){
             }
         }).then(function(story){              
             var storiesObject = {
-                callThisVariableInHandlebarsForEach: story
+                readStoryObject: story
               };
             res.render("readStory", storiesObject);             
         });
@@ -32,7 +26,6 @@ module.exports = function(app){
             
     //Create Story Route
     app.post("/api/newStory", function(req, res){
-        console.log("New Story Specs: ******************")
         let newStoryObject = {};
         var newCreatedStory = req.body;
         console.log(newCreatedStory.title);
@@ -60,7 +53,9 @@ module.exports = function(app){
             })
             .then(function(story){
                 // TODO fix this - it isn't rendering the right page for no good reason that I can find.  
-                res.render("updateMyStories", newStoryObject);
+                // res.render("updateMyStories", newStoryObject);\
+                res.json(story);
+                // res.redirect("/updateStoryForm/1");
             });
         });
     });
@@ -78,12 +73,9 @@ module.exports = function(app){
 
     //Update a story
     //Do not api if client is expecting an html change
-    app.put("/api/story/:id", function(req, res){       
-        console.log("****Updated Story Spec******")
+    app.put("/api/story/:id/update", function(req, res){       
         var updatedStorySpecs = req.body;
         var id = req.params.id;
-        //This works I am getting the correct req.body
-        console.log(req.body)
         db.Story.update(updatedStorySpecs,{            
                 where: {
                     id: req.params.id
