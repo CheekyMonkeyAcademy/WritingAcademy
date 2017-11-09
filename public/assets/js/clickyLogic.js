@@ -69,8 +69,7 @@ $(document).ready(function(){
             dataType: 'json',
             contentType: 'application/json',
             success: 
-                console.log(updatedStory)
-                // location.href = "/"
+                location.href = '/viewStories'
         });
     });
 
@@ -161,8 +160,7 @@ $(document).ready(function(){
             data: JSON.stringify(lineToSubmit),
             dataType: 'json',
             contentType: 'application/json',
-            success: 
-                console.log("YAY!!!")            
+            success: location.href = '/viewStories'
         });
     });
 
