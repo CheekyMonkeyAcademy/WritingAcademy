@@ -12,6 +12,7 @@ module.exports = function(app) {
         (req, res) => {
             res.render('login');
         });
+    // console.log(twitter)
 
     app.get('/login/twitter',
         passport.authenticate('twitter'));
@@ -19,12 +20,13 @@ module.exports = function(app) {
     app.get('/twitter/return',
         passport.authenticate('twitter', { failureRedirect: '/login' }),
         (req, res) => {
+            console.log(`$$$$$$$$^^^^^ Twitter has returned`);
             res.redirect('/');
         });
 
     app.post('/twitter/return', (req, res, next) => {
-        console.log(req.body.user);
-        res.redirect('/test');
+        console.log(req.body.userid);
+        res.redirect('/');
     })
 
     app.get('/auth/facebook', passport.authenticate('facebook'));
@@ -33,7 +35,14 @@ module.exports = function(app) {
         passport.authenticate('facebook', {
             successRedirect: '/',
             failureRedirect: '/login'
+
         }));
+    console.log(`$$$$$$$$^^^^^ Facebook has returned`);
+
+    app.post('/auth/facebook/callback', (req, res, next) => {
+
+        res.redirect('/');
+    })
 
     app.get('/auth/reddit', function(req, res, next) {
         req.session.state = crypto.randomBytes(32).toString('hex');

@@ -1,24 +1,36 @@
-//user.js
-
 module.exports = function(sequelize, DataTypes) {
     let User = sequelize.define("User", {
-
-        tempUserName: { // once we get the real code, NUKE THIS
+        provider: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 len: [1]
             }
+        },
+        userId: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                len: [1]
+            }
+
+        },
+
+        displayName: {
+            type: DataTypes.STRING,
+            allowNull: true,
+            validate: {
+                len: [1]
+            }
         }
+
     });
 
-    // User.associate = function(models) {
-    //     // Associating User with Posts
-    //     // When an User is deleted, also delete any associated Posts
-    //     User.hasMany(models.Line, {
-    //         onDelete: "cascade"
-    //     });
-    // };
+    User.associate = function(models) {
+        User.hasMany(models.Line, {
+            onDelete: "cascade"
+        });
+    };
 
     return User;
 };

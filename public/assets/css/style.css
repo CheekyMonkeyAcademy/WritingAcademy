@@ -24,9 +24,10 @@ html, body {
 }
 
 footer {
-	background-color:rgb(165, 171, 195);
+	background-color:rgba(199, 0,57, 0.8);
 	height:70px; 
 	min-width: 340px;
+	color:white;
 }
 
 .main-wrapper {
@@ -66,22 +67,149 @@ footer {
 }
 
 #startHere{
-	padding: 10px;
+	padding-left: 35px;
+	padding-right:35px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	/* padding:30px; */
 	color: black;
-	border: 3px solid green;	
+	border: 2px solid green;	
 	background: white;
 	/* font-weight:bold; */
+	font-size: 25px;
 }
 
 #startHere:hover {
 	background:green;
 	color:white;
-	font-weight: bold;
+	
 }
 
-#separation{
+.separation{
 	border: 0;
     height: 1px;
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
 }
 
+#headerStyle{
+	margin-left: 10px;
+}
+
+#genreStyle{
+	margin-right:15px;
+}
+
+#genreButton{
+	background:#FF5733;
+	color:white;
+	padding-left:20px;
+	padding-right:20px;
+}
+
+#genreButton:hover{
+	background: #ff8c00;
+}
+
+#editButton{
+	border: 2px solid #FF5733;	
+}
+
+#editButton:hover{
+	background: #FF5733;
+	border:none;
+	color:white;
+}
+
+#writeToggle{
+	border: 2px solid #337ab7;
+	background:white;
+	color:black
+}
+
+#writeToggle:hover{
+	background: #286090;
+	border:none;
+	color:white;
+}
+
+#voteToggle{
+	background: #C70039;
+	color:white;	
+}
+
+.indexColumn{
+	border: 1px dashed #C70039;
+}
+
+.updateStoryStatus {
+	border: 2px solid #449d44;
+	background: white;
+	color:black;
+}
+
+.updateStoryStatus:hover{
+	border:none;
+}
+
+#genreResultsStyle{
+	background: white;
+	border-radius: 10px;
+	border:2px dashed #C70039;
+	padding:30px;
+	z-index: 1;
+	position: absolute;
+	opacity: 0.7
+}
+
+#booksIllustration{
+	width: 100%;
+	opacity: 0.4;
+	position: relative;
+}
+
+#createStory{
+	margin-top:20px;	
+	border: 2px solid #337ab7;
+	background:white;
+	color:black
+}
+
+#createStory:hover{
+	background: #286090;
+	border:none;
+	color:white;
+	padding:20px;
+}
+
+.columnCreate{
+	border: 1px dashed	#FF7F50;
+}
+
+#updateStory{
+	margin-top:20px;
+	border: 1px solid #FF7F50;
+	background: white;
+}
+
+#updateStory:hover{
+	border:none;
+	background:	#FFD700;
+	padding:20px;
+}
+
+.topBtn:hover{
+	background:	#FFD700;
+	color:black;
+}
+
+#lineSubmission{	
+	background: #ff8c00;
+	margin-bottom:20px;
+	color:black;
+}
+
+#lineSubmission:hover{
+	background:	#FFD700;
+	border: none;
+	color:white;
+}

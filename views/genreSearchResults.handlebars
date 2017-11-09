@@ -1,25 +1,29 @@
 <div class="container">
 
 <div class="row">    
-    <div class="col-sm-5"></div>
-    <div class="col-sm-6">
-        <div class="page-header">
+    <div class="col-sm-2"></div>    
+        <div class="page-header text-center">
             <h1>Story Search Results</h1>                
-        </div>
+        
     </div>
 </div>
 
 <div class="row">
-    <div class="col-sm-5"></div>
-    <div class="col-sm-6">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6" id="genreResultsStyle">
         {{#each handlebarsCall}}
-        <h3><p>Story Title: {{dataValues.title}}</p></h3>
+        <h3><p>Title: <a class="genreLink" href="/api/story/{{dataValues.id}}/read">{{dataValues.title}}</a></p></h3>
             <ul>        
-               <li><h4>Story Genre: {{dataValues.genre}}</h4></li>
+               <li><h4>Genre: {{dataValues.genre}}</h4></li>
             </ul>
         {{/each}}
     </div>
+    <div class="col-sm-3"></div>
 </div>
+
+
+    <img src="\assets\images/booksillustration.jpg" alt="book" id="booksIllustration">
+
 
 </div>
 
