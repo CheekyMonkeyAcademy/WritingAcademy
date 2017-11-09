@@ -79,7 +79,7 @@ $(document).ready(function(){
         //Ajax call here to update story:
         $.ajax({
             type: "PUT", 
-            url: "/api/stories/" +$("form").attr('data-id'),
+            url: "/api/stories/" +$("form").data('id'),
             data: JSON.stringify(updatedStory),
             // data: newStory,
             dataType: 'json',
