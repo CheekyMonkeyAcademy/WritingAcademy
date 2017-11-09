@@ -4,6 +4,7 @@ var exphbs = require("express-handlebars");
 var bodyParser = require("body-parser");
 var passport = require('passport');
 var crypto = require('crypto');
+var colors = require('colors');
 
 var TwitterStrategy = require('passport-twitter').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
@@ -16,27 +17,47 @@ passport.use(new TwitterStrategy({
         consumerKey: 'aI0LlGbbkANCJj3RkS08mTC2f',
         consumerSecret: 'ggEYwryfDm7kGW5obxAUm3eufouK3RtuRZ4DMi2hBCYGTuzGEZ',
         callbackURL: 'http://localhost:8080/twitter/return'
-
+            // callbackURL: 'https://vast-plateau-60506.herokuapp.com/twitter/return' /*switch with production*/ */
     },
     function(token, tokenSecret, profile, cb) {
-        // User.findOrCreate({ twitterId: profile.id }, function(err, user) {
-        //     return cb(err);
+        // db.User.create({ userId: '12345' })
+        db.User.create({
 
-        this.redirect('/'); /*this needs to re-direct to the correct page but for now it routes back to home*/
-        // });
-    }
-));
-// console.log()
+            provider: profile.provider,
+            userId: profile.id,
+            displayName: profile.displayName
+
+
+
+        }, function(err, user) {
+            return cb(err);
+            console.log(`${profile.displayName}`.cyan);
+            console.log(`${profile.provider}`.bgRed);
+            console.log(profile);
+            this.redirect('/'); /*this needs to re-direct to the correct page but for now it routes back to home*/
+        });
+    }));
+
 passport.use(new FacebookStrategy({
         clientID: '143546596268969',
         clientSecret: '558778b491ff119cb794d9fcd5965aa0',
         callbackURL: 'http://localhost:8080/auth/facebook/callback'
     },
     function(accessToken, refreshToken, profile, done) {
-        //     if (err) { return done(err); }
-        //     User.findOrCreate({ facebookId: profile.id }, (err, user) => {
-        //     done(null, user);
-        // });
+        console.log(`${profile.displayName}`.bgYellow);
+        console.log(`${profile.provider}`.bgRed);
+        // console.log(`${profile.emails[0].value}`.bgMagenta);
+        // if (err) return err;
+        // db.User.create({ userId: 'SHIT MOFO!!!!!!!!!' })
+        db.User.create({
+
+            provider: profile.provider,
+            userId: profile.id,
+            displayName: profile.displayName
+
+        }, (err, user) => {
+            done(user);
+        });
         this.redirect('/');
     }
 ));
@@ -47,9 +68,18 @@ passport.use(new RedditStrategy({
         callbackURL: "http://localhost:8080/auth/reddit/callback"
     },
     function(accessToken, refreshToken, profile, done) {
-        // User.findOrCreate({ redditId: profile.id }, function(err, user) {
-        //     return done(err, user);
-        // });
+        console.log(profile.id);
+        console.log(profile.name);
+        console.log(profile.provider);
+        db.User.create({
+
+            provider: profile.provider,
+            userId: profile.id,
+            displayName: profile.name
+
+        }, function(err, user) {
+            return done(err, user);
+        });
         this.redirect('/');
     }
 ));
