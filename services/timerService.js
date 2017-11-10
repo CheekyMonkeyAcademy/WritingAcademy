@@ -3,7 +3,7 @@ let storyToggle = require('./serverLogic');
 let moment = require('moment');
 moment().format();
 
-timerService();
+//timerService();
 
 function timerService(){
     db.Timer.findAll({ })
