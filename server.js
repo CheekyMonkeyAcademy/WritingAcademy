@@ -14,7 +14,7 @@ let userServices = require('./services/userServices');
 let config = require('./config/config.json');
 
 //custom built depdencies
-var runServices = require('./services/runServices');
+let runServices = require('./services/runServices');
 
 //Twitter strat
 passport.use(new TwitterStrategy({

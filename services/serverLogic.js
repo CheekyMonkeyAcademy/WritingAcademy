@@ -1,7 +1,4 @@
-// stretch goal:  setup a schedule - suggest:  https://www.npmjs.com/package/timers -- NOT YET
-
 let db = require("../models");
-// let timerService = require('./timerService');
 
 function toggleWritingAndVoting(storyId){
     db.Story.findOne({
