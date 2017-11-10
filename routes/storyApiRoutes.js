@@ -82,9 +82,15 @@ module.exports = function(app){
                     id: req.params.id
                 }                
         }).then(function(story){;
-            if (req.body.scheduleActive){
+            if (req.body.scheduleActive == 'true'){
+                console.log(`ADDING TIMER #################################`);
                 // If we have an active schedule, call to add a timer
                 timerService.addTimer(req.params.id);
+            }
+            else {
+                console.log(`REMOVING TIMER #################################`);
+                // Otherwise we get rid of all the timers
+                timerService.removeTimer(req.params.id);
             }
             var allMyStoriesCreatedObject = {
                 handlebarsCall: story
@@ -107,7 +113,7 @@ module.exports = function(app){
                 id: req.params.id
             }
         }).then(function(storyToBeVotedOn){
-            console.log(storyToBeVotedOn) 
+            // console.log(storyToBeVotedOn) 
             // add first to stories object      
             var storiesObject = {
                 storyLinesToBeVotedOn: storyToBeVotedOn

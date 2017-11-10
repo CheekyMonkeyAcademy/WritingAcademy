@@ -1,6 +1,7 @@
 let db = require("../models");
 
 function toggleWritingAndVoting(storyId){
+    console.log(`Received Story ID of: '${storyId}'`);
     db.Story.findOne({
         include:[{ model: db.Line, 
             where: { 
@@ -11,7 +12,7 @@ function toggleWritingAndVoting(storyId){
             id: storyId
         }
     }).then(function(thisStory){
-        let writingTrueOrVotingFalse = thisStory.dataValues.toggleWritingTrueOrVotingFalse;
+        var writingTrueOrVotingFalse = thisStory.dataValues.toggleWritingTrueOrVotingFalse;
         console.log(`We're currently at writing true voting false of: ${writingTrueOrVotingFalse}`);
         if (writingTrueOrVotingFalse){
             console.log(`We are currently writing, let's see if we are ready to switch to voting.`);
