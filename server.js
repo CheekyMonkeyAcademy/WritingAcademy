@@ -43,9 +43,9 @@ passport.use(new TwitterStrategy({
     }));
 
 passport.use(new FacebookStrategy({
-        clientID: '143546596268969',
-        clientSecret: '558778b491ff119cb794d9fcd5965aa0',
-        callbackURL: 'http://localhost:8080/auth/facebook/callback'
+        clientID: config.production.facebookKeys.clientID,
+        clientSecret: config.production.facebookKeys.clientSecret,
+        callbackURL: config.production.facebookKeys.callbackURL
     },
     function(accessToken, refreshToken, profile, done) {
         console.log(`${profile.displayName}`.bgYellow);
@@ -59,9 +59,9 @@ passport.use(new FacebookStrategy({
     }));
 
 passport.use(new RedditStrategy({
-        clientID: 'A-_bBpq2-Q7RBg',
-        clientSecret: 'D52frJChsu2sbr3RUS3TKWBsAFs',
-        callbackURL: "http://localhost:8080/auth/reddit/callback"
+        clientID: config.production.redditKeys.clientID,
+        clientSecret: config.production.redditKeys.clientSecret,
+        callbackURL: config.production.redditKeys.callbackURL
     },
     function(accessToken, refreshToken, profile, done) {
         console.log(profile.id);
