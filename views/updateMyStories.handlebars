@@ -57,9 +57,13 @@
                     <div class="form-group">
                         <h4>Open Writing To Others</h4>
                             <select data-placeholder="" class="chosen-select" id="openWritingToOthers" >
-                                <option value= "{{handlebarCall.dataValues.openWritingToAllUsers}}">{{handlebarCall.dataValues.openWritingToAllUsers}}</option>
+                                {{#if handlebarCall.dataValues.openWritingToAllUsers}}
+                                <option value="true" selected>true</option>
+                                <option value="false">false</option>
+                                {{else}}
                                 <option value="true">true</option>
-                                <option value="false">false</option>                        
+                                <option value="false" selected>false</option>
+                                {{/if}}                  
                             </select>
 
                     </div>
@@ -67,9 +71,13 @@
                     <div class="form-group">
                         <h4>Open Voting To Others</h4>
                             <select data-placeholder="" class="chosen-select" id="openVotingToOthers" >
-                                    <option value= "{{handlebarCall.dataValues.openVotingToAllUsers}}">{{handlebarCall.dataValues.openVotingToAllUsers}}</option>
-                                    <option value="true">true</option>
-                                    <option value="false">false</option>                        
+                                {{#if handlebarCall.dataValues.openVotingToAllUsers}}
+                                <option value="true" selected>true</option>
+                                <option value="false">false</option>
+                                {{else}}
+                                <option value="true">true</option>
+                                <option value="false" selected>false</option>
+                                {{/if}}                     
                             </select>
                     </div>
                 {{!-- </div> --}}
@@ -81,9 +89,13 @@
                     <div class="form-group">
                         <h4>Publicly Visible</h4>
                             <select data-placeholder="" class="chosen-select" id="visibleToPublic">
-                                    <option value= "{{handlebarCall.dataValues.publiclyVisible}}">{{handlebarCall.dataValues.publiclyVisible}}</option>
-                                    <option value="true">true</option>
-                                    <option value="false">false</option>                        
+                                {{#if handlebarCall.dataValues.publiclyVisible}}
+                                <option value="true" selected>true</option>
+                                <option value="false">false</option>
+                                {{else}}
+                                <option value="true">true</option>
+                                <option value="false" selected>false</option>
+                                {{/if}}         
                             </select>
                     </div>
 
@@ -91,9 +103,13 @@
 
                         <h4>Active Schedule for Writing and Voting</h4>
                             <select data-placeholder="" class="chosen-select" id="scheduleActive">
-                                <option value="{{handlebarCall.dataValues.scheduleActive}}">{{handlebarCall.dataValues.scheduleActive}}</option>
-                                <option value="true">true</option>
+                                {{#if handlebarCall.dataValues.scheduleActive}}
+                                <option value="true" selected>true</option>
                                 <option value="false">false</option>
+                                {{else}}
+                                <option value="true">true</option>
+                                <option value="false" selected>false</option>
+                                {{/if}}
                             </select>
                     </div>
                 {{!-- </div> --}}

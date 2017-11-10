@@ -11,7 +11,6 @@ function timerService() {
                 if (checkTimer(timer.dataValues)) {
                     console.log(`We hit the timer for this story id: ${timer.dataValues.StoryId} - so we're firing it off`);
                     storyToggle(timer.dataValues.StoryId);
-                    removeTimer(timer.dataValues.StoryId);
                     addTimer(timer.dataValues.StoryId);
                 } else {
                     console.log(`We aren't at this timer yet ID: ${timer.dataValues.StoryId} time: ${timer.dataValues.timerNextFire}`);
@@ -33,6 +32,10 @@ function checkTimer(thisTimer) {
 }
 
 function addTimer(thisStoryId) {
+    // first thing we should do before adding a timer is to remove old timers
+    console.log(`Removing timers so we can add one.`)
+    removeTimer(thisStoryId);
+
     console.log(`Adding timer for: ${thisStoryId}`)
     db.Story.findOne({
             where: {
@@ -71,5 +74,6 @@ function removeTimer(thisStoryId) {
 
 module.exports = {
     timerService: timerService,
-    addTimer: addTimer
+    addTimer: addTimer,
+    removeTimer: removeTimer
 }
