@@ -1,8 +1,10 @@
 // stretch goal:  setup a schedule - suggest:  https://www.npmjs.com/package/timers -- NOT YET
 
-var db = require("../models");
+let db = require("../models");
+let timerService = require('./timerService');
 
 function toggleWritingAndVoting(storyId){
+    timerService.addTimer(storyId);
     db.Story.findOne({
         include:[{ model: db.Line, 
             where: { 

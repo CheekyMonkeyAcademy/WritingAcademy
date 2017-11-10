@@ -6,40 +6,25 @@ moment().format();
 timerService();
 
 function timerService(){
-    db.Story.findAll({
-        where: {
-            scheduleActive: true
-        }
-    })
-    .then(function(story){
-        console.log('@@@@@@@@@@@@@@@@@@@@@@ STORY @@@@@@@@@@@@@@@@@@@@@')
-        // console.log(story);
-        story.forEach(function(thisStory){
-            db.Timer.findAll({
-                where: {
-                    StoryId: thisStory.id
-                }
-            })
-            .then(function(allTimers){
-                console.log('###################### TIMER #####################')
-                allTimers.forEach(function(timer){
-                    if(checkTimer(timer.dataValues)){
-                        console.log(`We hit the timer for this story id: ${timer.dataValues.StoryId} - so we're firing it off`);
-                        storyToggle(timer.dataValues.StoryId);
-                        removeTimer(timer.dataValues.StoryId);
-                        addTimer(timer.dataValues.StoryId);
-                    }
-                    else {
-                        console.log(`We aren't at this timer yet ID: ${timer.dataValues.StoryId} time: ${timer.dataValues.timerNextFire}`);
-                    }
-                });
-            });
+    db.Timer.findAll({ })
+    .then(function(allTimers){
+        allTimers.forEach(function(timer){
+            console.log('###################### TIMERS #####################');
+            console.log(timer);
+            if(checkTimer(timer.dataValues)){
+                console.log(`We hit the timer for this story id: ${timer.dataValues.StoryId} - so we're firing it off`);
+                storyToggle(timer.dataValues.StoryId);
+                removeTimer(timer.dataValues.StoryId);
+                addTimer(timer.dataValues.StoryId);
+            }
+            else {
+                console.log(`We aren't at this timer yet ID: ${timer.dataValues.StoryId} time: ${timer.dataValues.timerNextFire}`);
+            }
         });
     });
 }
 
 function checkTimer(thisTimer){
-    console.log(thisTimer);
     returnValue = false;
     let now = Date.now();
     if (thisTimer.timerNextFire <= now) {
@@ -53,6 +38,7 @@ function checkTimer(thisTimer){
 }
 
 function addTimer(thisStoryId){
+    console.log(`Adding timer for: ${thisStoryId}`)
     db.Story.findOne({
         where: {
             id: thisStoryId
@@ -73,7 +59,7 @@ function addTimer(thisStoryId){
             let newTargetDate = moment().add(story.votingTimePeriodInMins, 'm').toDate();
             console.log(`Now: ${moment()} - and adding ${story.votingTimePeriodInMins} - we get ${newTargetDate}`);
             db.Timer.create({
-                StoryId: story.StoryId,
+                StoryId: thisStoryId,
                 timerNextFire: newTargetDate
             });
         }
@@ -81,6 +67,7 @@ function addTimer(thisStoryId){
 }
 
 function removeTimer(thisStoryId){
+    console.log(`Remove Timer: ${thisStoryId}`);
     db.Timer.destroy({
         where: {
             StoryId: thisStoryId
