@@ -1,3 +1,26 @@
+{{!-- Modal --}}
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title text-danger text-center" id="exampleModalLabel">Error!</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="fa fa-cog fa-spin fa-1x fa-fw"></i>
+                    <span aria-hidden="true" class="sr-only"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h1 class="text-center">A story needs a name.</h1>
+                <h1 class="text-center">A story has a genre.</h1>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-info" data-dismiss="modal">Close</button>                
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="container">
 
 <div class="row">    
@@ -103,10 +126,9 @@
 <div class="row">
     {{!-- <div class="col-sm-1"></div> --}}
     <div class="col-sm-9">
-        <button class="btn btn-primary" type="submit" id="createStory">Create My Story!</button>
+        <button class="btn btn-primary" type="submit" id="createStory" data-toggle="modal" data-target="#exampleModal">Create My Story!</button>
     </div>
 </div>
 
 {{!-- End of container for first column --}}
 </div>
-
