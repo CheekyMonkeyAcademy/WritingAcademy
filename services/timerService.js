@@ -46,6 +46,7 @@ function addTimer(thisStoryId) {
             if (story.toggleWritingTrueOrVotingFalse) {
                 console.log(`We're in writing - writing timer is: ${story.writingTimePeriodInMins} mins`);
                 let newTargetDate = moment().add(story.writingTimePeriodInMins, 'm').toDate();
+                
                 console.log(`Now: ${moment()} - and adding ${story.writingTimePeriodInMins} - we get ${newTargetDate}`);
                 db.Timer.create({
                     StoryId: thisStoryId,
