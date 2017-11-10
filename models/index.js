@@ -7,6 +7,7 @@ var basename = path.basename(__filename);
 var env = process.env.NODE_ENV || 'development';
 var config = require(__dirname + '/../config/config.json')[env];
 var db = {};
+var colors = require('colors');
 
 if (config.use_env_variable) {
     var sequelize = new Sequelize(process.env[config.use_env_variable]);
@@ -33,5 +34,6 @@ Object.keys(db).forEach(modelName => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-// console.log(config)
+console.log("this is the keys".green);
+console.log(config);
 module.exports = db;

@@ -1,5 +1,6 @@
 var passport = require('passport');
 var crypto = require('crypto');
+var db = require("../models");
 
 
 module.exports = function(app) {
