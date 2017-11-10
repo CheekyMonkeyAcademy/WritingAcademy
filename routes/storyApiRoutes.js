@@ -83,12 +83,10 @@ module.exports = function(app){
                 }                
         }).then(function(story){;
             if (req.body.scheduleActive == 'true'){
-                console.log(`ADDING TIMER #################################`);
                 // If we have an active schedule, call to add a timer
                 timerService.addTimer(req.params.id);
             }
             else {
-                console.log(`REMOVING TIMER #################################`);
                 // Otherwise we get rid of all the timers
                 timerService.removeTimer(req.params.id);
             }
