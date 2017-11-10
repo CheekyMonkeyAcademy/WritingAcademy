@@ -11,30 +11,36 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 var RedditStrategy = require('passport-reddit').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuthStrategy;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-
+let userServices = require('./services/userServices');
 //Twitter strat
+
+
+
+
 passport.use(new TwitterStrategy({
-        consumerKey: 'aI0LlGbbkANCJj3RkS08mTC2f',
-        consumerSecret: 'ggEYwryfDm7kGW5obxAUm3eufouK3RtuRZ4DMi2hBCYGTuzGEZ',
-        callbackURL: 'http://localhost:8080/twitter/return'
-            // callbackURL: 'https://vast-plateau-60506.herokuapp.com/twitter/return' /*switch with production*/ */
-    },
-    function(token, tokenSecret, profile, cb) {
-        // db.User.create({ userId: '12345' })
-        db.User.create({
+    consumerKey: 'aI0LlGbbkANCJj3RkS08mTC2f',
+    consumerSecret: 'ggEYwryfDm7kGW5obxAUm3eufouK3RtuRZ4DMi2hBCYGTuzGEZ',
+    callbackURL: 'http://localhost:8080/twitter/return'
+        // callbackURL: 'https://vast-plateau-60506.herokuapp.com/twitter/return' /*switch with production*/ */
+},
+function(token, tokenSecret, profile, cb) {
+    // db.User.create({ userId: '12345' })
+    // db.User.create({
 
-            provider: profile.provider,
-            userId: profile.id,
-            displayName: profile.displayName
+    //     provider: profile.provider,
+    //     userId: profile.id,
+    //     displayName: profile.displayName
 
-        }, function(err, user) {
+    // }
+    createOrUpdateUser(profile.provider, profile.id, profile.displayName),
+        function(err, user) {
             return cb(err);
             console.log(`${profile.displayName}`.cyan);
             console.log(`${profile.provider}`.bgRed);
             console.log(profile);
             this.redirect('/'); /*this needs to re-direct to the correct page but for now it routes back to home*/
         });
-    }));
+}));
 
 passport.use(new FacebookStrategy({
         clientID: '143546596268969',
@@ -44,6 +50,7 @@ passport.use(new FacebookStrategy({
     function(accessToken, refreshToken, profile, done) {
         console.log(`${profile.displayName}`.bgYellow);
         console.log(`${profile.provider}`.bgRed);
+        console.log(profile);
         // console.log(`${profile.emails[0].value}`.bgMagenta);
         // if (err) return err;
         // db.User.create({ userId: 'SHIT MOFO!!!!!!!!!' })
@@ -100,8 +107,8 @@ passport.serializeUser(function(user, cb) {
     cb(null, user);
 });
 
-passport.deserializeUser(function(obj, cb) {
-    cb(null, obj);
+passport.deserializeUser(function(profile, cb) {
+    cb(null, profile);
 });
 
 // Create an instance of the express app.
