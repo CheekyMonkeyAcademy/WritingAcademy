@@ -1,5 +1,6 @@
-var db = require("../models");
-var storyService = require("../services/serverLogic");
+let db = require("../models");
+let storyService = require("../services/serverLogic");
+let timerService = require('../services/timerService');
 
 module.exports = function(app){
     
@@ -44,7 +45,10 @@ module.exports = function(app){
         })
         .then(function(storyObject){
             newStoryObject.handlebarCall = storyObject;
-            
+            if (storyObject.scheduleActive){
+                // If we have an active schedule, call to add a timer
+                timerService.addTimer(storyObject.id);
+            }
             let userId = 5 // ummm yeah, TODO FIX THIS FIX THIS FIX THIS UGLY THING!
             db.Permission.create({
                 permissionText: 'Admin',
@@ -77,7 +81,11 @@ module.exports = function(app){
                 where: {
                     id: req.params.id
                 }                
-        }).then(function(story){
+        }).then(function(story){;
+            if (req.body.scheduleActive){
+                // If we have an active schedule, call to add a timer
+                timerService.addTimer(req.params.id);
+            }
             var allMyStoriesCreatedObject = {
                 handlebarsCall: story
             }

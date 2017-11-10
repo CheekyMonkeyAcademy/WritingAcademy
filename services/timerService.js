@@ -3,14 +3,11 @@ let storyToggle = require('./serverLogic');
 let moment = require('moment');
 moment().format();
 
-timerService();
-
 function timerService() {
     db.Timer.findAll({})
         .then(function(allTimers) {
             allTimers.forEach(function(timer) {
                 console.log('###################### TIMERS #####################');
-                console.log(timer);
                 if (checkTimer(timer.dataValues)) {
                     console.log(`We hit the timer for this story id: ${timer.dataValues.StoryId} - so we're firing it off`);
                     storyToggle(timer.dataValues.StoryId);
@@ -52,7 +49,7 @@ function addTimer(thisStoryId) {
                     timerNextFire: newTargetDate
                 });
             } else {
-                console.log(`We're in writing - writing timer is: ${story.votingTimePeriodInMins} mins`);
+                console.log(`We're in voting - voting timer is: ${story.votingTimePeriodInMins} mins`);
                 let newTargetDate = moment().add(story.votingTimePeriodInMins, 'm').toDate();
                 console.log(`Now: ${moment()} - and adding ${story.votingTimePeriodInMins} - we get ${newTargetDate}`);
                 db.Timer.create({

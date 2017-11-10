@@ -36,6 +36,7 @@
     "passport-oauth": "^1.0.0",
     "passport-reddit": "^0.2.4",
     "passport-twitter": "^1.0.4",
+    "schedule": "^0.1.0",
     "sequelize": "^4.20.1"
   }
 }

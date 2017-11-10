@@ -13,6 +13,8 @@ var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 let userServices = require('./services/userServices');
 let config = require('./config/config.json');
 
+//custom built depdencies
+var runServices = require('./services/runServices');
 
 //Twitter strat
 passport.use(new TwitterStrategy({

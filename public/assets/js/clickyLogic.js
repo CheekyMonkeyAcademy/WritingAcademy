@@ -31,6 +31,12 @@ $(document).ready(function(){
             visible: $("#visibleToPublic").val()
         }
 
+        if (((newStory.title === "") || (newStory.title === null)) || ((newStory.genre === "") || (newStory.genre === null))){
+            console.log(`Cannot create a story with an empty title or genre - placeholder until we have a modal`);
+            return false;
+            // TODO log an error to a modal saying 'uhh yeah, we need a title - kthxbye'
+        }
+
         $.ajax({
             type: "POST", 
             url: "/api/newStory",
