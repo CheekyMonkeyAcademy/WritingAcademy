@@ -1,33 +1,21 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm-2">
-        {{#each readStoryObject.dataValues.title}}
-            <p>{{dataValues.title}}</p> --}}
-       {{/each}}
-  `</div>
-  </div>
-</div>
-
- {{#each readStoryObject.dataValues.Lines}} {{dataValues.lineText}} {{/each}}
-
-      <h3>Title: {{readStoryObject.dataValues.title}}</h3>
-    </div>
-    <div class="col-sm-2">
-      <h3>Visibility: {{readStoryObject.dataValues.publiclyVisible}}</h3>
-    </div>
-    <div class="col-sm-2">
-      <h3>Genre: {{readStoryObject.dataValues.genre}}</h3>
-    </div>
-    
-    <div class="col-sm-2">
-      <h3>Story:</h3>
+    <div class="col-sm-12 storySpecs">
+        <p><h3>Title: {{readStoryObject.dataValues.title}}</h3></p>
+        <p><h3>Genre: {{readStoryObject.dataValues.genre}}</h3></p>
     </div>
   </div>
 
   <div class="row">
-
- {{#each readStoryObject.dataValues.Lines}} {{dataValues.lineText}} {{/each}}
-
+    <div class="col-sm-12 readSpecs">
+      <div class="scrollbar" id="style-10">
+        <div class="force-overflow">
+        {{#each readStoryObject.dataValues.Lines}} {{dataValues.lineText}} {{/each}}        
+        </div>
+      </div>
+    </div>
   </div>
-
 </div>
+
+
+
