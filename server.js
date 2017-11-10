@@ -4,7 +4,6 @@ var exphbs = require("express-handlebars");
 var bodyParser = require("body-parser");
 var passport = require('passport');
 var crypto = require('crypto');
-var colors = require('colors');
 
 var TwitterStrategy = require('passport-twitter').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
@@ -14,17 +13,8 @@ var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 let userServices = require('./services/userServices');
 let config = require('./config/config.json');
 
-// console.log('jfhfhfhfdhjfdksfgskjgjksgfsgfsfsfgsgkfgkgfskgkauuuwuhdkakd'.bgCyan);
+
 //Twitter strat
-// console.log(config);
-// console.log('jfhfhfhfdhjfdksfgskjgjksgfsgfsfsfgsgkfgkgfskgkauuuwuhdkakd'.bgCyan);
-// console.log(config.development);
-// console.log('jfhfhfhfdhjfdksfgskjgjksgfsgfsfsfgsgkfgkgfskgkauuuwuhdkakd'.bgCyan);
-// console.log(config.development.twitterKeys);
-// console.log('jfhfhfhfdhjfdksfgskjgjksgfsgfsfsfgsgkfgkgfskgkauuuwuhdkakd'.bgCyan);
-// console.log(config.development.twitterKeys.CONSUMER_KEY);
-
-
 passport.use(new TwitterStrategy({
         consumerKey: config.production.twitterKeys.CONSUMER_KEY,
         consumerSecret: config.production.twitterKeys.CONSUMER_SECRET,
@@ -35,9 +25,7 @@ passport.use(new TwitterStrategy({
         userServices(profile.provider, profile.id, profile.displayName),
             function(err, user) {
                 return cb(err);
-                console.log(`${profile.displayName}`.cyan);
-                console.log(`${profile.provider}`.bgRed);
-                console.log(profile);
+                
                 this.redirect('/'); /*this needs to re-direct to the correct page but for now it routes back to home*/
             };
     }));
@@ -48,9 +36,7 @@ passport.use(new FacebookStrategy({
         callbackURL: config.production.facebookKeys.callbackURL
     },
     function(accessToken, refreshToken, profile, done) {
-        console.log(`${profile.displayName}`.bgYellow);
-        console.log(`${profile.provider}`.bgRed);
-        console.log(profile);
+        
 
         userServices(profile.provider, profile.id, profile.displayName), (err, user) => {
             done(user);
@@ -64,9 +50,7 @@ passport.use(new RedditStrategy({
         callbackURL: config.production.redditKeys.callbackURL
     },
     function(accessToken, refreshToken, profile, done) {
-        console.log(profile.id);
-        console.log(profile.name);
-        console.log(profile.provider);
+      
         userServices(profile.provider, profile.id, profile.displayName),
             function(err, user) {
                 return done(err, user);
@@ -105,7 +89,6 @@ app.set("view engine", "handlebars");
 // Requiring our models for syncing
 var db = require("./models");
 
-// console.log(config)
 
 // Sets up the Express app to handle data parsing
 app.use(bodyParser.json());
