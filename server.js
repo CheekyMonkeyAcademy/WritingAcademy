@@ -4,83 +4,59 @@ var exphbs = require("express-handlebars");
 var bodyParser = require("body-parser");
 var passport = require('passport');
 var crypto = require('crypto');
-// var colors = require('colors');
 
 var TwitterStrategy = require('passport-twitter').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var RedditStrategy = require('passport-reddit').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuthStrategy;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+let userServices = require('./services/userServices');
+let config = require('./config/config.json');
+
 
 //Twitter strat
 passport.use(new TwitterStrategy({
-        consumerKey: 'aI0LlGbbkANCJj3RkS08mTC2f',
-        consumerSecret: 'ggEYwryfDm7kGW5obxAUm3eufouK3RtuRZ4DMi2hBCYGTuzGEZ',
-        callbackURL: 'http://localhost:8080/twitter/return'
-            // callbackURL: 'https://vast-plateau-60506.herokuapp.com/twitter/return' /*switch with production*/ */
+        consumerKey: config.production.twitterKeys.CONSUMER_KEY,
+        consumerSecret: config.production.twitterKeys.CONSUMER_SECRET,
+        callbackURL: config.production.twitterKeys.callbackURL /*switch with production*/
     },
     function(token, tokenSecret, profile, cb) {
-        // db.User.create({ userId: '12345' })
-        db.User.create({
 
-            provider: profile.provider,
-            userId: profile.id,
-            displayName: profile.displayName
-
-        }, function(err, user) {
-            return cb(err);
-            console.log(`${profile.displayName}`.cyan);
-            console.log(`${profile.provider}`.bgRed);
-            console.log(profile);
-            this.redirect('/'); /*this needs to re-direct to the correct page but for now it routes back to home*/
-        });
+        userServices(profile.provider, profile.id, profile.displayName),
+            function(err, user) {
+                return cb(err);
+                
+                this.redirect('/'); /*this needs to re-direct to the correct page but for now it routes back to home*/
+            };
     }));
 
 passport.use(new FacebookStrategy({
-        clientID: '143546596268969',
-        clientSecret: '558778b491ff119cb794d9fcd5965aa0',
-        callbackURL: 'http://localhost:8080/auth/facebook/callback'
+        clientID: config.production.facebookKeys.clientID,
+        clientSecret: config.production.facebookKeys.clientSecret,
+        callbackURL: config.production.facebookKeys.callbackURL
     },
     function(accessToken, refreshToken, profile, done) {
-        console.log(`${profile.displayName}`.bgYellow);
-        console.log(`${profile.provider}`.bgRed);
-        // console.log(`${profile.emails[0].value}`.bgMagenta);
-        // if (err) return err;
-        // db.User.create({ userId: 'SHIT MOFO!!!!!!!!!' })
-        db.User.create({
+        
 
-            provider: profile.provider,
-            userId: profile.id,
-            displayName: profile.displayName
-
-        }, (err, user) => {
+        userServices(profile.provider, profile.id, profile.displayName), (err, user) => {
             done(user);
-        });
+        };
         this.redirect('/');
-    }
-));
+    }));
 
 passport.use(new RedditStrategy({
-        clientID: 'A-_bBpq2-Q7RBg',
-        clientSecret: 'D52frJChsu2sbr3RUS3TKWBsAFs',
-        callbackURL: "http://localhost:8080/auth/reddit/callback"
+        clientID: config.production.redditKeys.clientID,
+        clientSecret: config.production.redditKeys.clientSecret,
+        callbackURL: config.production.redditKeys.callbackURL
     },
     function(accessToken, refreshToken, profile, done) {
-        console.log(profile.id);
-        console.log(profile.name);
-        console.log(profile.provider);
-        db.User.create({
-
-            provider: profile.provider,
-            userId: profile.id,
-            displayName: profile.name
-
-        }, function(err, user) {
-            return done(err, user);
-        });
+      
+        userServices(profile.provider, profile.id, profile.displayName),
+            function(err, user) {
+                return done(err, user);
+            };
         this.redirect('/');
-    }
-));
+    }));
 
 passport.use(new GoogleStrategy({
         clientID: '975477224458-fvreqnf88mijr6nt29lhjsjahjqf0b9k.apps.googleusercontent.com',
@@ -88,11 +64,8 @@ passport.use(new GoogleStrategy({
         callbackURL: "http://localhost:8080/auth/google/callback"
     },
     function(token, tokenSecret, profile, done) {
-        // User.findOrCreate({ googleId: profile.id }, function(err, user) {
-        //     return done(err, user);
 
-        // });
-        // this.redirect('/');
+
     }
 ));
 
@@ -100,8 +73,8 @@ passport.serializeUser(function(user, cb) {
     cb(null, user);
 });
 
-passport.deserializeUser(function(obj, cb) {
-    cb(null, obj);
+passport.deserializeUser(function(profile, cb) {
+    cb(null, profile);
 });
 
 // Create an instance of the express app.
@@ -116,7 +89,6 @@ app.set("view engine", "handlebars");
 // Requiring our models for syncing
 var db = require("./models");
 
-// console.log(config)
 
 // Sets up the Express app to handle data parsing
 app.use(bodyParser.json());

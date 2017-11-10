@@ -7,12 +7,13 @@ module.exports = function(app) {
     app.get('/',
         (req, res) => {
             res.render('index', { user: req.user });
-        });
+        }); //opens index route.
 
     app.get('/login',
         (req, res) => {
             res.render('login');
         });
+    //opens login page route
     // console.log(twitter)
 
     app.get('/login/twitter',
@@ -38,7 +39,7 @@ module.exports = function(app) {
             failureRedirect: '/login'
 
         }));
-    console.log(`$$$$$$$$^^^^^ Facebook has returned`);
+    // console.log(`$$$$$$$$^^^^^ Facebook has returned`);
 
     app.post('/auth/facebook/callback', (req, res, next) => {
 
