@@ -27,7 +27,7 @@ passport.use(new TwitterStrategy({
         userServices(profile.provider, profile.id, profile.displayName),
             function(err, user) {
                 return cb(err);
-                
+
                 this.redirect('/'); /*this needs to re-direct to the correct page but for now it routes back to home*/
             };
     }));
@@ -38,7 +38,7 @@ passport.use(new FacebookStrategy({
         callbackURL: config.production.facebookKeys.callbackURL
     },
     function(accessToken, refreshToken, profile, done) {
-        
+
 
         userServices(profile.provider, profile.id, profile.displayName), (err, user) => {
             done(user);
@@ -52,7 +52,7 @@ passport.use(new RedditStrategy({
         callbackURL: config.production.redditKeys.callbackURL
     },
     function(accessToken, refreshToken, profile, done) {
-      
+
         userServices(profile.provider, profile.id, profile.displayName),
             function(err, user) {
                 return done(err, user);
@@ -63,7 +63,7 @@ passport.use(new RedditStrategy({
 passport.use(new GoogleStrategy({
         clientID: '975477224458-fvreqnf88mijr6nt29lhjsjahjqf0b9k.apps.googleusercontent.com',
         clientSecret: 'GuhqDBsS8kRJgTa4cdM9nNob',
-        callbackURL: "http://localhost:8080/auth/google/callback"
+        callbackURL: "https://vast-plateau-60506.herokuapp.com/auth/google/callback"
     },
     function(token, tokenSecret, profile, done) {
 
