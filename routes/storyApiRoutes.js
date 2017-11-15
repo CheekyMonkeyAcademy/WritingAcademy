@@ -76,12 +76,14 @@ module.exports = function(app){
     //Do not api if client is expecting an html change
     app.put("/api/story/:id/update", function(req, res){       
         var updatedStorySpecs = req.body;
+        console.log(`@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ UPDATE STORY`);
+        console.log(updatedStorySpecs);
         var id = req.params.id;
         db.Story.update(updatedStorySpecs,{            
                 where: {
                     id: req.params.id
                 }                
-        }).then(function(story){;
+        }).then(function(story){
             if (req.body.scheduleActive == 'true'){
                 // If we have an active schedule, call to add a timer
                 timerService.addTimer(req.params.id);

@@ -56,8 +56,8 @@ $(document).ready(function() {
             var updatedStory = {
                 title: $("#createStoryTitle").val(),
                 genre: $("#createStoryGenre").val(),
-                openWriting: $("#openWritingToOthers").val(),
-                openVoting: $("#openVotingToOthers").val(),
+                openWritingToAllUsers: $("#openWritingToOthers").val(),
+                openVotingToAllUsers: $("#openVotingToOthers").val(),
                 minimumNumberOfVoters: $("#minimumNumberOfVoters").val(),
                 minimumNumberOfWriters: $("#minimumNumberOfWriters").val(),
                 scheduleActive: $("#scheduleActive").val(),

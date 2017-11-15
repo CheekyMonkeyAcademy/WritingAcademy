@@ -1,0 +1,21 @@
+<container>
+    <row>
+        <h1>Story: {{storyWithPermissions.dataValues.title}}</h1>
+        <h3>Genre: {{storyWithPermissions.dataValues.genre}}</h3>
+        <hr>
+
+        {{#if storyWithPermissions.dataValues.openWritingToAllUsers}}
+            <h3>Writing is open to everyone - no permissions necessary.</h3>
+        {{else}}
+            <h3>WE NEED TO ADD FOLKS TO WRITE!!!</h3>
+        {{/if}}
+        <hr>
+        {{#if storyWithPermissions.dataValues.openVotingToAllUsers}}
+            <h3>Voting is open to everyone - no permissions necessary.</h3>
+        {{else}}
+            <h3>WE NEED TO ADD FOLKS TO VOTE!!!</h3>
+        {{/if}}
+        
+
+    </row>
+</container>
