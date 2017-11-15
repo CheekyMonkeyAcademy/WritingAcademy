@@ -76,8 +76,6 @@ module.exports = function(app){
     //Do not api if client is expecting an html change
     app.put("/api/story/:id/update", function(req, res){       
         var updatedStorySpecs = req.body;
-        console.log(`@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ UPDATE STORY`);
-        console.log(updatedStorySpecs);
         var id = req.params.id;
         db.Story.update(updatedStorySpecs,{            
                 where: {

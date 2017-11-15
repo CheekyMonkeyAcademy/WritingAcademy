@@ -73,6 +73,7 @@ module.exports = function(app) {
 
     app.get("/story/:id/permissions", function(req, res){
         db.Story.findOne({
+            // TODO fix this to include existing user permissions
             // include:[{ model: db.Line, 
             //     where: { 
             //         lineVotedOn: false
@@ -82,10 +83,6 @@ module.exports = function(app) {
                 id: req.params.id
             }                
         }).then(function(story){
-            // if (req.body.scheduleActive == 'true'){
-            //     // If we have an active schedule, call to add a timer
-            // }
-
             var storyWithPermissions = {
                 storyWithPermissions: story
             }
