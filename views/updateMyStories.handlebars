@@ -53,77 +53,75 @@
 
         <div class="row">
             <div class="column columnCreate">
-                {{!-- <div class="col-sm-4">                --}}
-                    <div class="form-group">
-                        <h4>Open Writing To Others</h4>
-                        <select data-placeholder="" class="chosen-select" id="openWritingToOthers" >
-                            {{#if handlebarCall.dataValues.openWritingToAllUsers}}
-                                <option value="true" selected>true</option>
-                                <option value="false">false</option>
-                            {{else}}
-                                <option value="true">true</option>
-                                <option value="false" selected>false</option>
-                            {{/if}}                  
-                        </select>
+                <div class="form-group">
+                    <h4>Open Writing To Others</h4>
+                    <select data-placeholder="" class="chosen-select" id="openWritingToOthers" >
                         {{#if handlebarCall.dataValues.openWritingToAllUsers}}
-                            <h4>Additional permissions not necessary - writing is open to all.</h4>
+                            <option value="true" selected>true</option>
+                            <option value="false">false</option>
                         {{else}}
-                            <a href="/story/{{handlebarCall.dataValues.id}}/permissions"><h3>Add/Edit these permissions</h3></a>
-                            <h4>Show all users with writing permissions here</h4>
-                        {{/if}}
-                    </div>
+                            <option value="true">true</option>
+                            <option value="false" selected>false</option>
+                        {{/if}}                  
+                    </select>
+                    {{#if handlebarCall.dataValues.openWritingToAllUsers}}
+                        <p>Additional permissions not necessary - writing is open to all.</p>
+                    {{else}}
+                        <a href="/story/{{handlebarCall.dataValues.id}}/permissions">Add/Remove Who Can Write</a>
+                        <h4>TODO: Show all users with writing permissions here</h4>
+                    {{/if}}
+                </div>
 
-                    <div class="form-group">
-                        <h4>Open Voting To Others</h4>
-                        <select data-placeholder="" class="chosen-select" id="openVotingToOthers" >
-                            {{#if handlebarCall.dataValues.openVotingToAllUsers}}
-                                <option value="true" selected>true</option>
-                                <option value="false">false</option>
-                            {{else}}
-                                <option value="true">true</option>
-                                <option value="false" selected>false</option>
-                            {{/if}}                     
-                        </select>
+                <div class="form-group">
+                    <h4>Open Voting To Others</h4>
+                    <select data-placeholder="" class="chosen-select" id="openVotingToOthers" >
                         {{#if handlebarCall.dataValues.openVotingToAllUsers}}
-                            <h4>Additional permissions not necessary - voting is open to all.</h4>
+                            <option value="true" selected>true</option>
+                            <option value="false">false</option>
                         {{else}}
-                            <a href="/story/{{handlebarCall.dataValues.id}}/permissions"><h3>Add/Edit these permissions</h3></a>
-                            <h4>Show all users with voting permissions here</h4>
-                        {{/if}}
-                    </div>
-                {{!-- </div> --}}
+                            <option value="true">true</option>
+                            <option value="false" selected>false</option>
+                        {{/if}}                     
+                    </select>
+                    {{#if handlebarCall.dataValues.openVotingToAllUsers}}
+                        <p>Additional permissions not necessary - voting is open to all.</p>
+                    {{else}}
+                        <a href="/story/{{handlebarCall.dataValues.id}}/permissions">Add/Remove Who Can Vote</a>
+                        <h4>TODO: Show all users with voting permissions here</h4>
+                    {{/if}}
+                    <hr>
+                    <a href="/story/{{handlebarCall.dataValues.id}}/permissions">Add/Remove Story Administrators</a>
+                </div>
             </div>   
             
             
             <div class="column columnCreate">
-                {{!-- <div class="col-sm-4"> --}}
-                    <div class="form-group">
-                        <h4>Publicly Visible</h4>
-                        <select data-placeholder="" class="chosen-select" id="visibleToPublic">
-                            {{#if handlebarCall.dataValues.publiclyVisible}}
-                                <option value="true" selected>true</option>
-                                <option value="false">false</option>
-                            {{else}}
-                                <option value="true">true</option>
-                                <option value="false" selected>false</option>
-                            {{/if}}         
-                        </select>
-                    </div>
+                <div class="form-group">
+                    <h4>Publicly Visible</h4>
+                    <select data-placeholder="" class="chosen-select" id="visibleToPublic">
+                        {{#if handlebarCall.dataValues.publiclyVisible}}
+                            <option value="true" selected>true</option>
+                            <option value="false">false</option>
+                        {{else}}
+                            <option value="true">true</option>
+                            <option value="false" selected>false</option>
+                        {{/if}}         
+                    </select>
+                </div>
 
-                    <div class="form-group">
+                <div class="form-group">
 
-                        <h4>Active Schedule for Writing and Voting</h4>
-                        <select data-placeholder="" class="chosen-select" id="scheduleActive">
-                            {{#if handlebarCall.dataValues.scheduleActive}}
-                                <option value="true" selected>true</option>
-                                <option value="false">false</option>
-                            {{else}}
-                                <option value="true">true</option>
-                                <option value="false" selected>false</option>
-                            {{/if}}
-                        </select>
-                    </div>
-                {{!-- </div> --}}
+                    <h4>Active Schedule for Writing and Voting</h4>
+                    <select data-placeholder="" class="chosen-select" id="scheduleActive">
+                        {{#if handlebarCall.dataValues.scheduleActive}}
+                            <option value="true" selected>true</option>
+                            <option value="false">false</option>
+                        {{else}}
+                            <option value="true">true</option>
+                            <option value="false" selected>false</option>
+                        {{/if}}
+                    </select>
+                </div>
             </div>
         </div>
     {{!-- End of row, end of form --}}

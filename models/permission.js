@@ -1,16 +1,19 @@
 module.exports = function(sequelize, DataTypes) {
     let Permission = sequelize.define("Permission", {
-        permissionText: {
-            // Basic idea: 
-            // There are three levels of permission:
-            // 1. Admin - can change story options, write lines, and vote
-            // 2. Writer - can write lines and vote
-            // 3. Voter - can vote
-            type: DataTypes.STRING,
+        permissionAdmin: {
+            type: DataTypes.BOOLEAN,
             allowNull: false,
-            validate: {
-                len: [1]
-            }
+            default: false
+        },
+        permissionWrite: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            default: false
+        },
+        permissionVote: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            default: false
         }
         // createdAt: Sequelize.DATE,
         // updatedAt: Sequelize.DATE,
