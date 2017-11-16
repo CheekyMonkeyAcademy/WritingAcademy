@@ -31,61 +31,64 @@ module.exports = function(app) {
 
         //EXAMPLE HTML FILE TEST 
         //This route here shows the create story html page
-        app.get('/test', function(req, res) {
-            res.sendFile(path.join(__dirname, "../public/test.html"));
-        })
+    app.get('/test', function(req, res) {
+        res.sendFile(path.join(__dirname, "../public/test.html"));
+    });
 
-        //This route goes to the update form
-        app.get("/updateStoryForm/:id", function(req, res) {
-            db.Story.findOne({
-                where: {
-                    id: req.params.id
-                }
-            }).then(function(story) {
-                var storiesObject = {
-                    handlebarCall: story
-                };
-                res.render("updateMyStories", storiesObject)
-                console.log(storiesObject);
-            })
-        })
+    //This route goes to the update form
+    app.get("/updateStoryForm/:id", function(req, res) {
+        db.Story.findOne({
+            where: {
+                id: req.params.id
+            }
+        }).then(function(story) {
+            var storiesObject = {
+                handlebarCall: story
+            };
+            res.render("updateMyStories", storiesObject)
+            console.log(storiesObject);
+        });
+    });
 
-    
     app.get('/createStory', function(req, res){
         res.render("createStory");
-    })   
+    });
 
     app.get('/viewStories', function(req, res){
         res.render("viewMyStories")
-    })
+    });
 
     app.get('/writeStory', function(req, res){
         //TODO: WHEN THIS IS CLICKED--NEED TO GET EXACT STORY ID
         res.render("writeLine");
-    })
+    });
 
     app.get('/voteLines', function(req, res){
         res.render("voteForNextLine")
-    })
+    });
 
     app.get('/readStory', function(req, res){
         res.render("readStory")
-    })
+    });
 
-    //DOES NOT WORK!!!
+    app.get("/story/:id/permissions", function(req, res){
+        db.Story.findOne({
+            // TODO fix this to include existing user permissions
+            // include:[{ model: db.Line, 
+            //     where: { 
+            //         lineVotedOn: false
+            //     }
+            // }],            
+            where: {
+                id: req.params.id
+            }                
+        }).then(function(story){
+            var storyWithPermissions = {
+                storyWithPermissions: story
+            }
+            res.render("addPermissions", storyWithPermissions)
+        });
+    });
 
-    // app.get("/chooseStory", function(req, res){
-    //     db.Story.findAll({            
-    //     }).then(function(story){
-    //         var chooseAStory = {
-    //             callThisToPopStory:story
-    //         };
-    //         res.render("writeLine", chooseAStory)
-    //         console.log("****This is choose a story****")
-    //         // console.log(chooseAStory);
-    //         // console.log(chooseAStory.callThisToPopStory[0].dataValues)
-    //         // console.log(chooseAStory.callThisToPopStory[0].dataValues.title)
-    //     })
-    // })
 }//End of module.exports
 

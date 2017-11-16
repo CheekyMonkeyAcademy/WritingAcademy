@@ -81,7 +81,7 @@ module.exports = function(app){
                 where: {
                     id: req.params.id
                 }                
-        }).then(function(story){;
+        }).then(function(story){
             if (req.body.scheduleActive == 'true'){
                 // If we have an active schedule, call to add a timer
                 timerService.addTimer(req.params.id);

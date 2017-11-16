@@ -56,29 +56,40 @@
                 {{!-- <div class="col-sm-4">                --}}
                     <div class="form-group">
                         <h4>Open Writing To Others</h4>
-                            <select data-placeholder="" class="chosen-select" id="openWritingToOthers" >
-                                {{#if handlebarCall.dataValues.openWritingToAllUsers}}
+                        <select data-placeholder="" class="chosen-select" id="openWritingToOthers" >
+                            {{#if handlebarCall.dataValues.openWritingToAllUsers}}
                                 <option value="true" selected>true</option>
                                 <option value="false">false</option>
-                                {{else}}
+                            {{else}}
                                 <option value="true">true</option>
                                 <option value="false" selected>false</option>
-                                {{/if}}                  
-                            </select>
-
+                            {{/if}}                  
+                        </select>
+                        {{#if handlebarCall.dataValues.openWritingToAllUsers}}
+                            <h4>Additional permissions not necessary - writing is open to all.</h4>
+                        {{else}}
+                            <a href="/story/{{handlebarCall.dataValues.id}}/permissions"><h3>Add/Edit these permissions</h3></a>
+                            <h4>Show all users with writing permissions here</h4>
+                        {{/if}}
                     </div>
 
                     <div class="form-group">
                         <h4>Open Voting To Others</h4>
-                            <select data-placeholder="" class="chosen-select" id="openVotingToOthers" >
-                                {{#if handlebarCall.dataValues.openVotingToAllUsers}}
+                        <select data-placeholder="" class="chosen-select" id="openVotingToOthers" >
+                            {{#if handlebarCall.dataValues.openVotingToAllUsers}}
                                 <option value="true" selected>true</option>
                                 <option value="false">false</option>
-                                {{else}}
+                            {{else}}
                                 <option value="true">true</option>
                                 <option value="false" selected>false</option>
-                                {{/if}}                     
-                            </select>
+                            {{/if}}                     
+                        </select>
+                        {{#if handlebarCall.dataValues.openVotingToAllUsers}}
+                            <h4>Additional permissions not necessary - voting is open to all.</h4>
+                        {{else}}
+                            <a href="/story/{{handlebarCall.dataValues.id}}/permissions"><h3>Add/Edit these permissions</h3></a>
+                            <h4>Show all users with voting permissions here</h4>
+                        {{/if}}
                     </div>
                 {{!-- </div> --}}
             </div>   
@@ -88,29 +99,29 @@
                 {{!-- <div class="col-sm-4"> --}}
                     <div class="form-group">
                         <h4>Publicly Visible</h4>
-                            <select data-placeholder="" class="chosen-select" id="visibleToPublic">
-                                {{#if handlebarCall.dataValues.publiclyVisible}}
+                        <select data-placeholder="" class="chosen-select" id="visibleToPublic">
+                            {{#if handlebarCall.dataValues.publiclyVisible}}
                                 <option value="true" selected>true</option>
                                 <option value="false">false</option>
-                                {{else}}
+                            {{else}}
                                 <option value="true">true</option>
                                 <option value="false" selected>false</option>
-                                {{/if}}         
-                            </select>
+                            {{/if}}         
+                        </select>
                     </div>
 
                     <div class="form-group">
 
                         <h4>Active Schedule for Writing and Voting</h4>
-                            <select data-placeholder="" class="chosen-select" id="scheduleActive">
-                                {{#if handlebarCall.dataValues.scheduleActive}}
+                        <select data-placeholder="" class="chosen-select" id="scheduleActive">
+                            {{#if handlebarCall.dataValues.scheduleActive}}
                                 <option value="true" selected>true</option>
                                 <option value="false">false</option>
-                                {{else}}
+                            {{else}}
                                 <option value="true">true</option>
                                 <option value="false" selected>false</option>
-                                {{/if}}
-                            </select>
+                            {{/if}}
+                        </select>
                     </div>
                 {{!-- </div> --}}
             </div>
