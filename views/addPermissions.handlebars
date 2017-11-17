@@ -5,15 +5,17 @@
         <hr>
 
         {{#if storyWithPermissions.dataValues.openWritingToAllUsers}}
-            <h3>Writing is open to everyone - no additional permissions necessary.</h3>
+            <h3>Writing is open to the public.</h3>
         {{else}}
-            <h3>WE NEED TO ADD FOLKS TO WRITE!!!</h3>
+            <h3>Writing is closed to only authorized users - please select and authorize users below.</h3>
+            <p>You can find your friends by looking them up using their user name - then you can check the boxes as appropriate for vote, write, or admin.</p>
         {{/if}}
         <hr>
         {{#if storyWithPermissions.dataValues.openVotingToAllUsers}}
-            <h3>Voting is open to everyone - no additional permissions necessary.</h3>
+            <h3>Voting is open to the public.</h3>
         {{else}}
-            <h3>WE NEED TO ADD FOLKS TO VOTE!!!</h3>
+            <h3>Writing is closed to only authorized users - please select and authorize users below.</h3>
+            <p>You can find your friends by looking them up using their user name - then you can check the boxes as appropriate for vote, write, or admin.</p>
         {{/if}}
     </row>
     <hr>
