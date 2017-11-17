@@ -13,7 +13,6 @@ module.exports = function(app){
         });
     });
     
-
     app.post("/api/addPermission", function(req, res){
         db.Permission.create({
             StoryId: req.body.StoryId,
@@ -25,9 +24,21 @@ module.exports = function(app){
         .then(function(permission){
             // if no error
             res.status(200).json(permission);
-        })
+        });
     });
 
-
+    app.put("/api/permission/:id/update", function(req, res){
+        console.log(`############################## HERE #################`)
+        console.log(req.body);
+        let updatedPermissions = req.body;
+        db.Permission.update(updatedPermissions, {
+            where: {
+                id: req.params.id
+            }
+        })
+        .then(function(permission){
+            res.status(200).json(permission);
+        });
+    });
 
 } // End module.exports

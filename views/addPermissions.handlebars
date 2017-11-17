@@ -30,9 +30,9 @@
             {{#each storyWithPermissions.dataValues.Permissions}}
             <tr>
                 <td>Need to pull name - ID: {{dataValues.id}}</td>
-                <td>{{#if ../storyWithPermissions.dataValues.openVotingToAllUsers}}Enabled{{else}}<input type="checkbox"  {{#if dataValues.permissionVote}}checked{{/if}}/>{{/if}}</td> 
-                <td>{{#if ../storyWithPermissions.dataValues.openWritingToAllUsers}}Enabled{{else}}<input type="checkbox"  {{#if dataValues.permissionWrite}}checked{{/if}}/>{{/if}}</td>
-                <td><input type="checkbox" {{#if dataValues.permissionAdmin}}checked{{/if}}/></td>
+                <td>{{#if ../storyWithPermissions.dataValues.openVotingToAllUsers}}Enabled{{else}}<input class="checkboxUpdatePermission" dataId="{{dataValues.id}}" dataType="vote" type="checkbox"  {{#if dataValues.permissionVote}}checked{{/if}}/>{{/if}}</td> 
+                <td>{{#if ../storyWithPermissions.dataValues.openWritingToAllUsers}}Enabled{{else}}<input class="checkboxUpdatePermission" dataId="{{dataValues.id}}" dataType="write" type="checkbox"  {{#if dataValues.permissionWrite}}checked{{/if}}/>{{/if}}</td>
+                <td><input class="checkboxUpdatePermission" dataId="{{dataValues.id}}" dataType="admin" type="checkbox" {{#if dataValues.permissionAdmin}}checked{{/if}}/></td>
                 <td><img class="removePermission smallImg" dataId= "{{dataValues.id}}" src="https://cdn2.iconfinder.com/data/icons/arrows-and-universal-actions-icon-set/256/cancel_circle-128.png"></td>
             </tr>
             {{/each}}

@@ -54,14 +54,14 @@
         <div class="row">
             <div class="column columnCreate">
                 <div class="form-group">
-                    <h4>Open Writing To Others</h4>
+                    <h4>Open Writing To The Public</h4>
                     <select data-placeholder="" class="chosen-select" id="openWritingToOthers" >
                         {{#if handlebarCall.dataValues.openWritingToAllUsers}}
-                            <option value="true" selected>true</option>
-                            <option value="false">false</option>
+                            <option value="true" selected>Yes</option>
+                            <option value="false">No</option>
                         {{else}}
-                            <option value="true">true</option>
-                            <option value="false" selected>false</option>
+                            <option value="true">Yes</option>
+                            <option value="false" selected>No</option>
                         {{/if}}                  
                     </select>
                     {{#if handlebarCall.dataValues.openWritingToAllUsers}}
@@ -73,14 +73,14 @@
                 </div>
 
                 <div class="form-group">
-                    <h4>Open Voting To Others</h4>
+                    <h4>Open Voting To The Public</h4>
                     <select data-placeholder="" class="chosen-select" id="openVotingToOthers" >
                         {{#if handlebarCall.dataValues.openVotingToAllUsers}}
-                            <option value="true" selected>true</option>
-                            <option value="false">false</option>
+                            <option value="true" selected>Yes</option>
+                            <option value="false">No</option>
                         {{else}}
-                            <option value="true">true</option>
-                            <option value="false" selected>false</option>
+                            <option value="true">Yes</option>
+                            <option value="false" selected>No</option>
                         {{/if}}                     
                     </select>
                     {{#if handlebarCall.dataValues.openVotingToAllUsers}}
@@ -100,25 +100,25 @@
                     <h4>Publicly Visible</h4>
                     <select data-placeholder="" class="chosen-select" id="visibleToPublic">
                         {{#if handlebarCall.dataValues.publiclyVisible}}
-                            <option value="true" selected>true</option>
-                            <option value="false">false</option>
+                            <option value="true" selected>Yes</option>
+                            <option value="false">No</option>
                         {{else}}
-                            <option value="true">true</option>
-                            <option value="false" selected>false</option>
+                            <option value="true">Yes</option>
+                            <option value="false" selected>No</option>
                         {{/if}}         
                     </select>
                 </div>
 
                 <div class="form-group">
 
-                    <h4>Active Schedule for Writing and Voting</h4>
+                    <h4>Activate Schedule for Writing and Voting</h4>
                     <select data-placeholder="" class="chosen-select" id="scheduleActive">
                         {{#if handlebarCall.dataValues.scheduleActive}}
-                            <option value="true" selected>true</option>
-                            <option value="false">false</option>
+                            <option value="true" selected>Yes</option>
+                            <option value="false">No</option>
                         {{else}}
-                            <option value="true">true</option>
-                            <option value="false" selected>false</option>
+                            <option value="true">Yes</option>
+                            <option value="false" selected>No</option>
                         {{/if}}
                     </select>
                 </div>
