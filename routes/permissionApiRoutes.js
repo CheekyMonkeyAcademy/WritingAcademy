@@ -15,13 +15,12 @@ module.exports = function(app){
     
 
     app.post("/api/addPermission", function(req, res){
-        console.log(req.body);
         db.Permission.create({
-            StoryId: StoryId,
-            UserId: UserId,
-            permissionVote: permissionVote,
-            permissionWrite: permissionWrite,
-            permissionAdmin: permissionAdmin
+            StoryId: req.body.StoryId,
+            UserId: req.body.UserId,
+            permissionVote: req.body.permissionVote,
+            permissionWrite: req.body.permissionWrite,
+            permissionAdmin: req.body.permissionAdmin
         })
         .then(function(permission){
             // if no error

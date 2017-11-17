@@ -149,14 +149,12 @@ $(document).ready(function() {
         //Submit Line Logic
         $("#lineSubmission").on("click", function() {
             event.preventDefault();
-            // let lineToSubmit = $("#writeLineHere").val();
             var lineToSubmit = {
                 lineBody: $("#writeLineHere").val()
             }
 
             var id = $(this).attr('thisStoryId');
             var currentLineGroup = $(this).attr('thisLineGroup');
-            // console.log(lineToSubmit)
 
             $.ajax({
                 type: "POST",
@@ -168,4 +166,54 @@ $(document).ready(function() {
             });
         });
 
-    }) //End of document.ready
+        $("#addPermissionButton").on("click", function(){
+            event.preventDefault();
+
+            var addPermissionObject = {
+                StoryId: $(this).attr('storyId'),
+                UserId: $("#inputUser").val(),
+                permissionVote: $("#inputVote").prop("checked") ? true : false,
+                permissionWrite: $("#inputWrite").prop("checked") ? true : false,
+                permissionAdmin: $("#inputAdmin").prop("checked") ? true : false
+            }
+
+            if (addPermissionObject.UserId === "" || addPermissionObject.UserId === null) {
+                alert(`A user must be selected to add permissions`);
+                return false;
+            }
+
+            if ((addPermissionObject.permissionVote === false) && 
+                (addPermissionObject.permissionWrite === false) && 
+                (addPermissionObject.permissionAdmin === false)) {
+                alert(`We need to add at least one permission to record this - check a permissions box to continue.`)
+                return false;
+            }
+
+            console.log(addPermissionObject);
+            $.ajax({
+                type: "POST",
+                url: "/api/addPermission",
+                data: JSON.stringify(addPermissionObject),
+                dataType: 'json',
+                contentType: 'application/json',
+                success: location.reload()
+            });
+            //Clear form values
+            $("#inputUser").val("");
+            $("#inputVote").prop("checked", false);
+            $("#inputWrite").prop("checked", false);
+            $("#inputAdmin").prop("checked", false);
+        });
+
+        $(".removePermission").on("click", function(){
+            event.preventDefault();
+            thisId = $(this).attr('dataId');
+            console.log(`Clicked on remove for ID: ${thisId}`);
+            $.ajax({
+                type: "DELETE",
+                url: "/api/permission/"+thisId+"/remove",
+                success: location.reload()
+            });
+        });
+
+    }); //End of document.ready

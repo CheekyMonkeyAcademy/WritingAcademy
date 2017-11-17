@@ -30,10 +30,10 @@
             {{#each storyWithPermissions.dataValues.Permissions}}
             <tr>
                 <td>Need to pull name - ID: {{dataValues.id}}</td>
-                <td><input type="checkbox" {{#if ../storyWithPermissions.dataValues.openVotingToAllUsers}}disabled{{/if}} {{#if dataValues.permissionVote}}checked{{/if}}/></td> 
-                <td><input type="checkbox" {{#if ../storyWithPermissions.dataValues.openWritingToAllUsers}}disabled{{/if}} {{#if dataValues.permissionWrite}}checked{{/if}}/></td>
+                <td>{{#if ../storyWithPermissions.dataValues.openVotingToAllUsers}}Enabled{{else}}<input type="checkbox"  {{#if dataValues.permissionVote}}checked{{/if}}/>{{/if}}</td> 
+                <td>{{#if ../storyWithPermissions.dataValues.openWritingToAllUsers}}Enabled{{else}}<input type="checkbox"  {{#if dataValues.permissionWrite}}checked{{/if}}/>{{/if}}</td>
                 <td><input type="checkbox" {{#if dataValues.permissionAdmin}}checked{{/if}}/></td>
-                <td><a href="/api/permission/{{dataValues.id}}/remove">X</a></td>
+                <td><img class="removePermission smallImg" dataId= "{{dataValues.id}}" src="https://cdn2.iconfinder.com/data/icons/arrows-and-universal-actions-icon-set/256/cancel_circle-128.png"></td>
             </tr>
             {{/each}}
         </table>
@@ -44,15 +44,15 @@
                 <th class="text-center">Vote</th> 
                 <th class="text-center">Write</th>
                 <th class="text-center">Admin</th>
-                <th class="text-center">Remove</th>
+                <th class="text-center">Add</th>
             </tr>
 
             <tr>
                 <td>UserId: <input id="inputUser" type="number" name="userId"></td>
-                <td><input id="inputVote" type="checkbox" {{#if storyWithPermissions.dataValues.openVotingToAllUsers}}disabled{{/if}}/></td> 
-                <td><input id="inputWrite" type="checkbox" {{#if storyWithPermissions.dataValues.openWritingToAllUsers}}disabled{{/if}}/></td>
+                <td>{{#if storyWithPermissions.dataValues.openVotingToAllUsers}}Enabled{{else}}<input id="inputVote" type="checkbox"/>{{/if}}</td> 
+                <td>{{#if storyWithPermissions.dataValues.openWritingToAllUsers}}Enabled{{else}}<input id="inputWrite" type="checkbox"/>{{/if}}</td> 
                 <td><input id="inputAdmin" type="checkbox"/></td>
-                <td><p id="addPermissionButton" class="btn btn-success">Add This Permission</p></td>
+                <td><p id="addPermissionButton" storyId="{{storyWithPermissions.dataValues.id}}" class="btn btn-success">Add This Permission</p></td>
             </tr>
         </table>
     </row>
