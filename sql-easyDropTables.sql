@@ -3,6 +3,6 @@ use writing_db;
 
 DROP TABLE `Lines`;
 DROP TABLE `Permissions`;
-DROP  TABLE `timers`;
+DROP TABLE `Timers`;
 DROP TABLE `Stories`;
 DROP TABLE `Users`;

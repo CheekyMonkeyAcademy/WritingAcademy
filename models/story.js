@@ -89,7 +89,11 @@ module.exports = function(sequelize, DataTypes) {
     Story.associate = function(models) {
         Story.hasMany(models.Line, {
             onDelete: "cascade"
-        })
+        });
+
+        Story.hasMany(models.Permission, {
+            onDelete: "cascade"
+        });
     }
 
 
