@@ -8,7 +8,6 @@ var db = require("../models");
 module.exports = function(app){
 
     app.put("/api/line/:id/voteYes", function(req, res){       
-        console.log(req.params.id);
         db.Line.findOne({
             where: {
                 id: req.params.id

@@ -51,7 +51,9 @@ module.exports = function(app){
             }
             let userId = 5 // ummm yeah, TODO FIX THIS FIX THIS FIX THIS UGLY THING!
             db.Permission.create({
-                permissionText: 'Admin',
+                permissionAdmin: true,
+                permissionWrite: true,
+                permissionVote: true,
                 StoryId: storyObject.dataValues.id,
                 UserId: userId // how do we get the user Id?
             })

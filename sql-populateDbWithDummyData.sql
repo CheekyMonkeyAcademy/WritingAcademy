@@ -26,6 +26,10 @@ INSERT INTO `Lines` (`lineText`, `lineOrder`, `lineSelected`, `createdAt`, `upda
 
 SELECT * FROM `Lines`;
 
+INSERT INTO `writing_db`.`Permissions` (`permissionAdmin`, `permissionWrite`, `permissionVote`, `createdAt`, `updatedAt`, `StoryId`, `UserId`) VALUES ('0', '1', '0', '2017-01-1', '2017-1-1', '1', '1');
+INSERT INTO `writing_db`.`Permissions` (`permissionAdmin`, `permissionWrite`, `permissionVote`, `createdAt`, `updatedAt`, `StoryId`, `UserId`) VALUES ('0', '1', '0', '2017-01-1', '2017-1-1', '1', '4');
+INSERT INTO `writing_db`.`Permissions` (`permissionAdmin`, `permissionWrite`, `permissionVote`, `createdAt`, `updatedAt`, `StoryId`, `UserId`) VALUES ('0', '0', '1', '2017-1-1', '2017-1-1', '1', '3');
+INSERT INTO `writing_db`.`Permissions` (`permissionAdmin`, `permissionWrite`, `permissionVote`, `createdAt`, `updatedAt`, `StoryId`, `UserId`) VALUES ('1', '0', '0', '2017-1-1', '2017-1-1', '1', '2');
 
 
--- SELECT * FROM `Permissions`;
+SELECT * FROM `Permissions`;

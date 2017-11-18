@@ -149,14 +149,12 @@ $(document).ready(function() {
         //Submit Line Logic
         $("#lineSubmission").on("click", function() {
             event.preventDefault();
-            // let lineToSubmit = $("#writeLineHere").val();
             var lineToSubmit = {
                 lineBody: $("#writeLineHere").val()
             }
 
             var id = $(this).attr('thisStoryId');
             var currentLineGroup = $(this).attr('thisLineGroup');
-            // console.log(lineToSubmit)
 
             $.ajax({
                 type: "POST",
@@ -168,4 +166,96 @@ $(document).ready(function() {
             });
         });
 
-    }) //End of document.ready
+        $("#addPermissionButton").on("click", function(){
+            event.preventDefault();
+
+            var addPermissionObject = {
+                StoryId: $(this).attr('storyId'),
+                UserId: $("#inputUser").val(),
+                permissionVote: $("#inputVote").prop("checked") ? true : false,
+                permissionWrite: $("#inputWrite").prop("checked") ? true : false,
+                permissionAdmin: $("#inputAdmin").prop("checked") ? true : false
+            }
+
+            if (addPermissionObject.UserId === "" || addPermissionObject.UserId === null) {
+                alert(`A user must be selected to add permissions`);
+                return false;
+            }
+
+            if ((addPermissionObject.permissionVote === false) && 
+                (addPermissionObject.permissionWrite === false) && 
+                (addPermissionObject.permissionAdmin === false)) {
+                alert(`We need to add at least one permission to record this - check a permissions box to continue.`)
+                return false;
+            }
+
+            console.log(addPermissionObject);
+            $.ajax({
+                type: "POST",
+                url: "/api/addPermission",
+                data: JSON.stringify(addPermissionObject),
+                dataType: 'json',
+                contentType: 'application/json',
+                success: location.reload()
+            });
+            //Clear form values
+            $("#inputUser").val("");
+            $("#inputVote").prop("checked", false);
+            $("#inputWrite").prop("checked", false);
+            $("#inputAdmin").prop("checked", false);
+        });
+
+        $(".removePermission").on("click", function(){
+            event.preventDefault();
+            let thisId = $(this).attr('dataId');
+            console.log(`Clicked on remove for ID: ${thisId}`);
+            $.ajax({
+                type: "DELETE",
+                url: "/api/permission/"+thisId+"/remove",
+                success: location.reload()
+            });
+        });
+
+        $(".checkboxUpdatePermission").change(function(){
+            event.preventDefault();
+            let thisId = $(this).attr('dataId');
+            let thisType = $(this).attr('dataType');
+            let currentState = $(this).attr('checked');
+            let newState;
+            console.log(`Clicked update for ID: ${thisId} type of: ${thisType} state now: ${currentState}`);
+
+            if ($(this).attr('checked')) {
+                console.log(`We're checked - switching`);
+                newState = false;
+            }
+            else {
+                console.log(`We're NOT checked, switching`);
+                newState = true;
+            }
+
+            let updatePermissionsObject = {}
+
+            if (thisType === 'vote') {
+                updatePermissionsObject.permissionVote = newState;
+            }
+            else if (thisType === 'write') {
+                updatePermissionsObject.permissionWrite = newState;
+            }
+            else if (thisType === 'admin') {
+                updatePermissionsObject.permissionAdmin = newState;
+            }
+            else {
+                console.log(`Log an error, we shouldn't be here.`)
+            }
+
+            $.ajax({
+                type: "PUT",
+                url: "/api/permission/"+thisId+"/update",
+                data: JSON.stringify(updatePermissionsObject),
+                dataType: 'json',
+                contentType: 'application/json',
+                success: console.log(`success fully saved`)//location.reload()
+            });
+        });
+
+    }); //End of document.ready

@@ -74,15 +74,16 @@ module.exports = function(app) {
     app.get("/story/:id/permissions", function(req, res){
         db.Story.findOne({
             // TODO fix this to include existing user permissions
-            // include:[{ model: db.Line, 
-            //     where: { 
-            //         lineVotedOn: false
-            //     }
-            // }],            
+            include:[{ model: db.Permission, 
+                where: { 
+                    StoryId:  req.params.id
+                }
+            }],            
             where: {
                 id: req.params.id
             }                
         }).then(function(story){
+            console.log(story);
             var storyWithPermissions = {
                 storyWithPermissions: story
             }
