@@ -28,8 +28,6 @@ module.exports = function(app){
     });
 
     app.put("/api/permission/:id/update", function(req, res){
-        console.log(`############################## HERE #################`)
-        console.log(req.body);
         let updatedPermissions = req.body;
         db.Permission.update(updatedPermissions, {
             where: {

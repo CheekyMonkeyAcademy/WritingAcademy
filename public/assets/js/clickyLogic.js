@@ -254,7 +254,7 @@ $(document).ready(function() {
                 data: JSON.stringify(updatePermissionsObject),
                 dataType: 'json',
                 contentType: 'application/json',
-                success: location.reload()
+                success: console.log(`success fully saved`)//location.reload()
             });
         });
 
