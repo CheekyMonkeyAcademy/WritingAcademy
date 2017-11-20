@@ -34,8 +34,8 @@
 
     "production": {
         "username": "wft6y6ph6shdr4hd",
-        "password": "dft7qpqh9jeei9pu",
-        "database": "l2qtxsjiqd22hww7",
+        "password": "l2qtxsjiqd22hww7",
+        "database": "mnvrsaf2rl6441ma",
         "host": "x3ztd854gaa7on6s.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
         "dialect": "mysql",
         "twitterKeys": {
