@@ -27,7 +27,8 @@ $(document).ready(function() {
                 scheduleActive: $("#scheduleActive").val(),
                 writingTimePeriodInMins: $("#writingTimePeriodInMins").val(),
                 votingTimePeriodInMins: $("#votingTimePeriodInMins").val(),
-                visible: $("#visibleToPublic").val()
+                visible: $("#visibleToPublic").val(),
+                seedStory: $("#seedStory").val()
             }
 
             if (((newStory.title === "") || (newStory.title === null)) || ((newStory.genre === "") || (newStory.genre === null))) {
