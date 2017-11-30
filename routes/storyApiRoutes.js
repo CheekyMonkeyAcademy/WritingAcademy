@@ -58,7 +58,24 @@ module.exports = function(app){
                 UserId: userId // how do we get the user Id?
             })
             .then(function(story){
-                res.json(story);
+                let storySeed = req.body.seedStory
+                if (storySeed != "") {
+                    db.Line.create({
+                        lineText: storySeed,
+                        lineOrder: 0, // this will be the first line
+                        lineSelected: 1, // this line was 'selected' by the admin
+                        lineVotedOn: true, // mark this as already done for voting
+                        lineVoteCount: 0,
+                        StoryId: storyObject.dataValues.id, // the story just created
+                        UserId: userId // the user writing the line
+                    })
+                    .then(function(line){
+                        res.json(story);
+                    });
+                }
+                else {
+                    res.json(story);   
+                }
             });
         });
     });
