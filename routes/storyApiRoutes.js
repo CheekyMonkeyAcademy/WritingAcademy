@@ -8,7 +8,7 @@ module.exports = function(app){
     // Route to read a specific story id           
     app.get("/api/story/:id/read", function(req, res){
         db.Story.findOne({
-            include:[{ model: db.Line,
+            include:[{ model: db.Line, required:false,
                 where: { 
                     lineSelected: true
                     // TODO add order by line number
