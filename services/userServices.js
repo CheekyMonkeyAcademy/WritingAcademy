@@ -1,6 +1,6 @@
 let db = require("../models");
 
-createOrUpdateUser('stringbean', 008, 'John Lennon')
+// createOrUpdateUser('stringbean', 008, 'John Lennon')
 
 function createOrUpdateUser(provider, userId, displayName) {
 
@@ -11,7 +11,6 @@ function createOrUpdateUser(provider, userId, displayName) {
     }).then((userResult) => {
         if (userResult === null) {
             db.User.create({
-
                 provider: provider,
                 userId: userId,
                 displayName: displayName

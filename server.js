@@ -8,13 +8,52 @@ var crypto = require('crypto');
 var TwitterStrategy = require('passport-twitter').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var RedditStrategy = require('passport-reddit').Strategy;
-var GoogleStrategy = require('passport-google-oauth').OAuthStrategy;
-var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+var GoogleStrategy = require('passport-google-oauth2').Strategy;
 let userServices = require('./services/userServices');
 let config = require('./config/config.json');
 
 //custom built depdencies
 let runServices = require('./services/runServices');
+
+
+// Create an instance of the express app.
+const app = express();
+const PORT = process.env.PORT || 8080;
+
+// Set Handlebars as the default templating engine.
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
+
+// Requiring our models for syncing
+var db = require("./models");
+
+
+// Sets up the Express app to handle data parsing
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.text());
+app.use(bodyParser.json({ type: "application/vnd.api+json" }));
+
+app.use(require('morgan')('combined'));
+app.use(require('cookie-parser')());
+app.use(require('body-parser').urlencoded({ extended: true }));
+app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
+
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Static directory
+app.use(express.static("public"));
+
+// Routes
+// =============================================================
+require("./routes/html-routes.js")(app);
+require("./routes/storyApiRoutes.js")(app);
+require("./routes/lineApiRoutes.js")(app);
+require("./routes/genreApiSearchRoute.js")(app);
+require("./routes/logins")(app);
+require("./routes/permissionApiRoutes.js")(app);
 
 //Twitter strat
 passport.use(new TwitterStrategy({
@@ -60,64 +99,66 @@ passport.use(new RedditStrategy({
         this.redirect('/');
     }));
 
-passport.use(new GoogleStrategy({
-        clientID: '975477224458-fvreqnf88mijr6nt29lhjsjahjqf0b9k.apps.googleusercontent.com',
-        clientSecret: 'GuhqDBsS8kRJgTa4cdM9nNob',
-        callbackURL: "https://vast-plateau-60506.herokuapp.com/auth/google/callback"
+    passport.use(new GoogleStrategy({
+        clientID:     `763654066344-7rok26dkplnoagci46oieb58303md5qo.apps.googleusercontent.com`,
+        clientSecret: `faDZggDkMGEO0GSggDs3YqMz`,
+        callbackURL: `http://localhost:${PORT}/auth/google/callback`,
+        passReqToCallback   : true
     },
-    function(token, tokenSecret, profile, done) {
-
-
+    function(request, accessToken, refreshToken, profile, done) {
+        db.User.findOne({
+            where: {
+                userId: profile.id
+            }
+        }).then((user) => {
+            //No user was found... so create a new user with values from Facebook (all the profile. stuff)
+            if (!user) {
+                db.User.create({
+                    displayName: profile.displayName,
+                    email: profile.emails[0].value,
+                    userId: profile.id,
+                    username: profile.username,
+                    provider: 'google'
+                })
+                .then((user) => {
+                    console.log(`This is the done user`);
+                    console.log(user);
+                    console.log(`This is the end of the done user`);
+                    return done(null, user);
+                })
+                .catch(err => {
+                    if (err) { 
+                        console.log('err', err);
+                        return done(err);
+                    }
+                });
+            } else {
+                //found user. Return
+                let updatedUserSpecs = {
+                    displayName: profile.displayName,
+                    email: profile.emails[0].value,
+                    userId: profile.id,
+                    provider: 'google',
+                }
+                console.log(updatedUserSpecs);
+                db.User.update(updatedUserSpecs,{
+                    where: {
+                        userId: updatedUserSpecs.userId
+                    }    
+                })
+                .then((results) => {
+                    return done(null, updatedUserSpecs);
+                })
+                .catch(err => {
+                    if (err) { 
+                        console.log('err', err);
+                        return done(err);
+                    }
+                });
+            }
+        });
     }
 ));
-
-passport.serializeUser(function(user, cb) {
-    cb(null, user);
-});
-
-passport.deserializeUser(function(profile, cb) {
-    cb(null, profile);
-});
-
-// Create an instance of the express app.
-var app = express();
-var PORT = process.env.PORT || 8080;
-
-
-// Set Handlebars as the default templating engine.
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
-app.set("view engine", "handlebars");
-
-// Requiring our models for syncing
-var db = require("./models");
-
-
-// Sets up the Express app to handle data parsing
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.text());
-app.use(bodyParser.json({ type: "application/vnd.api+json" }));
-
-app.use(require('morgan')('combined'));
-app.use(require('cookie-parser')());
-app.use(require('body-parser').urlencoded({ extended: true }));
-app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
-
-
-app.use(passport.initialize());
-app.use(passport.session());
-
-// Static directory
-app.use(express.static("public"));
-
-// Routes
-// =============================================================
-require("./routes/html-routes.js")(app);
-require("./routes/storyApiRoutes.js")(app);
-require("./routes/lineApiRoutes.js")(app);
-require("./routes/genreApiSearchRoute.js")(app);
-require("./routes/logins")(app);
-require("./routes/permissionApiRoutes.js")(app);
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
