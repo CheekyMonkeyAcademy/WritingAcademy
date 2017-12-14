@@ -13,10 +13,17 @@ module.exports = function(sequelize, DataTypes) {
             validate: {
                 len: [1]
             }
-
         },
 
         displayName: {
+            type: DataTypes.STRING,
+            allowNull: true,
+            validate: {
+                len: [1]
+            }
+        },
+
+        email: {
             type: DataTypes.STRING,
             allowNull: true,
             validate: {

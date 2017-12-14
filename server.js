@@ -78,9 +78,8 @@ passport.use(new FacebookStrategy({
     },
     function(accessToken, refreshToken, profile, done) {
 
-
         userServices(profile.provider, profile.id, profile.displayName), (err, user) => {
-            done(user);
+            done(err, user);
         };
         this.redirect('/');
     }));
@@ -106,6 +105,7 @@ passport.use(new RedditStrategy({
         passReqToCallback   : true
     },
     function(request, accessToken, refreshToken, profile, done) {
+        // TODO move this into the user service
         db.User.findOne({
             where: {
                 userId: profile.id

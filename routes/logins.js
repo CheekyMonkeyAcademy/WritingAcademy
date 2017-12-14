@@ -1,7 +1,6 @@
 var passport = require('passport');
-var crypto = require('crypto');
+// var crypto = require('crypto');
 var db = require("../models");
-
 
 module.exports = function(app) {
     app.get('/',
@@ -13,8 +12,14 @@ module.exports = function(app) {
         (req, res) => {
             res.render('login');
         });
-    //opens login page route
-    // console.log(twitter)
+
+    // //Custom function snippet for passport that restricts a user from certain pages, unless they have logged in!
+    // function authenticationMiddleware () {  
+    //     return (req, res, next) => {
+    //         if (req.isAuthenticated()) return next();
+    //         res.redirect('/login')
+    //     }
+    // }
 
     app.get('/login/twitter',
         passport.authenticate('twitter'));
@@ -42,7 +47,6 @@ module.exports = function(app) {
     // console.log(`$$$$$$$$^^^^^ Facebook has returned`);
 
     app.post('/auth/facebook/callback', (req, res, next) => {
-
         res.redirect('/');
     })
 

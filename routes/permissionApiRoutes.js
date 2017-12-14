@@ -16,7 +16,7 @@ module.exports = function(app){
     app.post("/api/addPermission", function(req, res){
         db.Permission.create({
             StoryId: req.body.StoryId,
-            UserId: req.body.UserId,
+            UserId: req.user.UserId,
             permissionVote: req.body.permissionVote,
             permissionWrite: req.body.permissionWrite,
             permissionAdmin: req.body.permissionAdmin

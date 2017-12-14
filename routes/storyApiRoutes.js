@@ -1,6 +1,7 @@
-let db = require("../models");
-let storyService = require("../services/serverLogic");
-let timerService = require('../services/timerService');
+const db = require("../models");
+const storyService = require("../services/serverLogic");
+const timerService = require('../services/timerService');
+const userServices = require('../services/userServices');
 
 module.exports = function(app){
     
@@ -25,6 +26,7 @@ module.exports = function(app){
         });
     });
             
+    // TODO fix this so you MUST be logged in.  
     //Create Story Route
     app.post("/api/newStory", function(req, res){
         let newStoryObject = {};
@@ -44,18 +46,19 @@ module.exports = function(app){
             storyProgressionStatus: 'Initial Setup Complete'
         })
         .then(function(storyObject){
-            newStoryObject.handlebarCall = storyObject;
+            // newStoryObject.handlebarCall = storyObject; // TODO remove me if code works
             if (storyObject.scheduleActive){
                 // If we have an active schedule, call to add a timer
                 timerService.addTimer(storyObject.id);
             }
-            let userId = 5 // ummm yeah, TODO FIX THIS FIX THIS FIX THIS UGLY THING!
+
             db.Permission.create({
+                // Give the creator of the story all rights to said story - they can work from there
                 permissionAdmin: true,
                 permissionWrite: true,
                 permissionVote: true,
                 StoryId: storyObject.dataValues.id,
-                UserId: userId // how do we get the user Id?
+                UserId: req.user.id
             })
             .then(function(story){
                 let storySeed = req.body.seedStory

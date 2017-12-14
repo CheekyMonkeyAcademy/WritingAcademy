@@ -1,6 +1,12 @@
 let db = require("../models");
 
-// createOrUpdateUser('stringbean', 008, 'John Lennon')
+//Custom function snippet for passport that restricts a user from certain pages, unless they have logged in!
+function authenticationMiddleware () {  
+    return (req, res, next) => {
+        if (req.isAuthenticated()) return next();
+        res.redirect('/login')
+    }
+}
 
 function createOrUpdateUser(provider, userId, displayName) {
 
@@ -33,4 +39,7 @@ function createOrUpdateUser(provider, userId, displayName) {
     })
 }
 
-module.exports = createOrUpdateUser;
+module.exports = {
+    createOrUpdateUser: createOrUpdateUser,
+    authenticationMiddleware: authenticationMiddleware
+}

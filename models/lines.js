@@ -43,13 +43,11 @@ module.exports = function(sequelize, DataTypes) {
             }
         });
 
-
-        //TODO::ROBERTTT!!!!!!
-        // Line.belongsTo(models.User, {
-        //     foreignKey: {
-        //         allowNull: false
-        //     }
-        // });
+        Line.belongsTo(models.User, {
+            foreignKey: {
+                allowNull: false
+            }
+        });
     };
     return Line;
 };
