@@ -67,15 +67,43 @@ module.exports = function(app) {
     });
 
 
+    // Google OAuth 2
     app.get('/auth/google',
-        passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login'] }));
+    passport.authenticate('google', { scope: 
+        [ 'https://www.googleapis.com/auth/plus.login',
+        , 'https://www.googleapis.com/auth/plus.profile.emails.read' ] }
+    ));
 
+    app.get('/auth/google/callback', 
+    passport.authenticate( 'google', { 
+        successRedirect: '/',
+        failureRedirect: '/login'
+    }));
 
-    app.get('/auth/google/callback',
-        passport.authenticate('google', { failureRedirect: '/login' }),
-        function(req, res) {
-            res.redirect('/');
+    app.get('/logout', function(req, res){
+        req.logout();
+        res.redirect('/');
+    });
+
+    passport.serializeUser(function(user, done){
+        done(null, user.userId);
+    });
+    
+    passport.deserializeUser(function(userId, done) {  
+        db.User.findOne({
+            where: {
+                userId: userId
+            }
+        })
+        .then((user) => {
+            // TODO restrict this object down to only what we need, not everything
+            // console.log(`zzzzzz deserialized user`);
+            // console.log(user);
+            // console.log(`zzzzzz end deserialize user`);
+            done(null, user)
+        })
+        .catch(err => {
+            done(err, null);
         });
-
-
+    });
 }
