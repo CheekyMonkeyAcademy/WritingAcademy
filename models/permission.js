@@ -15,8 +15,6 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false,
             default: false
         }
-        // createdAt: Sequelize.DATE,
-        // updatedAt: Sequelize.DATE,
     });
 
     Permission.associate = function(models) {

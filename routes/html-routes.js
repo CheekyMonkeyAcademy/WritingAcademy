@@ -4,6 +4,7 @@ var path = require("path");
 // var express = require('express');
 // var router = express.Router();
 var db = require("../models");
+const userServices = require('../services/userServices');
 // Routes
 // =============================================================
 module.exports = function(app) {
@@ -50,7 +51,7 @@ module.exports = function(app) {
         });
     });
 
-    app.get('/createStory', function(req, res){
+    app.get('/createStory', userServices.authenticationMiddleware(), function(req, res){
         res.render("createStory");
     });
 

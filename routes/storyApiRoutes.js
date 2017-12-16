@@ -49,6 +49,8 @@ module.exports = function(app){
             // newStoryObject.handlebarCall = storyObject; // TODO remove me if code works
             if (storyObject.scheduleActive){
                 // If we have an active schedule, call to add a timer
+                console.log(`Here's our story object`);
+                console.log(storyObject);
                 timerService.addTimer(storyObject.id);
             }
 
