@@ -7,13 +7,12 @@ function timerService() {
     db.Timer.findAll({})
         .then(function(allTimers) {
             allTimers.forEach(function(timer) {
-                console.log('###################### TIMERS #####################');
                 if (checkTimer(timer.dataValues)) {
-                    console.log(`We hit the timer for this story id: ${timer.dataValues.StoryId} - so we're firing it off`);
+                    console.log(`We hit the timer for this story ID: ${timer.dataValues.StoryId} - so we're firing it off`);
                     storyToggle(timer.dataValues.StoryId);
                     addTimer(timer.dataValues.StoryId);
                 } else {
-                    console.log(`We aren't at this timer yet ID: ${timer.dataValues.StoryId} time: ${timer.dataValues.timerNextFire}`);
+                    console.log(`We aren't at this timer yet story ID: ${timer.dataValues.StoryId} time: ${timer.dataValues.timerNextFire}`);
                 }
             });
         });
@@ -26,7 +25,7 @@ function checkTimer(thisTimer) {
         console.log(`So, this timer needs to fire off, fire away!`);
         returnValue = true;
     } else {
-        console.log(`We're not ready yet - no  new timer for you!`);
+        console.log(`We're not ready yet - no new timer for you!`);
     }
     return returnValue;
 }

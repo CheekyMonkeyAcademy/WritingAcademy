@@ -25,6 +25,7 @@
     "crypto": "^1.0.1",
     "express": "^4.16.2",
     "express-handlebars": "^3.0.0",
+    "express-mysql-session": "^1.2.3",
     "express-session": "^1.15.6",
     "moment": "^2.19.1",
     "morgan": "^1.9.0",

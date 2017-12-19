@@ -34,19 +34,19 @@
 		<div class='main-wrapper'>
 			<header class="text-left">
 				<container class="navbar navbar-default navbar-fixed-top">
-					
 					<div id="headerStyle">
 						<a href="/" class="btn btn-primary navbar-btn topBtn">Writing Academy
 							<span class="glyphicon glyphicon-home" aria-hidden="true"></span> 
 						</a>
+						{{#if isAuthenticated}}
+						<a href="/logout" class="btn btn-primary navbar-btn topBtn">Logout</a>
+						<a href="/profile" class="btn btn-primary navbar-btn topBtn">Profile</a>  
+						{{else}}
 						<a href="/login" class="btn btn-primary navbar-btn topBtn">Login</a> 
+						{{/if}}
 						<a href="/viewStories" class="btn btn-primary navbar-btn topBtn">View All Stories</a>
 						<a href="https://www.reddit.com/r/WritingPrompts/" class="btn btn-primary navbar-btn topBtn" target="new">Reddit Writing Prompts</a>
 						<a href="/createStory" class="btn btn-primary navbar-btn topBtn">Create A Story</a>
-						
-
-					
-						
 
 						<form class="navbar-form navbar-right" id="genreStyle">
 							<div class="form-group">
@@ -54,22 +54,22 @@
 							</div>
 							<button type="submit" id="genreButton" class="btn btn-default">Search</button>
 						</form>
-
 					</div>
-
-					
 				</container>
 			</header>
 
-            <h1>Profile</h1>
-            ID: {{user.dataValues.id}} <br>
-            UserId: {{user.dataValues.userId}} <br>
-            Display Name: {{user.dataValues.displayName}} <br>
-            Email:  {{user.dataValues.email}} <br>
-            Provider: {{user.dataValues.provider}} <br>
-			
-			{{{ body }}}
-		
+			{{{ body }}}	
+
+			<div>
+				<h1>You are currently logged in as:</h1>
+			</div>
+			<div class="page-header">
+				ID: {{user.id}} <br>
+				UserId: {{user.userId}} <br>
+				Display Name: {{user.displayName}} <br>
+				Email:  {{user.email}} <br>
+				Provider: {{user.provider}} <br>
+			</div>
 
 			<footer class="text-center">
 				<h1>&copy; Cheeky Monkey LLC</h1>

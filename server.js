@@ -10,7 +10,8 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 var RedditStrategy = require('passport-reddit').Strategy;
 var GoogleStrategy = require('passport-google-oauth2').Strategy;
 let userServices = require('./services/userServices');
-let config = require('./config/config.json');
+var env = process.env.NODE_ENV || 'development';
+var config = require('./config/config.json')[env];
 
 //custom built depdencies
 let runServices = require('./services/runServices');
@@ -37,12 +38,29 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 app.use(require('morgan')('combined'));
 app.use(require('cookie-parser')());
 app.use(require('body-parser').urlencoded({ extended: true }));
-app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
+// app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
 
+const options = {
+    host: config.host,
+    user: config.username,
+    password: config.password,
+    database: config.database,
+    port: 3306
+}
 
-app.use(passport.initialize());
-app.use(passport.session());
+const session = require('express-session');
+const MySQLStore = require('express-mysql-session')(session);
+const sessionStore = new MySQLStore(options);
 
+app.use(session({
+    secret: 'lsdjfklssjlfkshnkj',
+    resave: false,
+    store: sessionStore,
+    saveUninitialized: false,
+  }));
+
+  app.use(passport.initialize());
+  app.use(passport.session());
 // Static directory
 app.use(express.static("public"));
 
@@ -57,9 +75,9 @@ require("./routes/permissionApiRoutes.js")(app);
 
 //Twitter strat
 passport.use(new TwitterStrategy({
-        consumerKey: config.production.twitterKeys.CONSUMER_KEY,
-        consumerSecret: config.production.twitterKeys.CONSUMER_SECRET,
-        callbackURL: config.production.twitterKeys.callbackURL /*switch with production*/
+        consumerKey: config.twitterKeys.CONSUMER_KEY,
+        consumerSecret: config.twitterKeys.CONSUMER_SECRET,
+        callbackURL: config.twitterKeys.callbackURL /*switch with production*/
     },
     function(token, tokenSecret, profile, cb) {
 
@@ -72,23 +90,22 @@ passport.use(new TwitterStrategy({
     }));
 
 passport.use(new FacebookStrategy({
-        clientID: config.production.facebookKeys.clientID,
-        clientSecret: config.production.facebookKeys.clientSecret,
-        callbackURL: config.production.facebookKeys.callbackURL
+        clientID: config.facebookKeys.clientID,
+        clientSecret: config.facebookKeys.clientSecret,
+        callbackURL: config.facebookKeys.callbackURL
     },
     function(accessToken, refreshToken, profile, done) {
 
-
         userServices(profile.provider, profile.id, profile.displayName), (err, user) => {
-            done(user);
+            done(err, user);
         };
         this.redirect('/');
     }));
 
 passport.use(new RedditStrategy({
-        clientID: config.production.redditKeys.clientID,
-        clientSecret: config.production.redditKeys.clientSecret,
-        callbackURL: config.production.redditKeys.callbackURL
+        clientID: config.redditKeys.clientID,
+        clientSecret: config.redditKeys.clientSecret,
+        callbackURL: config.redditKeys.callbackURL
     },
     function(accessToken, refreshToken, profile, done) {
 
@@ -106,6 +123,7 @@ passport.use(new RedditStrategy({
         passReqToCallback   : true
     },
     function(request, accessToken, refreshToken, profile, done) {
+        // TODO move this into the user service
         db.User.findOne({
             where: {
                 userId: profile.id
